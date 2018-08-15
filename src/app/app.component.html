@@ -1,2 +1,52 @@
+<mat-toolbar class="header mat-elevation-z3">
+    <mat-toolbar-row>
+    <span>NJ - ESTATÍSTICAS</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" [matMenuTriggerFor]="menu">menu</mat-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/">
+        <mat-icon>insert_chart</mat-icon>
+        <span>Estatísticas</span>
+      </button>
+      <button mat-menu-item routerLink="/login">
+        <mat-icon>perm_identity</mat-icon>
+        <span>Login</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="srcBar">
+  <img src="../assets/images/jfpb.png" id="logoJFPB">
+  <strong><p align="middle" class="title">ESTATÍSTICAS DO NÚCLEO JUDICIÁRIO</p></strong>
+  <br><br><br>
+  <form align="middle">
+
+    <mat-form-field>
+      <mat-select id="idAno" placeholder="Selecione o Ano: ">
+        <mat-option value="2017">2017</mat-option>
+        <mat-option value="2018">2018</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select id="idMes" placeholder="Mês: ">
+        <mat-option value="Janeiro">Janeiro</mat-option>
+        <mat-option value="Fevereiro">Fevereiro</mat-option>
+        <mat-option value="Março">Março</mat-option>
+        <mat-option value="Abril">Abril</mat-option>
+        <mat-option value="Maio">Maio</mat-option>
+        <mat-option value="Junho">Junho</mat-option>
+        <mat-option value="Julho">Julho</mat-option>
+        <mat-option value="Agosto">Agosto</mat-option>
+        <mat-option value="Setembro">Setembro</mat-option>
+        <mat-option value="Outubro">Outubro</mat-option>
+        <mat-option value="Novembro">Novembro</mat-option>
+        <mat-option value="Dezembro">Dezembro</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <button mat-button class="btnF5">Atualizar</button>
+  </form>
+
+</mat-card>
 
 <router-outlet></router-outlet>

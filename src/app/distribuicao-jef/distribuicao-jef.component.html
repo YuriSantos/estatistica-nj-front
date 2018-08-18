@@ -1,3 +1,31 @@
-<p>
-  distribuicao-jef works!
-</p>
+<h3>Distribuição JEF</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>TeleJudiciário</th>
+      <th>Atermação</th>
+      <th>Advogados</th>
+      <th>Processos</th>
+      <th>Recursal</th>
+      <th>13a Vara</th>
+      <th>7a Vara</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let distribuicaoJef of listDistribuicaoJef">
+       <td>{{ distribuicaoJef.ano }}</td>
+       <td>{{ distribuicaoJef.mes }}</td>
+       <td>{{ distribuicaoJef.teleJudiciario }}</td>
+       <td>{{ distribuicaoJef.atermacao }}</td>
+       <td>{{ distribuicaoJef.advogados }}</td>
+       <td>{{ distribuicaoJef.processos }}</td>
+       <td>{{ distribuicaoJef.recursal }}</td>
+       <td>{{ distribuicaoJef.vara13 }}</td>
+       <td>{{ distribuicaoJef.vara7 }}</td>
+       <td><button (click)="edit(distribuicaoJef.id)">editar</button></td>
+       <td><button (click)="delete(distribuicaoJef.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

@@ -1,3 +1,29 @@
-<p>
-  contadoria-vara works!
-</p>
+<h3>Contadoria Vara</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>Físico Entrada</th>
+      <th>Físico Saída</th>
+      <th>Físico Saldo</th>
+      <th>Eletrônico Entrada</th>
+      <th>Eletrônico Saída</th>
+      <th>Eletrônico Saldo</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let contadoriaVara of listContadoriaVara">
+       <td>{{ contadoriaVara.ano }}</td>
+       <td>{{ ContadoriaVara.mes }}</td>
+       <td>{{ contadoriaVara.fisicoEntrada }}</td>
+       <td>{{ contadoriaVara.fisicoSaida }}</td>
+       <td>{{ contadoriaVara.fisicoSaldo }}</td>
+       <td>{{ contadoriaVara.eletronicaEntrada }}</td>
+       <td>{{ contadoriaVara.eletronicaSaida }}</td>
+       <td>{{ contadoriaVara.eletronicoSaldo }}</td>
+       <td><button (click)="edit(contadoriaVara.id)">editar</button></td>
+       <td><button (click)="delete(contadoriaVara.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

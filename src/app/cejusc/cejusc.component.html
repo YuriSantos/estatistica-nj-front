@@ -1,0 +1,21 @@
+<h3>Cejusc</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>Com Acordo</th>
+      <th>Sem Acordo</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let cejusc of listCejusc">
+       <td>{{ cejusc.ano }}</td>
+       <td>{{ cejusc.mes }}</td>
+       <td>{{ cejusc.acordo }}</td>
+       <td>{{ cejusc.semAcordo }}</td>
+       <td><button (click)="edit(cejusc.id)">editar</button></td>
+       <td><button (click)="delete(cejusc.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

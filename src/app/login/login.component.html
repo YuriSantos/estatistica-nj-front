@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<div class="login-box">
+  <div class="login-logo">
+    <a><b>ENJ</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+
+    <form #form="ngForm">
+      <div class="alert alert-error" role="alert" *ngIf="message">
+        <strong>Invalid email or password</strong>
+      </div>
+      <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
+        <span class="help-block" *ngIf="email.invalid && email.dirty">Email is invalid</span>
+      </div>
+
+      <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
+        <span class="help-block" *ngIf="password.invalid && password.dirty">Password is required</span>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" [disabled]="!form.valid" (click)="login()">Sign In</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>

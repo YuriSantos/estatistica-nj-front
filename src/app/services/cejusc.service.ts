@@ -14,7 +14,7 @@ export class CejuscService {
     if (cejusc.id != null && cejusc.id !== 0 ) {
       return this.http.put(`${ENJ_API}/cejusc`, cejusc);
     }else{
-      cejusc.id = null;
+      cejusc.id = 0;
       return this.http.post(`${ENJ_API}/cejusc`, cejusc);
     }
   }

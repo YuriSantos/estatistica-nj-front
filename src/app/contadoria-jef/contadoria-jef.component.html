@@ -1,0 +1,21 @@
+<h3>Arquivo</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>Calculos</th>
+      <th>Atualizações</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let contadoriaJef of listContadoriaJef">
+       <td>{{ contadoriaJef.ano }}</td>
+       <td>{{ contadoriaJef.mes }}</td>
+       <td>{{ contadoriaJef.desarquivadoEnviadoJef }}</td>
+       <td>{{ contadoriaJef.devolvidoCaixaRetornoJef }}</td>
+       <td><button (click)="edit(contadoriaJef.id)">editar</button></td>
+       <td><button (click)="delete(contadoriaJef.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

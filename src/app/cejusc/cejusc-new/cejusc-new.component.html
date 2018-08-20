@@ -1,0 +1,53 @@
+
+      <h3>Cejusc - Novo</h3>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form #form="ngForm" (ngSubmit)="register()" novalidate>
+      <div [ngClass]="classCss" role="alert" *ngIf="message">
+        <strong>{{ message.text }}</strong>
+      </div>
+      <div>
+        <div>
+          <label for="inputAno" >Ano</label>
+
+          <div class="col-sm-10">
+            <input type="input"  id="inputAno" name="ano" placeholder="Username" [(ngModel)]="cejusc.ano">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputMes">Mês</label>
+
+          <div>
+            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="cejusc.mes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputAcordo">Acordo</label>
+
+          <div class="col-sm-10">
+            <input type="input" id="inputAcordo" name="acordo" placeholder="Acordo" [(ngModel)]="cejusc.acordo">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputSemAcordo">Sem Acordo</label>
+
+          <div>
+            <input type="input" id="inputSemAcordo" name="ano" placeholder="Sem Acordo" [(ngModel)]="cejusc.semAcordo">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!form.valid">save</button>
+      </div>
+      <!-- /.box-footer -->
+    </form>

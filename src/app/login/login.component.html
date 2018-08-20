@@ -1,5 +1,35 @@
-<div class="cover">
-  <mat-card>
+<div class="login-box">
+  <div class="login-logo">
+    <a><b>ENJ</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Faça o login para iniciar sua sessão</p>
 
-  </mat-card>
+    <form #form="ngForm">
+      <div class="alert alert-error" role="alert" *ngIf="message">
+        <strong>E-mail ou senha incorreta</strong>
+      </div>
+      <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
+        <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span>
+      </div>
+
+      <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
+        <label>Senha</label>
+        <input type="password" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
+        <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" [disabled]="!form.valid" (click)="login()">Inicie sua sessão</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <!-- /.login-box-body -->
 </div>

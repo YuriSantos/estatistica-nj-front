@@ -1,0 +1,27 @@
+<h3>Arquivo</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>1a Vara</th>
+      <th>2a Vara</th>
+      <th>3a vara</th>
+      <th>5 Vara</th>
+      <th>16a Vara</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let mandadoDistribuido of listMandadoDistribuido">
+       <td>{{ mandadoDistribuido.ano }}</td>
+       <td>{{ mandadoDistribuido.mes }}</td>
+       <td>{{ mandadoDistribuido.vara1 }}</td>
+       <td>{{ mandadoDistribuido.vara2 }}</td>
+       <td>{{ mandadoDistribuido.vara3 }}</td>
+       <td>{{ mandadoDistribuido.vara5 }}</td>
+       <td>{{ mandadoDistribuido.vara16 }}</td>
+       <td><button (click)="edit(mandadoDistribuido.id)">editar</button></td>
+       <td><button (click)="delete(mandadoDistribuido.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,112 @@
+
+      <h3>Arquivo - Novo</h3>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form #form="ngForm" (ngSubmit)="register()" novalidate>
+      <div [ngClass]="classCss" role="alert" *ngIf="message">
+        <strong>{{ message.text }}</strong>
+      </div>
+      <div>
+        <div>
+          <label for="inputAno" >Ano</label>
+
+          <div class="col-sm-10">
+            <input type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="arquivo.ano">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputMes">Mês</label>
+
+          <div>
+            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="arquivo.mes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputDesarquivadoEnviadoVara">Desaquirvado</label>
+
+          <div >
+            <input type="input" id="inputDesarquivadoEnviadoVara" name="desarquivadoEnviadoVara" placeholder="Desaquirvado" [(ngModel)]="arquivo.desarquivadoEnviadoVara">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputDevolvidoCaixaRetornoVara">Devolvidos Caixa Retorno Vara</label>
+
+          <div >
+            <input type="input" id="inputDevolvidoCaixaRetornoVara" name="devolvidoCaixaRetornoVara" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.devolvidoCaixaRetornoVara">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputDevolvidoCaixaRetornoVara">Devolvidos Caixa Retorno Vara</label>
+
+          <div >
+            <input type="input" id="inputDevolvidoCaixaRetornoVara" name="devolvidoCaixaRetornoVara" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.devolvidoCaixaRetornoVara">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputFeituraCaixaParaGuardaProcessoArquivo">Feitura Caixa Para Guarda Processo Arquivo</label>
+
+          <div >
+            <input type="input" id="inputFeituraCaixaParaGuardaProcessoArquivo" name="feituraCaixaParaGuardaProcessoArquivo" placeholder="-" [(ngModel)]="arquivo.feituraCaixaParaGuardaProcessoArquivo">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputdistribuicaoArquivamento">Distribuição Arquivamento</label>
+
+          <div >
+            <input type="input" id="inputdistribuicaoArquivamento" name="inputdistribuicaoArquivamento" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.distribuicaoArquivamento">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputCaixaAcotes">Caixa A Cotes</label>
+
+          <div >
+            <input type="input" id="inputCaixaAcotes" name="inputCaixaAcotes" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="caixaAcotes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputBaixadoGuardadosCaixaAcote">Baixado Guardados Caixa A Cote</label>
+
+          <div >
+            <input type="input" id="inputBaixadoGuardadosCaixaAcote" name="inputBaixadoGuardadosCaixaAcote" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="baixadoGuardadosCaixaAcote">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputProcessosRecebidosVaraBaixa">Processos Recebidos Vara Baixa</label>
+
+          <div >
+            <input type="input" id="inputProcessosRecebidosVaraBaixa" name="inputProcessosRecebidosVaraBaixa" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="processosRecebidosVaraBaixa">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!form.valid">save</button>
+      </div>
+    </form>

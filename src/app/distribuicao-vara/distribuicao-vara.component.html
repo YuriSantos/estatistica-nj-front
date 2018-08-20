@@ -1,0 +1,29 @@
+<h3>Distribuição Vara</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>Físico Distribuido</th>
+      <th>Físico Arquivado</th>
+      <th>Eletrônico Distribuido</th>
+      <th>Eletrônico Arquivado</th>
+      <th>Processos Migrados para o PJE</th>
+      <th>Baixado Guardados Caixa a cote</th>
+      <th>Processos Recebidos Vara Baixa</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let distribuicaoVara of listDistribuicaoVara">
+       <td>{{ distribuicaoVara.ano }}</td>
+       <td>{{ distribuicaoVara.mes }}</td>
+       <td>{{ distribuicaoVara.fisicoDistribuido }}</td>
+       <td>{{ distribuicaoVara.fisicoArquivado }}</td>
+       <td>{{ distribuicaoVara.eletronicoMigrado }}</td>
+       <td>{{ distribuicaoVara.eletronicoMigrado }}</td>
+       <td>{{ distribuicaoVara.processosMigrados }}</td>
+       <td><button (click)="edit(distribuicaoVara.id)">editar</button></td>
+       <td><button (click)="delete(distribuicaoVara.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

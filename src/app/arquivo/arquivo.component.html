@@ -1,0 +1,31 @@
+<h3>Arquivo</h3>
+<div>
+  <table>
+    <tr>
+      <th>Ano</th>
+      <th>Mês</th>
+      <th>Desaquirvado e enviado para a vara</th>
+      <th>Caixa devolvida retorno vara</th>
+      <th>Feitura Caixa para guarda processo arquivo</th>
+      <th>Distribuição Arquivamento</th>
+      <th>Caixa a cotes</th>
+      <th>Baixado Guardados Caixa a cote</th>
+      <th>Processos Recebidos Vara Baixa</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let arquivo of listArquivo">
+       <td>{{ arquivo.ano }}</td>
+       <td>{{ arquivo.mes }}</td>
+       <td>{{ arquivo.desarquivadoEnviadoVara }}</td>
+       <td>{{ arquivo.devolvidoCaixaRetornoVara }}</td>
+       <td>{{ arquivo.feituraCaixaParaGuardaProcessoArquivo }}</td>
+       <td>{{ arquivo.distribuicaoArquivamento }}</td>
+       <td>{{ arquivo.caixaAcotes }}</td>
+       <td>{{ arquivo.baixadoGuardadosCaixaAcote }}</td>
+       <td>{{ arquivo.processosRecebidosVaraBaixa }}</td>
+       <td><button (click)="edit(arquivo.id)">editar</button></td>
+       <td><button (click)="delete(arquivo.id)">Deletar</button></td>
+    </tr>
+  </table>
+</div>

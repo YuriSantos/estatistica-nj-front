@@ -13,21 +13,21 @@ export class ContadoriaJefService {
   createOrUpdate(contadoriaJef: ContadoriaJef) {
     if (contadoriaJef.id != null && contadoriaJef.id !== 0 ) {
       return this.http.put(`${ENJ_API}/contadoriajef`, contadoriaJef);
-    }else{
+    } else {
       contadoriaJef.id = null;
       return this.http.post(`${ENJ_API}/contadoriajef`, contadoriaJef);
     }
   }
 
-  findById(id: number){
+  findById(id: number) {
     return this.http.get(`${ENJ_API}/contadoriajef/${id}`);
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${ENJ_API}/contadoriajef/${id}`);
   }
 
-  findAll(page: number, count: number){
+  findAll(page: number, count: number) {
     return this.http.get(`${ENJ_API}/contadoriajef/${page}/${count}`);
   }
 

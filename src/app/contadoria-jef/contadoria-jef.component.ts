@@ -11,8 +11,8 @@ import { ResponseApi } from '../models/response-api';
   styleUrls: ['./contadoria-jef.component.scss']
 })
 export class ContadoriaJefComponent implements OnInit {
-  page: number=0;
-  count: number=5;
+  page = 0;
+  count = 5;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -102,7 +102,7 @@ export class ContadoriaJefComponent implements OnInit {
   private buildClasses(type: string): void {
     this.classCss = {
       'alert': true
-    }
+    };
     this.classCss['alert-' +  type] = true;
   }
 

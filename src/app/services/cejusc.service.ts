@@ -13,21 +13,21 @@ export class CejuscService {
   createOrUpdate(cejusc: Cejusc) {
     if (cejusc.id != null && cejusc.id !== 0 ) {
       return this.http.put(`${ENJ_API}/cejusc`, cejusc);
-    }else{
+    } else {
       cejusc.id = 0;
       return this.http.post(`${ENJ_API}/cejusc`, cejusc);
     }
   }
 
-  findById(id: number){
+  findById(id: number) {
     return this.http.get(`${ENJ_API}/cejusc/${id}`);
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${ENJ_API}/cejusc/${id}`);
   }
 
-  findAll(page: number, count: number){
+  findAll(page: number, count: number) {
     return this.http.get(`${ENJ_API}/cejusc/${page}/${count}`);
   }
 

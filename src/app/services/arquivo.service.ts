@@ -13,21 +13,21 @@ export class ArquivoService {
   createOrUpdate(arquivo: Arquivo) {
     if (arquivo.id != null && arquivo.id !== 0 ) {
       return this.http.put(`${ENJ_API}/arquivo`, arquivo);
-    }else{
+    } else {
       arquivo.id = null;
       return this.http.post(`${ENJ_API}/arquivo`, arquivo);
     }
   }
 
-  findById(id: number){
+  findById(id: number) {
     return this.http.get(`${ENJ_API}/arquivo/${id}`);
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${ENJ_API}/arquivo/${id}`);
   }
 
-  findAll(page: number, count: number){
+  findAll(page: number, count: number) {
     return this.http.get(`${ENJ_API}/arquivo/${page}/${count}`);
   }
 

@@ -11,8 +11,8 @@ import { ResponseApi } from '../models/response-api';
   styleUrls: ['./cejusc.component.scss']
 })
 export class CejuscComponent implements OnInit {
-  page: number=0;
-  count: number=5;
+  page = 0;
+  count = 5;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -102,7 +102,7 @@ export class CejuscComponent implements OnInit {
   private buildClasses(type: string): void {
     this.classCss = {
       'alert': true
-    }
+    };
     this.classCss['alert-' +  type] = true;
   }
 

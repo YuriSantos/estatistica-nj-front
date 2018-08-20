@@ -16,7 +16,7 @@ export class CejuscNewComponent implements OnInit {
   @ViewChild('form')
   form: NgForm;
 
-  cejusc = new Cejusc(0,0,0,0,0);
+  cejusc = new Cejusc(0, 0, 0, 0, 0);
   shared: SharedService;
   classCss: {};
   message: {};
@@ -50,7 +50,7 @@ export class CejuscNewComponent implements OnInit {
     this.message = {};
     console.log('token: ' + this.shared.token);
     this.cejuscService.createOrUpdate(this.cejusc).subscribe((responseApi: ResponseApi) => {
-        this.cejusc = new Cejusc(0,0,0,0,0);
+        this.cejusc = new Cejusc(0, 0, 0, 0, 0);
         const cejuscRet: Cejusc = responseApi.data;
         this.form.resetForm();
         this.showMessage({
@@ -77,7 +77,7 @@ export class CejuscNewComponent implements OnInit {
   private buildClasses(type: string): void {
     this.classCss = {
       'alert': true
-    }
+    };
     this.classCss['alert-' +  type] = true;
   }
 

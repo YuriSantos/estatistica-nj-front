@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { SrcBarComponent } from './src-bar/src-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { StatsComponent } from './stats/stats.component';
@@ -37,6 +38,7 @@ import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-di
 @NgModule({
   declarations: [
     AppComponent,
+    SrcBarComponent,
     LoginComponent,
     StatsComponent,
     UsuarioComponent,
@@ -63,7 +65,7 @@ import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-di
     MaterialModule,
     HttpClientModule
   ],
-  providers: [UsuarioService, SharedService, AuthGuard, DialogService,{
+  providers: [UsuarioService, SharedService, AuthGuard, DialogService, {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true

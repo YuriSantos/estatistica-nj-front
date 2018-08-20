@@ -13,21 +13,21 @@ export class DistribuicaoJefService {
   createOrUpdate(distribuicaoJef: DistribuicaoJef) {
     if (distribuicaoJef.id != null && distribuicaoJef.id !== 0 ) {
       return this.http.put(`${ENJ_API}/distribuicaojef`, distribuicaoJef);
-    }else{
+    } else {
       distribuicaoJef.id = null;
       return this.http.post(`${ENJ_API}/distribuicaojef`, distribuicaoJef);
     }
   }
 
-  findById(id: number){
+  findById(id: number) {
     return this.http.get(`${ENJ_API}/distribuicaojef/${id}`);
   }
 
-  delete(id: number){
+  delete(id: number) {
     return this.http.delete(`${ENJ_API}/distribuicaojef/${id}`);
   }
 
-  findAll(page: number, count: number){
+  findAll(page: number, count: number) {
     return this.http.get(`${ENJ_API}/distribuicaojef/${page}/${count}`);
   }
 

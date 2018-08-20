@@ -1,3 +1,81 @@
-<p>
-  distribuicao-vara-new works!
-</p>
+      <h3>Contadiria Vara - Novo</h3>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form #form="ngForm" (ngSubmit)="register()" novalidate>
+      <div [ngClass]="classCss" role="alert" *ngIf="message">
+        <strong>{{ message.text }}</strong>
+      </div>
+      <div>
+        <div>
+          <label for="inputAno" >Ano</label>
+
+          <div class="col-sm-10">
+            <input type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="distribuicaoVara.ano">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputMes">Mês</label>
+
+          <div>
+            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="distribuicaoVara.mes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputFisicoDistribuido">Físico Distribuido</label>
+
+          <div >
+            <input type="input" id="inputFisicoDistribuido" name="inputFisicoDistribuido" placeholder="Físico Distribuido" [(ngModel)]="distribuicaoVara.fisicoDistribuido">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputFisicoArquivado">Físico Arquivado</label>
+
+          <div >
+            <input type="input" id="inputFisicoArquivado" name="inputFisicoArquivado" placeholder="Físico Arquivado" [(ngModel)]="distribuicaoVara.fisicoArquivado">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputEletronicoDistribuido">Eletrônico Distribuido</label>
+
+          <div >
+            <input type="input" id="inputEletronicoDistribuido" name="inputEletronicoDistribuido" placeholder="Eletrônico Distribuido" [(ngModel)]="distribuicaoVara.inputEletronicoDistribuido">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputEletronicoMigrado">Eletrônico Migrado</label>
+
+          <div >
+            <input type="input" id="inputEletronicoMigrado" name="inputEletronicoMigrado" placeholder="Eletrônico Migrado" [(ngModel)]="distribuicaoVara.inputEletronicoMigrado">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputProcessosMigrados">Processos Migrados para o PJE</label>
+
+          <div >
+            <input type="input" id="inputProcessosMigrados" name="inputProcessosMigrados" placeholder="Processos Migrados para o PJE" [(ngModel)]="distribuicaoVara.processosMigrados">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!form.valid">save</button>
+      </div>
+    </form>

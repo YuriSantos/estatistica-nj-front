@@ -11,7 +11,7 @@ import { CurrentUser } from '../models/current-user.model';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  usuario = new Usuario('','','','');
+  usuario = new Usuario('', '', '', '');
   shared: SharedService;
   message: string;
 

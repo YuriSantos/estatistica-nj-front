@@ -1,4 +1,4 @@
-<div class="login-box">
+<mat-card class="login-box">
   <div class="login-logo">
     <a><b>ENJ</b></a>
   </div>
@@ -11,13 +11,13 @@
         <strong>E-mail ou senha incorreta</strong>
       </div>
       <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
-        <label>Email</label>
+        <label>Email </label>
         <input type="email" [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
         <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span>
       </div>
 
       <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
-        <label>Senha</label>
+        <label>Senha </label>
         <input type="password" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
         <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>
@@ -32,4 +32,4 @@
 
   </div>
   <!-- /.login-box-body -->
-</div>
+</mat-card>

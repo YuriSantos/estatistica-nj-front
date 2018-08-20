@@ -6,8 +6,8 @@ export class ContadoriaVara {
     public fisicoEntrada: number,
     public fisicoSaida: number,
     public fisicoSaldo: number,
-    public eletronicaEntrada: number,
-    public eletronicaSaida: number,
+    public eletronicoEntrada: number,
+    public eletronicoSaida: number,
     public eletronicoSaldo: number,
   ) {}
 }

@@ -6,7 +6,7 @@ export class DistribuicaoVara {
     public fisicoDistribuido: number,
     public fisicoArquivado: number,
     public eletronicoDistribuido: number,
-    public eletronicoMigrado: number,
+    public eletronicoArquivado: number,
     public processosMigrados: number,
   ) {}
 }

@@ -1,3 +1,53 @@
-<p>
-  contadoria-jef-new works!
-</p>
+
+      <h3>Contadiria JEF - Novo</h3>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form #form="ngForm" (ngSubmit)="register()" novalidate>
+      <div [ngClass]="classCss" role="alert" *ngIf="message">
+        <strong>{{ message.text }}</strong>
+      </div>
+      <div>
+        <div>
+          <label for="inputAno" >Ano</label>
+
+          <div class="col-sm-10">
+            <input type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="contadoriaJef.ano">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputMes">Mês</label>
+
+          <div>
+            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="contadoriaJef.mes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputCalculos">Calculos</label>
+
+          <div class="col-sm-10">
+            <input type="input" id="inputCalculos" name="acordo" placeholder="Calculos" [(ngModel)]="contadoriaJef.calculos">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="inputAtualizacoes">Atualizações</label>
+
+          <div>
+            <input type="input" id="inputAtualizacoes" name="ano" placeholder="Atualizações" [(ngModel)]="contadoriaJef.atualizacoes">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!form.valid">save</button>
+      </div>
+      <!-- /.box-footer -->
+    </form>

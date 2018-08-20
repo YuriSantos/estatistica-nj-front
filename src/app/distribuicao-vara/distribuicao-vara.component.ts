@@ -43,7 +43,7 @@ export class DistribuicaoVaraComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/distribuicaoVara-novo', id]);
+    this.router.navigate(['/distvara-novo', id]);
   }
 
   delete(id: number) {

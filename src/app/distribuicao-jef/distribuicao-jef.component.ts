@@ -43,7 +43,7 @@ export class DistribuicaoJefComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/distribuicaoJef-novo', id]);
+    this.router.navigate(['/distjef-novo', id]);
   }
 
   delete(id: number) {

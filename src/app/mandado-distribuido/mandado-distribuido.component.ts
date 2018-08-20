@@ -42,7 +42,7 @@ export class MandadoDistribuidoComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/distribuicaoVara-novo', id]);
+    this.router.navigate(['/mandado-novo', id]);
   }
 
   delete(id: number) {

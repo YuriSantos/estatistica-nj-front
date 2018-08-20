@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material';
 import { StatsComponent } from './stats/stats.component';
+import { SrcBarComponent } from './src-bar/src-bar.component';
 
 
 
@@ -15,7 +16,8 @@ import { StatsComponent } from './stats/stats.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    StatsComponent
+    StatsComponent,
+    SrcBarComponent
   ],
   imports: [
     BrowserModule,

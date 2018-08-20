@@ -29,12 +29,13 @@ const routes: Routes = [
   {path: 'contjef-novo/:id', component: ContadoriaJefNewComponent, canActivate: [AuthGuard]},
   {path: 'contvara', component: ContadoriaVaraComponent, canActivate: [AuthGuard]},
   {path: 'contvara-novo', component: ContadoriaVaraNewComponent, canActivate: [AuthGuard]},
+  {path: 'contvara-novo/:id', component: ContadoriaVaraNewComponent, canActivate: [AuthGuard]},
   {path: 'distjef', component: DistribuicaoJefComponent, canActivate: [AuthGuard]},
   {path: 'distjef-novo', component: DistribuicaoJefNewComponent, canActivate: [AuthGuard]},
   {path: 'distjef-novo/:id', component: DistribuicaoJefNewComponent, canActivate: [AuthGuard]},
   {path: 'mandado', component: MandadoDistribuidoComponent, canActivate: [AuthGuard]},
   {path: 'mandado-novo', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]},
-  {path: 'mandado-novo/:id', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]},
+  {path: 'mandado-novo/:id', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]}
 
 ];
 

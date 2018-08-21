@@ -1,11 +1,19 @@
 
 .login-box {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 10%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 150px;
   width: 30%;
+  min-width: 300px;
   height: 40%;
-
 }
+
+ mat-icon.pwVisibility {
+  position: relative;
+  display: inline-block !important;
+  top: 0;
+  bottom: 0;
+  margin-left: 86%;
+}
+

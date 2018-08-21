@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
 import { SharedService } from '../services/shared.service';
 import { CurrentUser } from '../models/current-user.model';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -55,4 +56,14 @@ export class LoginComponent implements OnInit {
     };
   }
 
+}
+/* Testando Validação em campo angular */
+export class FormFieldError {
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'Você deve digitar um usuário.' :
+        this.email.hasError('email') ? 'Não é um usuário válido.' :
+            '';
+  }
 }

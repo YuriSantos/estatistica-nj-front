@@ -12,15 +12,16 @@
       </div>
       <mat-form-field>
       <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
-        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
-        <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span>
+        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Usuário" #email="ngModel" id="inputEmail" email>
+        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        <!-- <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span> -->
       </div>
     </mat-form-field>
+  <br>
     <mat-form-field>
       <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
-        <label>Senha </label>
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Senha" required>
+        <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>
     </mat-form-field>

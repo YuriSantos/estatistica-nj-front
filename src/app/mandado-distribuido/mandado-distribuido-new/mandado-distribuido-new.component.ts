@@ -49,7 +49,6 @@ export class MandadoDistribuidoNewComponent implements OnInit {
 
     register() {
       this.message = {};
-      console.log('token: ' + this.shared.token);
       this.mandadoDistribuidoService.createOrUpdate(this.mandadoDistribuido).subscribe((responseApi: ResponseApi) => {
           this.mandadoDistribuido = new MandadoDistribuido(0,0,0,0,0,0,0,0,0);
           const mandadoDistribuidoRet: MandadoDistribuido = responseApi.data;

@@ -48,7 +48,6 @@ export class ArquivoNewComponent implements OnInit {
 
   register() {
     this.message = {};
-    console.log('token: ' + this.shared.token);
     this.arquivoService.createOrUpdate(this.arquivo).subscribe((responseApi: ResponseApi) => {
         this.arquivo = new Arquivo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         const arquivoRet: Arquivo = responseApi.data;

@@ -49,7 +49,6 @@ export class DistribuicaoJefNewComponent implements OnInit {
 
     register() {
       this.message = {};
-      console.log('token: ' + this.shared.token);
       this.distribuicaoJefService.createOrUpdate(this.distribuicaoJef).subscribe((responseApi: ResponseApi) => {
           this.distribuicaoJef = new DistribuicaoJef(0,0,0,0,0,0,0,0,0,0);
           const distribuicaoJefRet: DistribuicaoJef = responseApi.data;

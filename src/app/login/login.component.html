@@ -10,21 +10,24 @@
       <div class="alert alert-error" role="alert" *ngIf="message">
         <strong>E-mail ou senha incorreta</strong>
       </div>
+      <mat-form-field>
       <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
-        <label>Email </label>
-        <input type="email" [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
+        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Email" #email="ngModel" id="inputEmail" email>
         <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span>
       </div>
-
+    </mat-form-field>
+    <mat-form-field>
       <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
         <label>Senha </label>
-        <input type="password" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>
+    </mat-form-field>
 
       <div class="row">
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" [disabled]="!form.valid" (click)="login()">Inicie sua sessão</button>
+          <button type="submit" mat-button class="btnF5" [disabled]="!form.valid" (click)="login()">Inicie sua sessão</button>
         </div>
       </div>
 

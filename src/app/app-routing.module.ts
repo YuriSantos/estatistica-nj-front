@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'cejusc', component: CejuscComponent, canActivate: [AuthGuard]},
   {path: 'cejusc-novo', component: CejuscNewComponent, canActivate: [AuthGuard]},
+  {path: 'cejusc-novo/:id', component: CejuscNewComponent, canActivate: [AuthGuard]},
   {path: 'arquivo', component: ArquivoComponent, canActivate: [AuthGuard]},
   {path: 'arquivo-novo', component: ArquivoNewComponent, canActivate: [AuthGuard]},
   {path: 'arquivo-novo/:id', component: ArquivoNewComponent, canActivate: [AuthGuard]},

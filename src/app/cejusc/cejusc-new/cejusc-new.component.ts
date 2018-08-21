@@ -48,7 +48,6 @@ export class CejuscNewComponent implements OnInit {
 
   register() {
     this.message = {};
-    console.log('token: ' + this.shared.token);
     this.cejuscService.createOrUpdate(this.cejusc).subscribe((responseApi: ResponseApi) => {
         this.cejusc = new Cejusc(0, 0, 0, 0, 0);
         const cejuscRet: Cejusc = responseApi.data;

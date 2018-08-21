@@ -49,7 +49,6 @@ export class ContadoriaVaraNewComponent implements OnInit {
 
     register() {
       this.message = {};
-      console.log('token: ' + this.shared.token);
       this.contadoriaVaraService.createOrUpdate(this.contadoriaVara).subscribe((responseApi: ResponseApi) => {
           this.contadoriaVara = new ContadoriaVara(0,0,0,0,0,0,0,0,0);
           const contadoriaVaraRet: ContadoriaVara = responseApi.data;

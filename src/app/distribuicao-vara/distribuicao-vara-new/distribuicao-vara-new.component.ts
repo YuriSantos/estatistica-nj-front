@@ -49,7 +49,6 @@ export class DistribuicaoVaraNewComponent implements OnInit {
 
     register() {
       this.message = {};
-      console.log('token: ' + this.shared.token);
       this.distribuicaoVaraService.createOrUpdate(this.distribuicaoVara).subscribe((responseApi: ResponseApi) => {
           this.distribuicaoVara = new DistribuicaoVara(0,0,0,0,0,0,0,0);
           const distribuicaoVaraRet: DistribuicaoVara = responseApi.data;

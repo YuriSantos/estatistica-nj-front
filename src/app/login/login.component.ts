@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   usuario = new Usuario('', '', '', '');
   shared: SharedService;
   message: string;
+  hide = true;
 
   constructor(private usuarioService: UsuarioService,
   private router: Router) {
@@ -31,7 +32,6 @@ export class LoginComponent implements OnInit {
       this.shared.usuario.profile = this.shared.usuario.profile.substring(5);
       this.shared.showTemplate.emit(true);
       this.router.navigate(['/']);
-      console.log('token: ' + this.shared.token);
     }, err => {
       this.shared.token = null;
       this.shared.usuario = null;

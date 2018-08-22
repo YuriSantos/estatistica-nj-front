@@ -32,7 +32,8 @@ import { DistribuicaoVaraComponent } from './distribuicao-vara/distribuicao-vara
 import { DistribuicaoVaraNewComponent } from './distribuicao-vara/distribuicao-vara-new/distribuicao-vara-new.component';
 import { MandadoDistribuidoComponent } from './mandado-distribuido/mandado-distribuido.component';
 import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-distribuido-new/mandado-distribuido-new.component';
-
+import { CejuscGraficoComponent } from './cejusc/cejusc-grafico/cejusc-grafico.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-di
     DistribuicaoVaraComponent,
     DistribuicaoVaraNewComponent,
     MandadoDistribuidoComponent,
-    MandadoDistribuidoNewComponent
+    MandadoDistribuidoNewComponent,
+    CejuscGraficoComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-di
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [UsuarioService, SharedService, AuthGuard, DialogService, {
       provide: HTTP_INTERCEPTORS,

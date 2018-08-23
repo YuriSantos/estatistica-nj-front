@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ArquivoService } from '../services/arquivo.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { Arquivo } from '../models/arquivo.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-arquivo',
@@ -17,11 +19,13 @@ export class ArquivoComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listArquivo = [];
+  listArquivo:  Arquivo[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Desaquirvado e enviado para a vara', 'Caixa devolvida retorno vara', 'Feitura Caixa para guarda processo arquivo', 'Distribuição Arquivamento', 'Caixa a cotes', 'Baixado Guardados Caixa a cote', 'Processos Recebidos Vara Baixa'];
 
   constructor(private router: Router,
   private arquivoService: ArquivoService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
+  dataSource = new MatTableDataSource<Arquivo>();
 
   ngOnInit() {
     this.findAll(this.page, this.count);
@@ -32,6 +36,7 @@ export class ArquivoComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listArquivo = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listArquivo;
       },
         err => {
             this.showMessage({

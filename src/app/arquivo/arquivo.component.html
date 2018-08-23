@@ -1,34 +1,54 @@
 <h3>Arquivo</h3>
 <mat-card>
   <button type="button" mat-button class="btnF5" routerLink="/arquivo-novo">Novo Registro</button>
-<div>
-  <table>
-    <tr>
-      <th>Ano</th>
-      <th>Mês</th>
-      <th>Desaquirvado e enviado para a vara</th>
-      <th>Caixa devolvida retorno vara</th>
-      <th>Feitura Caixa para guarda processo arquivo</th>
-      <th>Distribuição Arquivamento</th>
-      <th>Caixa a cotes</th>
-      <th>Baixado Guardados Caixa a cote</th>
-      <th>Processos Recebidos Vara Baixa</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let arquivo of listArquivo">
-       <td>{{ arquivo.ano }}</td>
-       <td>{{ arquivo.mes }}</td>
-       <td>{{ arquivo.desarquivadoEnviadoVara }}</td>
-       <td>{{ arquivo.devolvidoCaixaRetornoVara }}</td>
-       <td>{{ arquivo.feituraCaixaParaGuardaProcessoArquivo }}</td>
-       <td>{{ arquivo.distribuicaoArquivamento }}</td>
-       <td>{{ arquivo.caixaAcotes }}</td>
-       <td>{{ arquivo.baixadoGuardadosCaixaAcote }}</td>
-       <td>{{ arquivo.processosRecebidosVaraBaixa }}</td>
-       <td><button (click)="edit(arquivo.id)">editar</button></td>
-       <td><button (click)="delete(arquivo.id)">Deletar</button></td>
-    </tr>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Ano">
+      <th mat-header-cell *matHeaderCellDef>Ano</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.ano }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mes">
+      <th mat-header-cell *matHeaderCellDef>Mês</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.mes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Desaquirvado e enviado para a vara">
+      <th mat-header-cell *matHeaderCellDef>Desaquirvado e enviado para a vara</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.desarquivadoEnviadoVara }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Caixa devolvida retorno vara">
+      <th mat-header-cell *matHeaderCellDef>Caixa devolvida retorno vara</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.devolvidoCaixaRetornoVara }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Feitura Caixa para guarda processo arquivo">
+      <th mat-header-cell *matHeaderCellDef>Feitura Caixa para guarda processo arquivo</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.feituraCaixaParaGuardaProcessoArquivo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Distribuição Arquivamento">
+      <th mat-header-cell *matHeaderCellDef>Distribuição Arquivamento</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.distribuicaoArquivamento }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Caixa a cotes">
+      <th mat-header-cell *matHeaderCellDef>Caixa a cotes</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.caixaAcotes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Baixado Guardados Caixa a cote">
+      <th mat-header-cell *matHeaderCellDef>Baixado Guardados Caixa a cote</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.baixadoGuardadosCaixaAcote }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Processos Recebidos Vara Baixa">
+      <th mat-header-cell *matHeaderCellDef>Processos Recebidos Vara Baixa</th>
+      <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.processosRecebidosVaraBaixa }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
-</div>
 </mat-card>

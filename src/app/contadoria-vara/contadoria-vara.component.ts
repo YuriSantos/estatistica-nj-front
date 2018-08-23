@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ContadoriaVaraService } from '../services/contadoria-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { ContadoriaVara } from '../models/contadiria-vara.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-vara',
@@ -17,7 +19,10 @@ export class ContadoriaVaraComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listContadoriajef = [];
+  listContadoriaVara: ContadoriaVara[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Entrada', 'Físico Saída', 'Físico Saldo', 'Eletrônico Entrada', 'Eletrônico Saída', 'Eletrônico Saldo'];
+
+  dataSource = new MatTableDataSource<ContadoriaVara>();
 
   constructor(private router: Router,
   private ContadoriaVaraService: ContadoriaVaraService,
@@ -30,8 +35,9 @@ export class ContadoriaVaraComponent implements OnInit {
   findAll(page: number, count: number) {
     this.ContadoriaVaraService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
-        this.listContadoriajef = responseApi['data']['content'];
+        this.listContadoriaVara = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listContadoriaVara;
       },
         err => {
             this.showMessage({

@@ -1,24 +1,29 @@
-<h3>Arquivo</h3>
+<h3>Contadoria JEF</h3>
 <mat-card>
   <button type="button" mat-button class="btnF5" routerLink="/contjef-novo">Novo Registro</button>
-<div>
-  <table>
-    <tr>
-      <th>Ano</th>
-      <th>Mês</th>
-      <th>Calculos</th>
-      <th>Atualizações</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let contadoriaJef of listContadoriaJef">
-       <td>{{ contadoriaJef.ano }}</td>
-       <td>{{ contadoriaJef.mes }}</td>
-       <td>{{ contadoriaJef.desarquivadoEnviadoJef }}</td>
-       <td>{{ contadoriaJef.devolvidoCaixaRetornoJef }}</td>
-       <td><button (click)="edit(contadoriaJef.id)">editar</button></td>
-       <td><button (click)="delete(contadoriaJef.id)">Deletar</button></td>
-    </tr>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Ano">
+      <th mat-header-cell *matHeaderCellDef>Ano</th>
+      <td mat-cell *matCellDef="let listContadoriaJef">{{ listContadoriaJef.ano }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mes">
+      <th mat-header-cell *matHeaderCellDef>Mês</th>
+      <td mat-cell *matCellDef="let listContadoriaJef">{{ listContadoriaJef.mes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Calculos">
+      <th mat-header-cell *matHeaderCellDef>Calculos</th>
+      <td mat-cell *matCellDef="let listContadoriaJef">{{ listContadoriaJef.calculos }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Atualizações">
+      <th mat-header-cell *matHeaderCellDef>Atualizações</th>
+      <td mat-cell *matCellDef="let listContadoriaJef">{{ listContadoriaJef.atualizacoes }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
-</div>
 </mat-card>

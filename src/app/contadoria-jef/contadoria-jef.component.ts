@@ -4,6 +4,8 @@ import { ContadoriaJefService } from '../services/contadoria-jef.service';
 import { DialogService } from '../services/dialog.service';
 import { Router } from '@angular/router';
 import { ResponseApi } from '../models/response-api';
+import { ContadoriaJef } from '../models/contadoria-jef.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-jef',
@@ -17,7 +19,9 @@ export class ContadoriaJefComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listContadoriajef = [];
+  listContadoriajef: ContadoriaJef[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Calculos', 'Atualizações'];
+  dataSource = new MatTableDataSource<ContadoriaJef>();
 
   constructor(private router: Router,
   private contadoriajefService: ContadoriaJefService,
@@ -32,6 +36,7 @@ export class ContadoriaJefComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listContadoriajef = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listContadoriajef;
       },
         err => {
             this.showMessage({

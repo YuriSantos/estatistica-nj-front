@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DistribuicaoVaraService } from '../services/distribuicao-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { DistribuicaoVara } from '../models/distribuicao-vara.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-distribuicao-vara',
@@ -18,7 +20,10 @@ export class DistribuicaoVaraComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listDistribuicaoVara = [];
+  listDistribuicaoVara:  DistribuicaoVara[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Distribuido', 'Físico Arquivado', 'Eletrônico Distribuido', 'Eletrônico Arquivado', 'Processos Migrados para o PJE'];
+
+  dataSource = new MatTableDataSource<DistribuicaoVara>();
 
   constructor(private router: Router,
   private distribuicaoVaraService: DistribuicaoVaraService,
@@ -33,6 +38,7 @@ export class DistribuicaoVaraComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listDistribuicaoVara = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listDistribuicaoVara;
       },
         err => {
             this.showMessage({

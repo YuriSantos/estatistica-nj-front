@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DistribuicaoJefService } from '../services/distribuicao-jef.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { DistribuicaoJef } from '../models/distribuicao-jef.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-distribuicao-jef',
@@ -18,7 +20,10 @@ export class DistribuicaoJefComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listDistribuicaoJef = [];
+  listDistribuicaoJef: DistribuicaoJef[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'TeleJudiciário', 'Atermação', 'Advogados', 'Processos', 'Recursal', '13a Vara', '7a Vara'];
+
+  dataSource = new MatTableDataSource<DistribuicaoJef>();
 
   constructor(private router: Router,
   private distribuicaoJefService: DistribuicaoJefService,
@@ -33,6 +38,7 @@ export class DistribuicaoJefComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listDistribuicaoJef = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listDistribuicaoJef;
       },
         err => {
             this.showMessage({

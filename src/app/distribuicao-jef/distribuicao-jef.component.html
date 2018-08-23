@@ -1,34 +1,54 @@
 <h3>Distribuição JEF</h3>
 <mat-card>
   <button type="button" mat-button class="btnF5" routerLink="/distjef-novo">Novo Registro</button>
-<div>
-  <table>
-    <tr>
-      <th>Ano</th>
-      <th>Mês</th>
-      <th>TeleJudiciário</th>
-      <th>Atermação</th>
-      <th>Advogados</th>
-      <th>Processos</th>
-      <th>Recursal</th>
-      <th>13a Vara</th>
-      <th>7a Vara</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let distribuicaoJef of listDistribuicaoJef">
-       <td>{{ distribuicaoJef.ano }}</td>
-       <td>{{ distribuicaoJef.mes }}</td>
-       <td>{{ distribuicaoJef.teleJudiciario }}</td>
-       <td>{{ distribuicaoJef.atermacao }}</td>
-       <td>{{ distribuicaoJef.advogados }}</td>
-       <td>{{ distribuicaoJef.processos }}</td>
-       <td>{{ distribuicaoJef.recursal }}</td>
-       <td>{{ distribuicaoJef.vara13 }}</td>
-       <td>{{ distribuicaoJef.vara7 }}</td>
-       <td><button (click)="edit(distribuicaoJef.id)">editar</button></td>
-       <td><button (click)="delete(distribuicaoJef.id)">Deletar</button></td>
-    </tr>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Ano">
+      <th mat-header-cell *matHeaderCellDef>Ano</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.ano }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mes">
+      <th mat-header-cell *matHeaderCellDef>Mês</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.mes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="TeleJudiciário">
+      <th mat-header-cell *matHeaderCellDef>TeleJudiciário</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.teleJudiciario }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Atermação">
+      <th mat-header-cell *matHeaderCellDef>Atermação</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.atermacao }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Advogados">
+      <th mat-header-cell *matHeaderCellDef>Advogados</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.advogados }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Processos">
+      <th mat-header-cell *matHeaderCellDef>Processos</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.processos }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Recursal">
+      <th mat-header-cell *matHeaderCellDef>Recursal</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.recursal }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="13a Vara">
+      <th mat-header-cell *matHeaderCellDef>13a Vara</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.vara13 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="7a Vara">
+      <th mat-header-cell *matHeaderCellDef>7a Vara</th>
+      <td mat-cell *matCellDef="let listDistribuicaoJef">{{ listDistribuicaoJef.vara7 }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
-</div>
-<mat-card>
+</mat-card>

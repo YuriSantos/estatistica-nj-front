@@ -12,23 +12,23 @@ export class MandadosDistribuidosService {
 
   createOrUpdate(mandadosDistribuidos: MandadoDistribuido) {
     if (mandadosDistribuidos.id != null && mandadosDistribuidos.id !== 0 ) {
-      return this.http.put(`${ENJ_API}/mandado`, mandadosDistribuidos);
+      return this.http.put(`${ENJ_API}/mandados`, mandadosDistribuidos);
     } else {
       mandadosDistribuidos.id = null;
-      return this.http.post(`${ENJ_API}/mandado`, mandadosDistribuidos);
+      return this.http.post(`${ENJ_API}/mandados`, mandadosDistribuidos);
     }
   }
 
   findById(id: number) {
-    return this.http.get(`${ENJ_API}/mandado/${id}`);
+    return this.http.get(`${ENJ_API}/mandados/${id}`);
   }
 
   delete(id: number) {
-    return this.http.delete(`${ENJ_API}/mandado/${id}`);
+    return this.http.delete(`${ENJ_API}/mandados/${id}`);
   }
 
   findAll(page: number, count: number) {
-    return this.http.get(`${ENJ_API}/mandado/${page}/${count}`);
+    return this.http.get(`${ENJ_API}/mandados/${page}/${count}`);
   }
 
 }

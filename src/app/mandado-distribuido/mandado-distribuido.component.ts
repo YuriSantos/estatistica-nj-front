@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MandadoDistribuidoService } from '../services/mandado-distribuido.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { MandadoDistribuido } from '../models/mandado-distribuido.model';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-mandado-distribuido',
@@ -17,7 +19,10 @@ export class MandadoDistribuidoComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listMandadoDistribuido = [];
+  listMandadoDistribuido: MandadoDistribuido[];
+  displayedColumns: string[] = ['Ano', 'Mes', '1a Vara', '2a Vara', '3a Vara', '5a Vara', '16a Vara', 'PJE'];
+
+  dataSource = new MatTableDataSource<MandadoDistribuido>();
 
   constructor(private router: Router,
   private mandadoDistribuidoService: MandadoDistribuidoService,
@@ -32,6 +37,7 @@ export class MandadoDistribuidoComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listMandadoDistribuido = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listMandadoDistribuido;
       },
         err => {
             this.showMessage({

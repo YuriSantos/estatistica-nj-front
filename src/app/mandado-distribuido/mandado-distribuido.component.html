@@ -1,30 +1,49 @@
-<h3>Arquivo</h3>
+<h3>Cejusc</h3>
 <mat-card>
   <button type="button" mat-button class="btnF5" routerLink="/mandado-novo">Novo Registro</button>
-<div>
-  <table>
-    <tr>
-      <th>Ano</th>
-      <th>Mês</th>
-      <th>1a Vara</th>
-      <th>2a Vara</th>
-      <th>3a vara</th>
-      <th>5 Vara</th>
-      <th>16a Vara</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let mandadoDistribuido of listMandadoDistribuido">
-       <td>{{ mandadoDistribuido.ano }}</td>
-       <td>{{ mandadoDistribuido.mes }}</td>
-       <td>{{ mandadoDistribuido.vara1 }}</td>
-       <td>{{ mandadoDistribuido.vara2 }}</td>
-       <td>{{ mandadoDistribuido.vara3 }}</td>
-       <td>{{ mandadoDistribuido.vara5 }}</td>
-       <td>{{ mandadoDistribuido.vara16 }}</td>
-       <td><button (click)="edit(mandadoDistribuido.id)">editar</button></td>
-       <td><button (click)="delete(mandadoDistribuido.id)">Deletar</button></td>
-    </tr>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Ano">
+      <th mat-header-cell *matHeaderCellDef>Ano</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.ano }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mes">
+      <th mat-header-cell *matHeaderCellDef>Mês</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.mes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="1a Vara">
+      <th mat-header-cell *matHeaderCellDef>1a Vara</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.vara1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="2a Vara">
+      <th mat-header-cell *matHeaderCellDef>2a Vara</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.vara2 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="3a Vara">
+      <th mat-header-cell *matHeaderCellDef>3a Vara</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.vara3 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="5a Vara">
+      <th mat-header-cell *matHeaderCellDef>5a Vara</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.vara5 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="16a Vara">
+      <th mat-header-cell *matHeaderCellDef>16a Vara</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.vara16 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="PJE">
+      <th mat-header-cell *matHeaderCellDef>PJE</th>
+      <td mat-cell *matCellDef="let listMandadoDistribuido">{{ listMandadoDistribuido.pje }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
   </table>
-</div>
 </mat-card>

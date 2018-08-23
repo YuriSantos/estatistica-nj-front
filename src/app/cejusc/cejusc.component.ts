@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CejuscService } from '../services/cejusc.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
+import { MatTableDataSource } from '@angular/material';
+import { Cejusc } from '../models/cejusc.model';
 
 @Component({
   selector: 'app-cejusc',
@@ -17,8 +19,10 @@ export class CejuscComponent implements OnInit {
   shared: SharedService;
   message: {};
   classCss: {};
-  listCejusc = [];
+  listCejusc:  Cejusc[];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Acordo', 'Sem Acordo'];
 
+  dataSource = new MatTableDataSource<Cejusc>();
   constructor(private router: Router,
   private cejuscService: CejuscService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
@@ -32,6 +36,7 @@ export class CejuscComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.dataSource.data = this.listCejusc;
       },
         err => {
             this.showMessage({

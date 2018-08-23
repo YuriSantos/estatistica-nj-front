@@ -1,4 +1,4 @@
-
+<mat-card>
       <h3>Distribuição JEF - Novo</h3>
     <!-- /.box-header -->
     <!-- form start -->
@@ -6,97 +6,64 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <div>
-        <div>
-          <label for="inputAno" >Ano</label>
-
-          <div class="col-sm-10">
-            <input type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="distribuicaoJef.ano">
+      <mat-form-field>
+          <div>
+            <input matInput type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="distribuicaoJef.ano">
           </div>
-        </div>
-      </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input matInput type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="distribuicaoJef.mes">
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input matInput type="input" id="inputTelejudiciario" name="inputTelejudiciario" placeholder="Telejudiciário" [(ngModel)]="distribuicaoJef.teleJudiciario">
+          </div>
+        </mat-form-field>
+        <br>
 
-      <div>
-        <div>
-          <label for="inputMes">Mês</label>
+      <mat-form-field>
+          <div >
+            <input matInput type="input" id="inputAtermacao" name="inputAtermacao" placeholder="Atermação" [(ngModel)]="distribuicaoJef.atermacao">
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input matInput type="input" id="inputAdvogados" name="inputAdvogados" placeholder="Advogados" [(ngModel)]="distribuicaoJef.advogados">
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
 
           <div>
-            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="distribuicaoJef.mes">
+            <input matInput type="input" id="inputProcessos" name="inputProcessos" placeholder="Processos" [(ngModel)]="distribuicaoJef.processos">
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputTelejudiciario">Telejudiciário</label>
-
+        </mat-form-field>
+        <br>
+        <mat-form-field>
           <div >
-            <input type="input" id="inputTelejudiciario" name="inputTelejudiciario" placeholder="Telejudiciário" [(ngModel)]="distribuicaoJef.teleJudiciario">
+            <input matInput type="input" id="inputRecursal" name="inputRecursal" placeholder="Recursal" [(ngModel)]="distribuicaoJef.recursal">
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputAtermacao">Atermação</label>
-
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input matInput type="input" id="inputVara13" name="inputVara13" placeholder="13a Vara" [(ngModel)]="distribuicaoJef.vara13">
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
           <div >
-            <input type="input" id="inputAtermacao" name="inputAtermacao" placeholder="Atermação" [(ngModel)]="distribuicaoJef.atermacao">
+            <input matInput type="input" id="inputVara7" name="inputVara7" placeholder="7a Vara" [(ngModel)]="distribuicaoJef.vara7">
           </div>
-        </div>
-      </div>
+        </mat-form-field>
 
       <div>
-        <div>
-          <label for="inputAdvogados">Advogados</label>
-
-          <div >
-            <input type="input" id="inputAdvogados" name="inputAdvogados" placeholder="Advogados" [(ngModel)]="distribuicaoJef.advogados">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputProcessos">Processos</label>
-
-          <div >
-            <input type="input" id="inputProcessos" name="inputProcessos" placeholder="Processos" [(ngModel)]="distribuicaoJef.processos">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputRecursal">Recursal</label>
-
-          <div >
-            <input type="input" id="inputRecursal" name="inputRecursal" placeholder="Recursal" [(ngModel)]="distribuicaoJef.recursal">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputVara13">13a Vara</label>
-
-          <div >
-            <input type="input" id="inputVara13" name="inputVara13" placeholder="13a Vara" [(ngModel)]="distribuicaoJef.vara13">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputVara7">7a Vara</label>
-
-          <div >
-            <input type="input" id="inputVara7" name="inputVara7" placeholder="7a Vara" [(ngModel)]="distribuicaoJef.vara7">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <button type="submit" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
       </div>
     </form>
+  </mat-card>

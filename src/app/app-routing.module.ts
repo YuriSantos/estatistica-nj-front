@@ -15,6 +15,8 @@ import { DistribuicaoJefComponent } from './distribuicao-jef/distribuicao-jef.co
 import { DistribuicaoJefNewComponent } from './distribuicao-jef/distribuicao-jef-new/distribuicao-jef-new.component';
 import { MandadoDistribuidoComponent } from './mandado-distribuido/mandado-distribuido.component';
 import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-distribuido-new/mandado-distribuido-new.component';
+import { DistribuicaoVaraComponent } from './distribuicao-vara/distribuicao-vara.component';
+import { DistribuicaoVaraNewComponent } from './distribuicao-vara/distribuicao-vara-new/distribuicao-vara-new.component';
 
 const routes: Routes = [
   {path: '', component: StatsComponent},
@@ -34,6 +36,9 @@ const routes: Routes = [
   {path: 'distjef', component: DistribuicaoJefComponent, canActivate: [AuthGuard]},
   {path: 'distjef-novo', component: DistribuicaoJefNewComponent, canActivate: [AuthGuard]},
   {path: 'distjef-novo/:id', component: DistribuicaoJefNewComponent, canActivate: [AuthGuard]},
+  {path: 'distvara', component: DistribuicaoVaraComponent, canActivate: [AuthGuard]},
+  {path: 'distvara-novo', component: DistribuicaoVaraNewComponent, canActivate: [AuthGuard]},
+  {path: 'distvara-novo/:id', component: DistribuicaoVaraNewComponent, canActivate: [AuthGuard]},
   {path: 'mandado', component: MandadoDistribuidoComponent, canActivate: [AuthGuard]},
   {path: 'mandado-novo', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]},
   {path: 'mandado-novo/:id', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]}

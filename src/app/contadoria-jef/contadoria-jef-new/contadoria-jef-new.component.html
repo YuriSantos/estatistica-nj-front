@@ -1,4 +1,4 @@
-
+<mat-card>
       <h3>Contadiria JEF - Novo</h3>
     <!-- /.box-header -->
     <!-- form start -->
@@ -6,48 +6,34 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <div>
-        <div>
-          <label for="inputAno" >Ano</label>
-
-          <div class="col-sm-10">
-            <input type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="contadoriaJef.ano">
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputMes">Mês</label>
+      <mat-form-field>
 
           <div>
-            <input type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="contadoriaJef.mes">
+            <input type="input"  matInput id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="contadoriaJef.ano">
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputCalculos">Calculos</label>
-
-          <div class="col-sm-10">
-            <input type="input" id="inputCalculos" name="acordo" placeholder="Calculos" [(ngModel)]="contadoriaJef.calculos">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input type="input" matInput id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="contadoriaJef.mes">
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <label for="inputAtualizacoes">Atualizações</label>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
 
           <div>
-            <input type="input" id="inputAtualizacoes" name="ano" placeholder="Atualizações" [(ngModel)]="contadoriaJef.atualizacoes">
+            <input type="input" matInput id="inputCalculos" name="acordo" placeholder="Calculos" [(ngModel)]="contadoriaJef.calculos">
           </div>
-        </div>
-      </div>
-
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <div>
+            <input type="input" matInput id="inputAtualizacoes" name="ano" placeholder="Atualizações" [(ngModel)]="contadoriaJef.atualizacoes">
+          </div>
+        </mat-form-field>
       <div>
-        <button type="submit" [disabled]="!form.valid">save</button>
+        <button mat-button class="btnF5" type="submit" [disabled]="!form.valid">save</button>
       </div>
       <!-- /.box-footer -->
     </form>
+  </mat-card>

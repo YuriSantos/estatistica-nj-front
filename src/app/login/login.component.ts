@@ -12,6 +12,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  email = new FormControl('', [Validators.required, Validators.email]);
   usuario = new Usuario(0, '', '', '', '');
   shared: SharedService;
   message: string;
@@ -56,14 +57,10 @@ export class LoginComponent implements OnInit {
     };
   }
 
-}
-/* Testando Validação em campo angular */
-export class FormFieldError {
-  email = new FormControl('', [Validators.required, Validators.email]);
-
   getErrorMessage() {
     return this.email.hasError('required') ? 'Você deve digitar um usuário.' :
         this.email.hasError('email') ? 'Não é um usuário válido.' :
             '';
   }
+
 }

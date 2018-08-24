@@ -10,17 +10,19 @@
       <div class="alert alert-error" role="alert" *ngIf="message">
         <strong>E-mail ou senha incorreta</strong>
       </div>
-      <mat-form-field>
-      <div [ngClass] = "getFromGroupClass(email.invalid, email.dirty)">
-        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" placeholder="Usuário" #email="ngModel" id="inputEmail" email>
-        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-form-field appearance="outline">
+          <mat-label>Usuário</mat-label>
+      <div>
+        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" #email="ngModel" id="inputEmail" email required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         <!-- <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span> -->
       </div>
     </mat-form-field>
   <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
       <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" placeholder="Senha" required>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" required>
         <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>

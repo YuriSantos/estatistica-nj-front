@@ -12,7 +12,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  usuario = new Usuario(0, '', '', '', '');
+  usuario = new Usuario(0, '', '', '');
   shared: SharedService;
   message: string;
   hide = true;
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   cancelLogin() {
     this.message = '';
-    this.usuario = new Usuario(0, '', '', '', '');
+    this.usuario = new Usuario(0, '', '', '');
     window.location.href = '/login';
     window.location.reload();
   }

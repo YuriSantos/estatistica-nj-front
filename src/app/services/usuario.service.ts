@@ -15,7 +15,7 @@ export class UsuarioService {
   }
 
   createOrUpdate(usuario: Usuario) {
-    if (usuario.id != null && usuario.id !== '') {
+    if (usuario.id != null && usuario.id !== 0) {
       return this.http.put(`${ENJ_API}/usuario`, usuario);
     } else {
       usuario.id = null;

@@ -17,6 +17,8 @@ import { MandadoDistribuidoComponent } from './mandado-distribuido/mandado-distr
 import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-distribuido-new/mandado-distribuido-new.component';
 import { DistribuicaoVaraComponent } from './distribuicao-vara/distribuicao-vara.component';
 import { DistribuicaoVaraNewComponent } from './distribuicao-vara/distribuicao-vara-new/distribuicao-vara-new.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioNewComponent } from './usuario/usuario-new/usuario-new.component';
 
 const routes: Routes = [
   {path: '', component: StatsComponent},
@@ -41,7 +43,10 @@ const routes: Routes = [
   {path: 'distvara-novo/:id', component: DistribuicaoVaraNewComponent, canActivate: [AuthGuard]},
   {path: 'mandado', component: MandadoDistribuidoComponent, canActivate: [AuthGuard]},
   {path: 'mandado-novo', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]},
-  {path: 'mandado-novo/:id', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]}
+  {path: 'mandado-novo/:id', component: MandadoDistribuidoNewComponent, canActivate: [AuthGuard]},
+  {path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard]},
+  {path: 'usuario-novo', component: UsuarioNewComponent, canActivate: [AuthGuard]},
+  {path: 'usuario-novo/:id', component: UsuarioNewComponent, canActivate: [AuthGuard]}
 
 ];
 

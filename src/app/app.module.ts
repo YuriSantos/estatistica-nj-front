@@ -34,6 +34,7 @@ import { MandadoDistribuidoComponent } from './mandado-distribuido/mandado-distr
 import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-distribuido-new/mandado-distribuido-new.component';
 import { CejuscGraficoComponent } from './cejusc/cejusc-grafico/cejusc-grafico.component';
 import { ChartsModule } from 'ng2-charts';
+import { UsuarioNewComponent } from './usuario/usuario-new/usuario-new.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ChartsModule } from 'ng2-charts';
     DistribuicaoVaraNewComponent,
     MandadoDistribuidoComponent,
     MandadoDistribuidoNewComponent,
-    CejuscGraficoComponent
+    CejuscGraficoComponent,
+    UsuarioNewComponent
   ],
   imports: [
     BrowserModule,

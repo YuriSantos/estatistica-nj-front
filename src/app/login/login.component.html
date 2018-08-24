@@ -13,16 +13,15 @@
       <mat-form-field appearance="outline">
           <mat-label>Usuário</mat-label>
       <div>
-        <input type="email" matInput [(ngModel)]="usuario.email" name="email" class="form-control" #email="ngModel" id="inputEmail" email required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        <!-- <span class="help-block" *ngIf="email.invalid && email.dirty">Digite um e-mail válido</span> -->
+        <input type="email" matInput [(ngModel)]="usuario.login" name="email" class="form-control" #email="ngModel" id="inputEmail" email required>
+        <mat-error *ngIf="email.dirty">{{getErrorMessage()}}</mat-error>
       </div>
     </mat-form-field>
   <br>
     <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
-      <div [ngClass] = "getFromGroupClass(password.invalid, password.dirty)">
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.password" id="inputPassword" name="password" #password="ngModel" class="form-control" required>
+      <div>
+        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.senha" id="inputPassword"  #password="ngModel" class="form-control" required>
         <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>

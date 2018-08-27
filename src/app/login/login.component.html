@@ -7,14 +7,13 @@
     <p class="login-box-msg">Faça o login para iniciar sua sessão</p>
 
     <form #form="ngForm">
-      <div class="alert alert-error" role="alert" *ngIf="message">
+      <!-- <div class="alert alert-error" role="alert" *ngIf="message">
         <strong>E-mail ou senha incorreta</strong>
-      </div>
+      </div> -->
       <mat-form-field appearance="outline">
           <mat-label>Usuário</mat-label>
       <div>
-        <input type="email" matInput [(ngModel)]="usuario.login" name="email" class="form-control" #email="ngModel" id="inputEmail" email required>
-        <mat-error *ngIf="email.dirty">{{getErrorMessage()}}</mat-error>
+        <input type="email" matInput [(ngModel)]="usuario.login" name="email" class="form-control" #email="ngModel" id="inputEmail" required>
       </div>
     </mat-form-field>
   <br>
@@ -23,7 +22,6 @@
       <div>
         <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.senha" id="inputPassword"  #password="ngModel" class="form-control" required>
         <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <span class="help-block" *ngIf="password.invalid && password.dirty">É necessário digitar a senha</span>
       </div>
     </mat-form-field>
 

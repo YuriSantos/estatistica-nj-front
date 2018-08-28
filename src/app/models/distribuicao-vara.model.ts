@@ -8,5 +8,7 @@ export class DistribuicaoVara {
     public eletronicoDistribuido: number,
     public eletronicoArquivado: number,
     public processosMigrados: number,
+    public peticoesRecebidas: number,
+    public peticoesDigitalizadas: number
   ) {}
 }

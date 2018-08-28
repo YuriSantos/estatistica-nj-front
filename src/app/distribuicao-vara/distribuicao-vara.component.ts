@@ -21,7 +21,7 @@ export class DistribuicaoVaraComponent implements OnInit {
   message: {};
   classCss: {};
   listDistribuicaoVara:  DistribuicaoVara[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Distribuido', 'Físico Arquivado', 'Eletrônico Distribuido', 'Eletrônico Arquivado', 'Processos Migrados para o PJE'];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Distribuido', 'Físico Arquivado', 'Eletrônico Distribuido', 'Eletrônico Arquivado', 'Processos Migrados para o PJE', 'Petições Recebidas', 'Petições Digitalizadas'];
 
   dataSource = new MatTableDataSource<DistribuicaoVara>();
 

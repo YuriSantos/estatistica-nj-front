@@ -37,8 +37,17 @@
       <td mat-cell *matCellDef="let listDistribuicaoVara">{{ listDistribuicaoVara.processosMigrados }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="Petições Recebidas">
+      <th mat-header-cell *matHeaderCellDef>Petições Recebidas</th>
+      <td mat-cell *matCellDef="let listDistribuicaoVara">{{ listDistribuicaoVara.peticoesRecebidas }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Petições Digitalizadas">
+      <th mat-header-cell *matHeaderCellDef>Petições Digitalizadas</th>
+      <td mat-cell *matCellDef="let listDistribuicaoVara">{{ listDistribuicaoVara.peticoesDigitalizadas }}</td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
   </table>
 </mat-card>

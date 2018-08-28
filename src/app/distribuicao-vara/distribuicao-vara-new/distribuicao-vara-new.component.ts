@@ -17,7 +17,7 @@ export class DistribuicaoVaraNewComponent implements OnInit {
     @ViewChild('form')
     form: NgForm;
 
-    distribuicaoVara = new DistribuicaoVara(0,0,0,0,0,0,0,0);
+    distribuicaoVara = new DistribuicaoVara(0,0,0,0,0,0,0,0,0,0);
     shared: SharedService;
     classCss: {};
     message: {};
@@ -50,7 +50,7 @@ export class DistribuicaoVaraNewComponent implements OnInit {
     register() {
       this.message = {};
       this.distribuicaoVaraService.createOrUpdate(this.distribuicaoVara).subscribe((responseApi: ResponseApi) => {
-          this.distribuicaoVara = new DistribuicaoVara(0,0,0,0,0,0,0,0);
+          this.distribuicaoVara = new DistribuicaoVara(0,0,0,0,0,0,0,0,0,0);
           const distribuicaoVaraRet: DistribuicaoVara = responseApi.data;
           this.form.resetForm();
           this.showMessage({

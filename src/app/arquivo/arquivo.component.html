@@ -1,5 +1,5 @@
 <h3>Arquivo</h3>
-<mat-card>
+<mat-card class="errMatCard">
   <button type="button" mat-button class="btnF5" routerLink="/arquivo-novo">Novo Registro</button>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Ano">
@@ -12,8 +12,8 @@
       <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.mes }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="Desaquirvado e enviado para a vara">
-      <th mat-header-cell *matHeaderCellDef>Desaquirvado e enviado para a vara</th>
+    <ng-container matColumnDef="Desarquivado e enviado para a vara">
+      <th mat-header-cell *matHeaderCellDef>Desarquivado e enviado para a vara</th>
       <td mat-cell *matCellDef="let listArquivo">{{ listArquivo.desarquivadoEnviadoVara }}</td>
     </ng-container>
 

@@ -1,73 +1,75 @@
-<mat-card>
+<mat-card class="novoMatCard">
       <h3>Arquivo - Novo</h3>
 
     <form #form="ngForm" (ngSubmit)="register()" novalidate>
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
-
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input matInput type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="arquivo.ano">
+            <input matInput type="input"  id="inputAno" name="ano" [(ngModel)]="arquivo.ano">
           </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mês</mat-label>
       <div>
-            <input matInput type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="arquivo.mes">
+            <input matInput type="input" id="inputMes" name="mes" [(ngModel)]="arquivo.mes">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Desarq. e Env. Vara</mat-label>
       <div>
-            <input matInput type="input" id="inputDesarquivadoEnviadoVara" name="desarquivadoEnviadoVara" placeholder="Desaquirvado" [(ngModel)]="arquivo.desarquivadoEnviadoVara">
+            <input matInput type="input" id="inputDesarquivadoEnviadoVara" name="desarquivadoEnviadoVara" [(ngModel)]="arquivo.desarquivadoEnviadoVara">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Cx. Devolvida Retorno Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputDevolvidoCaixaRetornoVara" name="devolvidoCaixaRetornoVara" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.devolvidoCaixaRetornoVara">
+            <input matInput type="input" id="inputDevolvidoCaixaRetornoVara" name="devolvidoCaixaRetornoVara" [(ngModel)]="arquivo.devolvidoCaixaRetornoVara">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Feitura Cx. P/ Gd. Processo Arq.</mat-label>
           <div>
-            <input matInput type="input" id="inputDevolvidoCaixaRetornoVara" name="devolvidoCaixaRetornoVara" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.devolvidoCaixaRetornoVara">
+            <input matInput type="input" id="inputFeituraCaixaParaGuardaProcessoArquivo" name="feituraCaixaParaGuardaProcessoArquivo" [(ngModel)]="arquivo.feituraCaixaParaGuardaProcessoArquivo">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
-          <div>
-            <input matInput type="input" id="inputFeituraCaixaParaGuardaProcessoArquivo" name="feituraCaixaParaGuardaProcessoArquivo" placeholder="-" [(ngModel)]="arquivo.feituraCaixaParaGuardaProcessoArquivo">
-      </div>
-    </mat-form-field>
-    <br>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Distribuição Arquivamento</mat-label>
           <div >
-            <input matInput type="input" id="inputdistribuicaoArquivamento" name="inputdistribuicaoArquivamento" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="arquivo.distribuicaoArquivamento">
+            <input matInput type="input" id="inputdistribuicaoArquivamento" name="inputdistribuicaoArquivamento" [(ngModel)]="arquivo.distribuicaoArquivamento">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Caixa a Cotes</mat-label>
           <div >
-            <input matInput type="input" id="inputCaixaAcotes" name="inputCaixaAcotes" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="caixaAcotes">
+            <input matInput type="input" id="inputCaixaAcotes" name="inputCaixaAcotes" [(ngModel)]="caixaAcotes">
           </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Baixado Gd. Cx. a Cote</mat-label>
           <div>
-            <input matInput type="input" id="inputBaixadoGuardadosCaixaAcote" name="inputBaixadoGuardadosCaixaAcote" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="baixadoGuardadosCaixaAcote">
+            <input matInput type="input" id="inputBaixadoGuardadosCaixaAcote" name="inputBaixadoGuardadosCaixaAcote" [(ngModel)]="baixadoGuardadosCaixaAcote">
       </div>
     </mat-form-field>
     <br>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Processos Rec. Vara Baixa</mat-label>
           <div >
-            <input matInput type="input" id="inputProcessosRecebidosVaraBaixa" name="inputProcessosRecebidosVaraBaixa" placeholder="Devolvido Caixa Retorno Vara" [(ngModel)]="processosRecebidosVaraBaixa">
+            <input matInput type="input" id="inputProcessosRecebidosVaraBaixa" name="inputProcessosRecebidosVaraBaixa" [(ngModel)]="processosRecebidosVaraBaixa">
       </div>
     </mat-form-field>
 
       <div>
-        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>
     </form>
   </mat-card>

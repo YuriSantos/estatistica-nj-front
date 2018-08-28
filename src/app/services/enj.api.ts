@@ -1,1 +1,1 @@
-export const ENJ_API = 'http://localhost:8080';
+export const ENJ_API = 'http://10.102.9.42:8080';

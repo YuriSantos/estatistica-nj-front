@@ -1,38 +1,40 @@
-<mat-card>
-      <h3>Contadiria JEF - Novo</h3>
+<mat-card class="novoMatCard">
+      <h3>Contadoria JEF - Novo</h3>
     <!-- /.box-header -->
     <!-- form start -->
     <form #form="ngForm" (ngSubmit)="register()" novalidate>
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
-
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input type="input"  matInput id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="contadoriaJef.ano">
+            <input type="input"  matInput id="inputAno" name="ano" [(ngModel)]="contadoriaJef.ano">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
           <div>
-            <input type="input" matInput id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="contadoriaJef.mes">
+            <input type="input" matInput id="inputMes" name="mes" [(ngModel)]="contadoriaJef.mes">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
-
+        <mat-form-field appearance="outline">
+          <mat-label>Cálculos</mat-label>
           <div>
-            <input type="input" matInput id="inputCalculos" name="acordo" placeholder="Calculos" [(ngModel)]="contadoriaJef.calculos">
+            <input type="input" matInput id="inputCalculos" name="acordo" [(ngModel)]="contadoriaJef.calculos">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Atualizações</mat-label>
           <div>
-            <input type="input" matInput id="inputAtualizacoes" name="ano" placeholder="Atualizações" [(ngModel)]="contadoriaJef.atualizacoes">
+            <input type="input" matInput id="inputAtualizacoes" name="ano" [(ngModel)]="contadoriaJef.atualizacoes">
           </div>
         </mat-form-field>
       <div>
-        <button mat-button class="btnF5" type="submit" [disabled]="!form.valid">save</button>
+        <button mat-button class="btnF5" type="submit" [disabled]="!form.valid">Salvar</button>
       </div>
       <!-- /.box-footer -->
     </form>

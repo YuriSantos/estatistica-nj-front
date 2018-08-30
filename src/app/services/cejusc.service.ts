@@ -19,6 +19,14 @@ export class CejuscService {
     }
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/cejusc/pesquisa/${ano}`);
+  }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/cejusc/pesquisa/${ano}/${mes}`);
+  }
+
   findById(id: number) {
     return this.http.get(`${ENJ_API}/cejusc/${id}`);
   }

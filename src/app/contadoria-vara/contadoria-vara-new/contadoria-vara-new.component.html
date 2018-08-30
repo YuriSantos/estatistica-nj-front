@@ -6,57 +6,65 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input matInput ype="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="contadoriaVara.ano">
+            <input matInput ype="input"  id="inputAno" name="ano" [(ngModel)]="contadoriaVara.ano">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
           <div>
-            <input matInput ype="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="contadoriaVara.mes">
+            <input matInput ype="input" id="inputMes" name="mes" [(ngModel)]="contadoriaVara.mes">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Físico Entrada</mat-label>
           <div>
-            <input matInput ype="input" id="inputFisicoEntrada" name="inputFisicoEntrada" placeholder="Físico Entrada" [(ngModel)]="contadoriaVara.fisicoEntrada">
+            <input matInput ype="input" id="inputFisicoEntrada" name="inputFisicoEntrada" [(ngModel)]="contadoriaVara.fisicoEntrada">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Físico Saída</mat-label>
           <div>
-            <input matInput ype="input" id="inputFisicoSaída" name="inputFisicoSaída" placeholder="Físico Saída" [(ngModel)]="contadoriaVara.fisicoSaida">
+            <input matInput ype="input" id="inputFisicoSaída" name="inputFisicoSaída" [(ngModel)]="contadoriaVara.fisicoSaida">
           </div>
         </mat-form-field>
         <br>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Físico Saldo</mat-label>
           <div>
-            <input matInput ype="input" id="inputFisicoSaldo" name="inputFisicoSaldo" placeholder="Físico Saldo" [(ngModel)]="contadoriaVara.fisicoSaldo">
+            <input matInput ype="input" id="inputFisicoSaldo" name="inputFisicoSaldo" [(ngModel)]="contadoriaVara.fisicoSaldo">
           </div>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Eletrônico Entrada</mat-label>
           <div >
-            <input matInput type="input" id="inputEletronicoEntrada" name="inputEletronicoEntrada" placeholder="Eletrônico Entrada" [(ngModel)]="contadoriaVara.eletronicoEntrada">
+            <input matInput type="input" id="inputEletronicoEntrada" name="inputEletronicoEntrada" [(ngModel)]="contadoriaVara.eletronicoEntrada">
           </div>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Eletrônico Saída</mat-label>
           <div >
-            <input matInput type="input" id="inputEletronicoSaida" name="inputEletronicoSaida" placeholder="Eletrônico Saída" [(ngModel)]="contadoriaVara.eletronicoSaida">
+            <input matInput type="input" id="inputEletronicoSaida" name="inputEletronicoSaida" [(ngModel)]="contadoriaVara.eletronicoSaida">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Eletrônico Saldo</mat-label>
           <div >
-            <input matInput type="input" id="inputEletronicoSaldo" name="inputEletronicoSaldo" placeholder="Eletrônico Saldo" [(ngModel)]="contadoriaVara.eletronicoSaldo">
+            <input matInput type="input" id="inputEletronicoSaldo" name="inputEletronicoSaldo" [(ngModel)]="contadoriaVara.eletronicoSaldo">
           </div>
         </mat-form-field>
 
       <div>
-        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>
     </form>
   </mat-card>

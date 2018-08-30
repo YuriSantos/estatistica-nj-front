@@ -19,7 +19,7 @@
   <br>
     <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
-      <div>
+      <div class="row">
         <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.senha" name="senha" id="inputPassword"  #password="ngModel" class="form-control" required>
         <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </div>

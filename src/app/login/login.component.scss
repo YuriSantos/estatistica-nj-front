@@ -9,12 +9,12 @@
   height: 40%;
 }
 
+
  mat-icon.pwVisibility {
-  position: relative;
-  display: inline-block !important;
-  top: 0;
-  bottom: 0;
-  margin-left: 86%;
+  position: absolute;
+  display: inline !important;
+  bottom: 30%;
+  margin-left: -25px;
 }
 
 mat-error {

@@ -1,66 +1,75 @@
 <mat-card class="novoMatCard">
-      <h3>Contadoria Vara - Novo</h3>
+      <h3>Distribuição Vara - Novo</h3>
     <!-- /.box-header -->
     <!-- form start -->
     <form #form="ngForm" (ngSubmit)="register()" novalidate>
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input matInput type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="distribuicaoVara.ano">
+            <input matInput type="input"  id="inputAno" name="ano" [(ngModel)]="distribuicaoVara.ano">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
           <div>
-            <input matInput type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="distribuicaoVara.mes">
+            <input matInput type="input" id="inputMes" name="mes" [(ngModel)]="distribuicaoVara.mes">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Físico Distribuído</mat-label>
           <div >
-            <input matInput type="input" id="inputFisicoDistribuido" name="inputFisicoDistribuido" placeholder="Físico Distribuido" [(ngModel)]="distribuicaoVara.fisicoDistribuido">
+            <input matInput type="input" id="inputFisicoDistribuido" name="inputFisicoDistribuido" [(ngModel)]="distribuicaoVara.fisicoDistribuido">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Físico Arquivado</mat-label>
           <div >
             <input matInput type="input" id="inputFisicoArquivado" name="inputFisicoArquivado" placeholder="Físico Arquivado" [(ngModel)]="distribuicaoVara.fisicoArquivado">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Eletrônico Distribuído</mat-label>
           <div>
-            <input matInput type="input" id="inputEletronicoDistribuido" name="inputEletronicoDistribuido" placeholder="Eletrônico Distribuido" [(ngModel)]="distribuicaoVara.inputEletronicoDistribuido">
+            <input matInput type="input" id="inputEletronicoDistribuido" name="inputEletronicoDistribuido" [(ngModel)]="distribuicaoVara.eletronicoDistribuido">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Eletrônico Arquivado</mat-label>
           <div>
-            <input matInput type="input" id="inputEletronicoArquivado" name="inputEletronicoArquivado" placeholder="Eletrônico Arquivado" [(ngModel)]="distribuicaoVara.eletronicoArquivado">
+            <input matInput type="input" id="inputEletronicoArquivado" name="inputEletronicoArquivado" [(ngModel)]="distribuicaoVara.eletronicoArquivado">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Processos Migrados p/ PJe</mat-label>
           <div>
-            <input matInput type="input" id="inputProcessosMigrados" name="inputProcessosMigrados" placeholder="Processos Migrados para o PJE" [(ngModel)]="distribuicaoVara.processosMigrados">
+            <input matInput type="input" id="inputProcessosMigrados" name="inputProcessosMigrados" [(ngModel)]="distribuicaoVara.processosMigrados">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Petições Recebidas</mat-label>
           <div>
-            <input matInput type="input" id="inputPeticoesRecebidas" name="inputPeticoesRecebidas" placeholder="Petições Recebidas" [(ngModel)]="distribuicaoVara.peticoesRecebidas">
+            <input matInput type="input" id="inputPeticoesRecebidas" name="inputPeticoesRecebidas" [(ngModel)]="distribuicaoVara.peticoesRecebidas">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Petições Digitalizadas</mat-label>
           <div>
             <input matInput type="input" id="inputPeticoesDigitalizadas" name="inputPeticoesDigitalizadas" placeholder="Petições Digitalizadas" [(ngModel)]="distribuicaoVara.peticoesDigitalizadas">
           </div>
         </mat-form-field>
       <div>
-        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>
     </form>
   </mat-card>

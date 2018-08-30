@@ -6,64 +6,73 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input matInput type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="distribuicaoJef.ano">
+            <input matInput type="input"  id="inputAno" name="ano" [(ngModel)]="distribuicaoJef.ano">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
           <div>
-            <input matInput type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="distribuicaoJef.mes">
+            <input matInput type="input" id="inputMes" name="mes" [(ngModel)]="distribuicaoJef.mes">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Telejudiciário</mat-label>
           <div>
-            <input matInput type="input" id="inputTelejudiciario" name="inputTelejudiciario" placeholder="Telejudiciário" [(ngModel)]="distribuicaoJef.teleJudiciario">
+            <input matInput type="input" id="inputTelejudiciario" name="inputTelejudiciario" [(ngModel)]="distribuicaoJef.teleJudiciario">
           </div>
         </mat-form-field>
         <br>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Atermação</mat-label>
           <div >
-            <input matInput type="input" id="inputAtermacao" name="inputAtermacao" placeholder="Atermação" [(ngModel)]="distribuicaoJef.atermacao">
+            <input matInput type="input" id="inputAtermacao" name="inputAtermacao" [(ngModel)]="distribuicaoJef.atermacao">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Advogados</mat-label>
           <div>
-            <input matInput type="input" id="inputAdvogados" name="inputAdvogados" placeholder="Advogados" [(ngModel)]="distribuicaoJef.advogados">
+            <input matInput type="input" id="inputAdvogados" name="inputAdvogados" [(ngModel)]="distribuicaoJef.advogados">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Processos</mat-label>
 
           <div>
-            <input matInput type="input" id="inputProcessos" name="inputProcessos" placeholder="Processos" [(ngModel)]="distribuicaoJef.processos">
+            <input matInput type="input" id="inputProcessos" name="inputProcessos" [(ngModel)]="distribuicaoJef.processos">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Recursal</mat-label>
           <div >
-            <input matInput type="input" id="inputRecursal" name="inputRecursal" placeholder="Recursal" [(ngModel)]="distribuicaoJef.recursal">
+            <input matInput type="input" id="inputRecursal" name="inputRecursal" [(ngModel)]="distribuicaoJef.recursal">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>13ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputVara13" name="inputVara13" placeholder="13a Vara" [(ngModel)]="distribuicaoJef.vara13">
+            <input matInput type="input" id="inputVara13" name="inputVara13" [(ngModel)]="distribuicaoJef.vara13">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>7ª Vara</mat-label>
           <div >
-            <input matInput type="input" id="inputVara7" name="inputVara7" placeholder="7a Vara" [(ngModel)]="distribuicaoJef.vara7">
+            <input matInput type="input" id="inputVara7" name="inputVara7" [(ngModel)]="distribuicaoJef.vara7">
           </div>
         </mat-form-field>
 
       <div>
-        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>
     </form>
   </mat-card>

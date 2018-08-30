@@ -5,56 +5,64 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ano</mat-label>
           <div>
-            <input matInput type="input"  id="inputAno" name="ano" placeholder="Ano" [(ngModel)]="mandadoDistribuido.ano">
+            <input matInput type="input"  id="inputAno" name="ano" [(ngModel)]="mandadoDistribuido.ano">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Mês</mat-label>
           <div>
-            <input matInput type="input" id="inputMes" name="mes" placeholder="Mes" [(ngModel)]="mandadoDistribuido.mes">
+            <input matInput type="input" id="inputMes" name="mes" [(ngModel)]="mandadoDistribuido.mes">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>1ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputvara1" name="inputvara1" placeholder="1a Vara" [(ngModel)]="mandadoDistribuido.vara1">
+            <input matInput type="input" id="inputvara1" name="inputvara1" [(ngModel)]="mandadoDistribuido.vara1">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>2ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputvara2" name="inputvara2" placeholder="2a Vara" [(ngModel)]="mandadoDistribuido.vara2">
+            <input matInput type="input" id="inputvara2" name="inputvara2" [(ngModel)]="mandadoDistribuido.vara2">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>3ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputvara3" name="inputvara3" placeholder="3a Vara" [(ngModel)]="mandadoDistribuido.vara3">
+            <input matInput type="input" id="inputvara3" name="inputvara3" [(ngModel)]="mandadoDistribuido.vara3">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>5ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputvara5" name="inputvara5" placeholder="5a Vara" [(ngModel)]="mandadoDistribuido.vara5">
+            <input matInput type="input" id="inputvara5" name="inputvara5" [(ngModel)]="mandadoDistribuido.vara5">
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>16ª Vara</mat-label>
           <div>
-            <input matInput type="input" id="inputvara16" name="inputvara16" placeholder="16a Vara" [(ngModel)]="mandadoDistribuido.vara16">
+            <input matInput type="input" id="inputvara16" name="inputvara16" [(ngModel)]="mandadoDistribuido.vara16">
           </div>
         </mat-form-field>
         <br>
-       <mat-form-field>
+       <mat-form-field appearance="outline">
+        <mat-label>PJe</mat-label>
           <div>
-            <input matInput type="input" id="inputPJE" name="inputPJE" placeholder="PJE" [(ngModel)]="mandadoDistribuido.pje">
+            <input matInput type="input" id="inputPJE" name="inputPJE" [(ngModel)]="mandadoDistribuido.pje">
           </div>
         </mat-form-field>
 
       <div>
-        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">save</button>
+        <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>
     </form>
   </mat-card>

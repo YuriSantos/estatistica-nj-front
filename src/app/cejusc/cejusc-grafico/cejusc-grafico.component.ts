@@ -40,9 +40,16 @@ export class CejuscGraficoComponent implements OnInit {
   }
 
   // Pie
+  // tslint:disable-next-line:member-ordering
   public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   public pieChartType = 'pie';
+  public coresGrafico: Array<any> = [
+    { // first color
+      backgroundColor: ["#00a7e1", "#003459"]
+    };
+  ]
 
   // events
   public chartClicked(e: any): void {

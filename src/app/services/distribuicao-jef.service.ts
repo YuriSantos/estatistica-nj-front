@@ -31,4 +31,12 @@ export class DistribuicaoJefService {
     return this.http.get(`${ENJ_API}/distribuicaojef/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/distribuicaojef/pesquisa/${ano}`);
   }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/distribuicaojef/pesquisa/${ano}/${mes}`);
+  }
+
+}

@@ -35,6 +35,13 @@ import { MandadoDistribuidoNewComponent } from './mandado-distribuido/mandado-di
 import { CejuscGraficoComponent } from './cejusc/cejusc-grafico/cejusc-grafico.component';
 import { ChartsModule } from 'ng2-charts';
 import { UsuarioNewComponent } from './usuario/usuario-new/usuario-new.component';
+import { ContadoriaJefGraficoComponent } from './contadoria-jef/contadoria-jef-grafico/contadoria-jef-grafico.component';
+import { ContadoriaVaraGrafico1Component } from './contadoria-vara/contadoria-vara-grafico1/contadoria-vara-grafico1.component';
+import { ContadoriaVaraGrafico2Component } from './contadoria-vara/contadoria-vara-grafico2/contadoria-vara-grafico2.component';
+import { DistribuicaoJefGraficoComponent } from './distribuicao-jef/distribuicao-jef-grafico/distribuicao-jef-grafico.component';
+import { DistribuicaoVaraGrafico1Component } from './distribuicao-vara/distribuicao-vara-grafico1/distribuicao-vara-grafico1.component';
+import { DistribuicaoVaraGrafico2Component } from './distribuicao-vara/distribuicao-vara-grafico2/distribuicao-vara-grafico2.component';
+import { MandadoDistribuidoGraficoComponent } from './mandado-distribuido/mandado-distribuido-grafico/mandado-distribuido-grafico.component';
 
 
 @NgModule({
@@ -59,7 +66,14 @@ import { UsuarioNewComponent } from './usuario/usuario-new/usuario-new.component
     MandadoDistribuidoComponent,
     MandadoDistribuidoNewComponent,
     CejuscGraficoComponent,
-    UsuarioNewComponent
+    UsuarioNewComponent,
+    ContadoriaJefGraficoComponent,
+    ContadoriaVaraGrafico1Component,
+    ContadoriaVaraGrafico2Component,
+    DistribuicaoJefGraficoComponent,
+    DistribuicaoVaraGrafico1Component,
+    DistribuicaoVaraGrafico2Component,
+    MandadoDistribuidoGraficoComponent
   ],
   imports: [
     BrowserModule,

@@ -42,6 +42,8 @@ import { DistribuicaoJefGraficoComponent } from './distribuicao-jef/distribuicao
 import { DistribuicaoVaraGrafico1Component } from './distribuicao-vara/distribuicao-vara-grafico1/distribuicao-vara-grafico1.component';
 import { DistribuicaoVaraGrafico2Component } from './distribuicao-vara/distribuicao-vara-grafico2/distribuicao-vara-grafico2.component';
 import { MandadoDistribuidoGraficoComponent } from './mandado-distribuido/mandado-distribuido-grafico/mandado-distribuido-grafico.component';
+import { ArquivoTabelaComponent } from './arquivo/arquivo-tabela/arquivo-tabela.component';
+import { DistribuicaoJefTabelaComponent } from './distribuicao-jef/distribuicao-jef-tabela/distribuicao-jef-tabela.component';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { MandadoDistribuidoGraficoComponent } from './mandado-distribuido/mandad
     DistribuicaoJefGraficoComponent,
     DistribuicaoVaraGrafico1Component,
     DistribuicaoVaraGrafico2Component,
-    MandadoDistribuidoGraficoComponent
+    MandadoDistribuidoGraficoComponent,
+    ArquivoTabelaComponent,
+    DistribuicaoJefTabelaComponent
   ],
   imports: [
     BrowserModule,

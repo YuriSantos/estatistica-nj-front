@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedService} from '../../services/shared.service';
 import {ContadoriaJef} from '../../models/contadoria-jef.model';
-import {MatTableDataSource} from '@angular/material';
-import {Cejusc} from '../../models/cejusc.model';
 import {Router} from '@angular/router';
 import {ContadoriaJefService} from '../../services/contadoria-jef.service';
 import {ResponseApi} from '../../models/response-api';
@@ -17,8 +15,8 @@ export class ContadoriaJefGraficoComponent implements OnInit {
   listContJef: ContadoriaJef;
   contJef: ContadoriaJef[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Calculos', 'Atualizações'];
-  dataSource = new MatTableDataSource<ContadoriaJef>();
+  displayedColumns: string[] = ['Calculos', 'Atualizações', 'Total'];
+  Tabela = [];
 
   constructor(private router: Router,
               private contadoriaJefService: ContadoriaJefService) {
@@ -35,7 +33,10 @@ export class ContadoriaJefGraficoComponent implements OnInit {
         this.listContJef = responseApi.data;
         this.contJef = responseApi['data'];
         this.dataGrafico = [this.listContJef.calculos, this.listContJef.atualizacoes];
-        this.dataSource.data = this.contJef;
+        this.Tabela = [{
+          calculos: this.listContJef.calculos, atualizacoes: this.listContJef.atualizacoes,
+          total: (this.listContJef.calculos + this.listContJef.atualizacoes)
+        }];
 
       });
   }

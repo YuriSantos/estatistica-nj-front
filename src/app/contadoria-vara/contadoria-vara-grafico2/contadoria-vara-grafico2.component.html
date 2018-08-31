@@ -14,14 +14,19 @@
             (chartClick)="chartClicked($event)"></canvas>
   </div>
   <br>
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="Tabela">
     <ng-container matColumnDef="Físico Saída">
       <th mat-header-cell *matHeaderCellDef>Acordo</th>
-      <td mat-cell *matCellDef="let contVara">{{ contVara.fisicoSaida }}</td>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.fisicoSaida }}</td>
     </ng-container>
     <ng-container matColumnDef="Eletrônico Saída">
       <th mat-header-cell *matHeaderCellDef>Sem Acordo</th>
-      <td mat-cell *matCellDef="let contVara">{{ contVara.eletronicoSaida }}</td>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.eletronicoSaida }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.total }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

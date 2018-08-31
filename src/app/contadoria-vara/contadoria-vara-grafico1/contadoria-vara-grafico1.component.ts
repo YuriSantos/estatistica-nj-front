@@ -16,8 +16,8 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
   listContVara: ContadoriaVara;
   contVara: ContadoriaVara[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Físico Entrada', 'Eletrônico Entrada'];
-  dataSource = new MatTableDataSource<ContadoriaVara>();
+  displayedColumns: string[] = ['Físico Entrada', 'Eletrônico Entrada', 'Total'];
+  Tabela = [];
 
   constructor(private router: Router,
               private contVaraService: ContadoriaVaraService) {
@@ -34,7 +34,10 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
         this.listContVara = responseApi.data;
         this.contVara = responseApi['data'];
         this.dataGrafico = [this.listContVara.fisicoEntrada, this.listContVara.eletronicoEntrada];
-        this.dataSource.data = this.contVara;
+        this.Tabela = [{
+          fisicoEntrada: this.listContVara.fisicoEntrada, eletronicoEntrada: this.listContVara.eletronicoEntrada,
+          total: (this.listContVara.fisicoEntrada + this.listContVara.eletronicoEntrada)
+        }];
 
       });
   }

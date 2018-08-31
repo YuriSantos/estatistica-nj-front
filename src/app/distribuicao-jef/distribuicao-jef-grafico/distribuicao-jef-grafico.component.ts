@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedService} from '../../services/shared.service';
 import {DistribuicaoJef} from '../../models/distribuicao-jef.model';
-import {MatTableDataSource} from '@angular/material';
 import {DistribuicaoJefService} from '../../services/distribuicao-jef.service';
 import {Router} from '@angular/router';
 import {ResponseApi} from '../../models/response-api';
@@ -16,8 +15,8 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
   listDistJef: DistribuicaoJef;
   distJef: DistribuicaoJef[];
   dataGrafico = [];
-  displayedColumns: string[] = ['13ª Vara', '7ª Vara', 'Turma Recursal'];
-  dataSource = new MatTableDataSource<DistribuicaoJef>();
+  displayedColumns: string[] = ['13ª Vara', '7ª Vara', 'Turma Recursal', 'Total'];
+  Tabela = [];
 
   constructor(private router: Router,
               private distJefService: DistribuicaoJefService) {
@@ -25,6 +24,7 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.findAno(2018);
   }
 
   findAno(ano: number) {
@@ -32,7 +32,11 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
       .subscribe((responseApi: ResponseApi) => {
         this.listDistJef = responseApi.data;
         this.distJef = responseApi['data'];
-        this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ]
+        this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ];
+        this.Tabela = [{
+          vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
+          recursal: this.listDistJef.recursal, total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
+        }];
       });
   }
   // Pie

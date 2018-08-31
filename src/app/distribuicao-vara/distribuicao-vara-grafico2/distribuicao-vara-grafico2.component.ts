@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedService} from '../../services/shared.service';
 import {DistribuicaoVara} from '../../models/distribuicao-vara.model';
-import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {DistribuicaoVaraService} from '../../services/distribuicao-vara.service';
 import {ResponseApi} from '../../models/response-api';
@@ -16,8 +15,8 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
   listDistVara: DistribuicaoVara;
   distVara: DistribuicaoVara[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Distribuidos', 'Arquivados'] ;
-  dataSource = new MatTableDataSource<DistribuicaoVara>();
+  displayedColumns: string[] = ['Distribuidos', 'Arquivados', 'Total'] ;
+  Tabela = [];
 
   constructor(private router: Router,
               private distribuicaoVaraService: DistribuicaoVaraService) {
@@ -25,6 +24,7 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
   }
 
   ngOnInit() {
+    this.findAno(2018);
   }
 
   findAno(ano: number) {
@@ -33,7 +33,10 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
         this.listDistVara = responseApi.data;
         this.distVara = responseApi['data'];
         this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
-        this.dataSource.data = this.distVara;
+        this.Tabela = [{
+          eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
+        }];
       });
   }
 // Pie

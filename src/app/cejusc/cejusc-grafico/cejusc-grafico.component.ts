@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CejuscService} from '../../services/cejusc.service';
 import {SharedService} from '../../services/shared.service';
 import {ResponseApi} from '../../models/response-api';
 import {Cejusc} from '../../models/cejusc.model';
-import {MatTableDataSource} from '@angular/material';
+
+export interface ElementoTabela {
+  acordo: number;
+  semAcordo: number;
+  total: number;
+}
 
 @Component({
   selector: 'app-cejusc-grafico',
@@ -15,9 +20,9 @@ export class CejuscGraficoComponent implements OnInit {
   shared: SharedService;
   listCejusc: Cejusc;
   cejusc: Cejusc[];
+  Tabela = [];
   dataGrafico = [];
-  displayedColumns: string[] = ['Acordo', 'Sem Acordo'];
-  dataSource = new MatTableDataSource<Cejusc>();
+  displayedColumns: string[] = ['Acordo', 'Sem Acordo', 'Total'];
 
   constructor(private router: Router,
               private cejuscService: CejuscService) {
@@ -32,9 +37,11 @@ export class CejuscGraficoComponent implements OnInit {
     this.cejuscService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi.data;
-        this.cejusc = responseApi['data'];
+        this.cejusc = responseApi['data'][''];
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
-        this.dataSource.data = this.cejusc;
+        this.Tabela = [{
+          acordo: this.listCejusc.acordo, semAcordo: this.listCejusc.semAcordo, total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
+        }];
 
       });
   }
@@ -42,7 +49,7 @@ export class CejuscGraficoComponent implements OnInit {
   // Pie
   public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
   public pieChartData: number[] = [300, 500];
-  public pieChartType = 'pie';  
+  public pieChartType = 'pie';
   public coresGrafico: Array<any> = [
     { // first color
       backgroundColor: ['#00a7e1', '#003459', '#FAC05E']

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SharedService} from '../../services/shared.service';
 import {ContadoriaVara} from '../../models/contadiria-vara.model';
-import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {ContadoriaVaraService} from '../../services/contadoria-vara.service';
 import {ResponseApi} from '../../models/response-api';
@@ -16,8 +15,8 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
   listContVara: ContadoriaVara;
   contVara: ContadoriaVara[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Físico Saída', 'Eletrônico Saída'];
-  dataSource = new MatTableDataSource<ContadoriaVara>();
+  displayedColumns: string[] = ['Físico Saída', 'Eletrônico Saída', 'Total'];
+  Tabela = [];
 
   constructor(private router: Router,
               private contVaraService: ContadoriaVaraService) {
@@ -34,7 +33,10 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
         this.listContVara = responseApi.data;
         this.contVara = responseApi['data'];
         this.dataGrafico = [this.listContVara.fisicoSaida, this.listContVara.eletronicoSaida];
-        this.dataSource.data = this.contVara;
+        this.Tabela = [{
+          fisicoSaida: this.listContVara.fisicoSaida, eletronicoSaida: this.listContVara.eletronicoSaida,
+          total: (this.listContVara.fisicoSaida + this.listContVara.eletronicoSaida)
+        }];
 
       });
   }

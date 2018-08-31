@@ -16,7 +16,7 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
   listContVara: ContadoriaVara;
   contVara: ContadoriaVara[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Físico Eentrada', 'Eletrônico Entrada'];
+  displayedColumns: string[] = ['Físico Entrada', 'Eletrônico Entrada'];
   dataSource = new MatTableDataSource<ContadoriaVara>();
 
   constructor(private router: Router,
@@ -41,7 +41,7 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
 
   // Pie
   // tslint:disable-next-line:member-ordering
-  public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  public pieChartLabels: string[] = ['Físico Entrada', 'Eletrônico Entrada'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   public pieChartType = 'pie';
@@ -49,7 +49,7 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
     { // first color
       backgroundColor: ['#00a7e1', '#003459']
     }
-  ]
+  ];
 
   // events
   public chartClicked(e: any): void {

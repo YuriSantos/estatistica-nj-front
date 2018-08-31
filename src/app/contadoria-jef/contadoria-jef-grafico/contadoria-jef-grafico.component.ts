@@ -26,6 +26,7 @@ export class ContadoriaJefGraficoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.findAno(2018);
   }
 
   findAno(ano: number) {

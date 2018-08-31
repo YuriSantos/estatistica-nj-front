@@ -41,7 +41,7 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
 
   // Pie
   // tslint:disable-next-line:member-ordering
-  public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  public pieChartLabels: string[] = ['Físico Saída', 'Eletrônico Saída'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   public pieChartType = 'pie';

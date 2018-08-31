@@ -31,4 +31,12 @@ export class ContadoriaVaraService {
     return this.http.get(`${ENJ_API}/contadoriavara/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/contadoriavara/pesquisa/${ano}`);
   }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/contadoriavara/pesquisa/${ano}/${mes}`);
+  }
+
+}

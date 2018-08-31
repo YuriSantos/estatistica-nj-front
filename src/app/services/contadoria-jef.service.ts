@@ -31,4 +31,12 @@ export class ContadoriaJefService {
     return this.http.get(`${ENJ_API}/contadoriajef/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/contadoriajef/pesquisa/${ano}`);
+  }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/contadoriajefo/pesquisa/${ano}/${mes}`);
+  }
+
 }

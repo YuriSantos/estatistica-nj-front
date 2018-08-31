@@ -31,4 +31,12 @@ export class ArquivoService {
     return this.http.get(`${ENJ_API}/arquivo/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/arquivo/pesquisa/${ano}`);
+  }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/arquivo/pesquisa/${ano}/${mes}`);
+  }
+
 }

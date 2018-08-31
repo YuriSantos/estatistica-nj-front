@@ -31,4 +31,12 @@ export class DistribuicaoVaraService {
     return this.http.get(`${ENJ_API}/distribuicaovara/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/distribuicaovara/pesquisa/${ano}`);
+  }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/distribuicaovara/pesquisa/${ano}/${mes}`);
+  }
+
 }

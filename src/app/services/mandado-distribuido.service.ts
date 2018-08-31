@@ -31,4 +31,12 @@ export class MandadoDistribuidoService {
     return this.http.get(`${ENJ_API}/mandados/${page}/${count}`);
   }
 
+  findByAno(ano: number) {
+    return this.http.get(`${ENJ_API}/mandados/pesquisa/${ano}`);
+  }
+
+  findByMes(ano: number, mes: number) {
+    return this.http.get(`${ENJ_API}/mandados/pesquisa/${ano}/${mes}`);
+  }
+
 }

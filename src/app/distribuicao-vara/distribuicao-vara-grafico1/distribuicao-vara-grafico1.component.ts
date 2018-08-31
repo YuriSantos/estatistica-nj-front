@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {SharedService} from '../../services/shared.service';
+import {DistribuicaoVara} from '../../models/distribuicao-vara.model';
+import {MatTableDataSource} from '@angular/material';
+import {Router} from '@angular/router';
+import {DistribuicaoVaraService} from '../../services/distribuicao-vara.service';
+import {ResponseApi} from '../../models/response-api';
 
 @Component({
   selector: 'app-distribuicao-vara-grafico1',
@@ -6,10 +12,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./distribuicao-vara-grafico1.component.scss']
 })
 export class DistribuicaoVaraGrafico1Component implements OnInit {
+  shared: SharedService;
+  listDistVara: DistribuicaoVara;
+  distVara: DistribuicaoVara[];
+  dataGrafico = [];
+  displayedColumns: string[] = ['Distribuidos', 'Arquivados'] ;
+  dataSource = new MatTableDataSource<DistribuicaoVara>();
 
-  constructor() { }
+  constructor(private router: Router,
+              private distribuicaoVaraService: DistribuicaoVaraService) {
+    this.shared = SharedService.getInstance();
+  }
 
   ngOnInit() {
   }
 
+  findAno(ano: number) {
+    this.distribuicaoVaraService.findByAno(ano)
+      .subscribe((responseApi: ResponseApi) => {
+        this.listDistVara = responseApi.data;
+        this.distVara = responseApi['data'];
+        this.dataGrafico = [this.listDistVara.fisicoArquivado, this.listDistVara.fisicoDistribuido];
+        this.dataSource.data = this.distVara;
+      });
+  }
+// Pie
+  // tslint:disable-next-line:member-ordering
+  public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  // tslint:disable-next-line:member-ordering
+  public pieChartData: number[] = [300, 500];
+  public pieChartType = 'pie';
+  public coresGrafico: Array<any> = [
+    { // first color
+      backgroundColor: ['#00a7e1', '#003459']
+    }
+  ]
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
 }
+

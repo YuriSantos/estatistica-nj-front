@@ -28,7 +28,7 @@ export class CejuscNewComponent implements OnInit {
 
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
-    if (id !== 0) {
+    if (id !== undefined) {
       this.findById(id);
   }
 }

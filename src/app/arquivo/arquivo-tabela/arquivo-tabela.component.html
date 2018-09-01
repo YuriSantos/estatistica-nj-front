@@ -1,3 +1,44 @@
-<p>
-  arquivo-tabela works!
-</p>
+<mat-card class="errMatCard">
+
+  <table mat-table [dataSource]="Tabela">
+
+    <ng-container matColumnDef="Desarquivado e enviado para a vara">
+      <th mat-header-cell *matHeaderCellDef>Desarquivado e enviado para a vara</th>
+      <td mat-cell *matCellDef="let Tabela">{{Tabela.desarquivadoEnviadoVara }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Caixa devolvida retorno vara">
+      <th mat-header-cell *matHeaderCellDef>Caixa devolvida retorno vara</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.devolvidoCaixaRetornoVara }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Feitura Caixa para guarda processo arquivo">
+      <th mat-header-cell *matHeaderCellDef>Feitura Caixa para guarda processo arquivo</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.feituraCaixaParaGuardaProcessoArquivo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Distribuição Arquivamento">
+      <th mat-header-cell *matHeaderCellDef>Distribuição Arquivamento</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.distribuicaoArquivamento }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Caixa a cotes">
+      <th mat-header-cell *matHeaderCellDef>Caixa a cotes</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.caixaAcotes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Baixado Guardados Caixa a cote">
+      <th mat-header-cell *matHeaderCellDef>Baixado Guardados Caixa a cote</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.baixadoGuardadosCaixaAcote }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Processos Recebidos Vara Baixa">
+      <th mat-header-cell *matHeaderCellDef>Processos Recebidos Vara Baixa</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.processosRecebidosVaraBaixa }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</mat-card>

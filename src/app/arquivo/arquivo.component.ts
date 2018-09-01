@@ -20,7 +20,15 @@ export class ArquivoComponent implements OnInit {
   message: {};
   classCss: {};
   listArquivo:  Arquivo[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'Desarquivado e enviado para a vara', 'Caixa devolvida retorno vara', 'Feitura Caixa para guarda processo arquivo', 'Distribuição Arquivamento', 'Caixa a cotes', 'Baixado Guardados Caixa a cote', 'Processos Recebidos Vara Baixa'];
+  displayedColumns: string[] = ['Ano',
+    'Mes',
+    'Desarquivado e enviado para a vara',
+    'Caixa devolvida retorno vara',
+    'Feitura Caixa para guarda processo arquivo',
+    'Distribuição Arquivamento',
+    'Caixa a cotes',
+    'Baixado Guardados Caixa a cote',
+    'Processos Recebidos Vara Baixa'];
 
   constructor(private router: Router,
   private arquivoService: ArquivoService,

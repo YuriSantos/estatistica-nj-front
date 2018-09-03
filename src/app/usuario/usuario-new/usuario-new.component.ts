@@ -55,7 +55,7 @@ export class UsuarioNewComponent implements OnInit {
         this.form.resetForm();
         this.showMessage({
           type: 'success',
-          text: `Registerd ${usuarioRet.login} successfully`
+          text: `Registrado ${usuarioRet.login} com sucesso.`
         });
       }, err => {
         this.showMessage({

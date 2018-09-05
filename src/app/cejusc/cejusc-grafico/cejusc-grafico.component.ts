@@ -30,7 +30,9 @@ export class CejuscGraficoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findAno(2018);
+    const date = new Date();
+    console.log(date.getFullYear(), date.getMonth());
+    this.findAno(date.getFullYear());
   }
 
   findAno(ano: number) {

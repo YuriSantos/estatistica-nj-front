@@ -50,7 +50,7 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
   public pieChartType = 'pie';
   public coresGrafico: Array<any> = [
     { // first color
-      backgroundColor: ['#00a7e1', '#003459']
+      backgroundColor: ['#00a7e1', '#003459', '#FAC05E']
     }
   ];
 

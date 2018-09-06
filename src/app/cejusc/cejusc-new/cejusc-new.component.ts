@@ -16,10 +16,13 @@ export class CejuscNewComponent implements OnInit {
   @ViewChild('form')
   form: NgForm;
 
-  cejusc = new Cejusc(0, 0, 0, 0, 0);
+  date = new Date();
   shared: SharedService;
   classCss: {};
   message: {};
+  ano = this.date.getFullYear();
+  currentMes = this.date.getMonth();
+  cejusc = new Cejusc(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes), null, null);
 
   constructor(private cejuscService: CejuscService,
   private route: ActivatedRoute) {
@@ -49,12 +52,12 @@ export class CejuscNewComponent implements OnInit {
   register() {
     this.message = {};
     this.cejuscService.createOrUpdate(this.cejusc).subscribe((responseApi: ResponseApi) => {
-        this.cejusc = new Cejusc(0, 0, 0, 0, 0);
+        this.cejusc = new Cejusc(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes), null, null);
         const cejuscRet: Cejusc = responseApi.data;
         this.form.resetForm();
         this.showMessage({
           type: 'success',
-          text: `Registerd ${cejuscRet.mes} successfully`
+          text: `Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`
         });
       }, err => {
         this.showMessage({
@@ -63,6 +66,20 @@ export class CejuscNewComponent implements OnInit {
     });
       }
     );
+  }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
   }
 
   private showMessage(message: {type: string, text: string}): void {

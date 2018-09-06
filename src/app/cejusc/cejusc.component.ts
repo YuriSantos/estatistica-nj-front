@@ -20,7 +20,7 @@ export class CejuscComponent implements OnInit {
   message: {};
   classCss: {};
   listCejusc:  Cejusc[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'Acordo', 'Sem Acordo'];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Acordo', 'Sem Acordo', 'Botões'];
 
   dataSource = new MatTableDataSource<Cejusc>();
   constructor(private router: Router,
@@ -51,7 +51,7 @@ export class CejuscComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};

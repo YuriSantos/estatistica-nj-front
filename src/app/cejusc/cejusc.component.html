@@ -1,6 +1,6 @@
 <h3>Cejusc</h3>
 <mat-card class="errMatCard">
-  <button type="button" mat-button class="btnF5" routerLink="/cejusc-novo">Novo Registro</button>
+  <button type="button" mat-button class="btnF5" routerLink="novo">Novo Registro</button>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Ano">
       <th mat-header-cell *matHeaderCellDef>Ano</th>
@@ -32,7 +32,7 @@
             <mat-icon>delete</mat-icon>
             <span>Deletar</span>
           </button>
-          <button mat-menu-item [routerLink]="['/cejusc-novo/', listCejusc.id]">
+          <button mat-menu-item [routerLink]="['editar', listCejusc.id]">
             <mat-icon>create</mat-icon>
             <span>Editar</span>
           </button>

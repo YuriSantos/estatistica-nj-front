@@ -57,7 +57,7 @@ export class DistribuicaoVaraComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/distvara-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

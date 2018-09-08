@@ -47,7 +47,7 @@ export class CejuscComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/cejusc-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

@@ -49,7 +49,7 @@ export class MandadoDistribuidoComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/mandado-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

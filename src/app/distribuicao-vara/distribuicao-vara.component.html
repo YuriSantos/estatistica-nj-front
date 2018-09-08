@@ -1,6 +1,6 @@
 <h3>Distribuição Vara</h3>
 <mat-card class="errMatCard">
-  <button type="button" mat-button class="btnF5" routerLink="/distvara-novo">Novo Registro</button>
+  <button type="button" mat-button class="btnF5" routerLink="novo">Novo Registro</button>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Ano">
       <th mat-header-cell *matHeaderCellDef>Ano</th>
@@ -57,7 +57,7 @@
             <mat-icon>delete</mat-icon>
             <span>Deletar</span>
           </button>
-          <button mat-menu-item [routerLink]="['/distvara-novo/', listDistribuicaoVara.id]">
+          <button mat-menu-item [routerLink]="['editar', listDistribuicaoVara.id]">
             <mat-icon>create</mat-icon>
             <span>Editar</span>
           </button>

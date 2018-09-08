@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpInterceptor } from "@angular/common/http";
 import { SharedService } from "./services/shared.service";
 import { HttpRequest } from "@angular/common/http";

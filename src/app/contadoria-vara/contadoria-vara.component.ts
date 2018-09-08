@@ -53,7 +53,7 @@ export class ContadoriaVaraComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/contvara-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

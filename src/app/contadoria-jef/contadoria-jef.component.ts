@@ -47,7 +47,7 @@ export class ContadoriaJefComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/contjef-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

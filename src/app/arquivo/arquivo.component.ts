@@ -55,7 +55,7 @@ export class ArquivoComponent implements OnInit {
   }
 
   edit(id: string) {
-    this.router.navigate(['/arquivo-novo', id]);
+    this.router.navigate(['editar', id]);
   }
 
   delete(id: number) {

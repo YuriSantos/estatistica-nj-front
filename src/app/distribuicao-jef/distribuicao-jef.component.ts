@@ -21,7 +21,8 @@ export class DistribuicaoJefComponent implements OnInit {
   message: {};
   classCss: {};
   listDistribuicaoJef: DistribuicaoJef[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'TeleJudiciário', 'Atermação', 'Advogados', 'Processos', 'Recursal', '13a Vara', '7a Vara'];
+  displayedColumns: string[] = ['Ano', 'Mes',
+    'TeleJudiciário', 'Atermação', 'Advogados', 'Processos', 'Recursal', '13a Vara', '7a Vara', 'Botões'];
 
   dataSource = new MatTableDataSource<DistribuicaoJef>();
 
@@ -53,7 +54,7 @@ export class DistribuicaoJefComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};
@@ -109,7 +110,7 @@ export class DistribuicaoJefComponent implements OnInit {
   private buildClasses(type: string): void {
     this.classCss = {
       'alert': true
-    }
+    };
     this.classCss['alert-' +  type] = true;
   }
 

@@ -20,7 +20,8 @@ export class MandadoDistribuidoComponent implements OnInit {
   message: {};
   classCss: {};
   listMandadoDistribuido: MandadoDistribuido[];
-  displayedColumns: string[] = ['Ano', 'Mes', '1a Vara', '2a Vara', '3a Vara', '5a Vara', '16a Vara', 'PJE'];
+  displayedColumns: string[] = ['Ano', 'Mes', '1a Vara', '2a Vara', '3a Vara', '5a Vara', '16a Vara',
+    'PJE', 'Botões'];
 
   dataSource = new MatTableDataSource<MandadoDistribuido>();
 
@@ -52,7 +53,7 @@ export class MandadoDistribuidoComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};

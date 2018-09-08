@@ -20,7 +20,7 @@ export class ContadoriaJefComponent implements OnInit {
   message: {};
   classCss: {};
   listContadoriajef: ContadoriaJef[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'Calculos', 'Atualizações'];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Calculos', 'Atualizações', 'Botões'];
   dataSource = new MatTableDataSource<ContadoriaJef>();
 
   constructor(private router: Router,
@@ -51,7 +51,7 @@ export class ContadoriaJefComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};

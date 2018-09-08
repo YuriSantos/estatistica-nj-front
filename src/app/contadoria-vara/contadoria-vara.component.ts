@@ -20,12 +20,17 @@ export class ContadoriaVaraComponent implements OnInit {
   message: {};
   classCss: {};
   listContadoriaVara: ContadoriaVara[];
-  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Entrada', 'Físico Saída', 'Físico Saldo', 'Eletrônico Entrada', 'Eletrônico Saída', 'Eletrônico Saldo'];
+  displayedColumns: string[] = ['Ano', 'Mes', 'Físico Entrada',
+    'Físico Saída',
+    'Físico Saldo',
+    'Eletrônico Entrada',
+    'Eletrônico Saída',
+    'Eletrônico Saldo', 'Botões'];
 
   dataSource = new MatTableDataSource<ContadoriaVara>();
 
   constructor(private router: Router,
-  private ContadoriaVaraService: ContadoriaVaraService,
+  private contadoriaVaraService: ContadoriaVaraService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class ContadoriaVaraComponent implements OnInit {
   }
 
   findAll(page: number, count: number) {
-    this.ContadoriaVaraService.findAll(page, count)
+    this.contadoriaVaraService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listContadoriaVara = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
@@ -52,11 +57,11 @@ export class ContadoriaVaraComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};
-            this.ContadoriaVaraService.delete(id).subscribe((responseApi: ResponseApi) => {
+            this.contadoriaVaraService.delete(id).subscribe((responseApi: ResponseApi) => {
               this.showMessage({
                 type: 'success',
                 text: 'Record deleted'

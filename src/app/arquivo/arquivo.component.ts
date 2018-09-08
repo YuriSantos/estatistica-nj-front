@@ -28,7 +28,7 @@ export class ArquivoComponent implements OnInit {
     'Distribuição Arquivamento',
     'Caixa a cotes',
     'Baixado Guardados Caixa a cote',
-    'Processos Recebidos Vara Baixa'];
+    'Processos Recebidos Vara Baixa', 'Botões'];
 
   constructor(private router: Router,
   private arquivoService: ArquivoService,
@@ -59,7 +59,7 @@ export class ArquivoComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.dialogService.confirm('Do yoy want do delete de user?')
+    this.dialogService.confirm('Você quer realmente deletar o registro?')
       .then((candelete: boolean) => {
           if (candelete) {
             this.message = {};

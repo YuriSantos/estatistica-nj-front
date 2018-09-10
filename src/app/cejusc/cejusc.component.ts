@@ -44,7 +44,6 @@ export class CejuscComponent implements OnInit {
         this.listCejusc = responseApi['data']['content'];
         this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
-        this.pageEvent.
         this.dataSource.data = this.listCejusc;
       },
         err => {

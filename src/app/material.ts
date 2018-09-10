@@ -7,6 +7,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl} from '@angular/material/paginator'
+import {MatPaginatorIntlBr} from './services/MatPaginatorIntlBr'
 
 import {MatSelectModule} from '@angular/material/select';
 

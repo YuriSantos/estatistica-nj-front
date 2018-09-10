@@ -44,6 +44,8 @@ import { DistribuicaoVaraGrafico2Component } from './distribuicao-vara/distribui
 import { MandadoDistribuidoGraficoComponent } from './mandado-distribuido/mandado-distribuido-grafico/mandado-distribuido-grafico.component';
 import { ArquivoTabelaComponent } from './arquivo/arquivo-tabela/arquivo-tabela.component';
 import { DistribuicaoJefTabelaComponent } from './distribuicao-jef/distribuicao-jef-tabela/distribuicao-jef-tabela.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorIntlBr } from './services/MatPaginatorIntlBr';
 
 
 @NgModule({
@@ -92,7 +94,8 @@ import { DistribuicaoJefTabelaComponent } from './distribuicao-jef/distribuicao-
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }],
+    },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlBr }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

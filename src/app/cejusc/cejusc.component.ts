@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CejuscService } from '../services/cejusc.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
-import { MatTableDataSource } from '@angular/material';
+import {MatTableDataSource, PageEvent} from '@angular/material';
 import { Cejusc } from '../models/cejusc.model';
 
 @Component({
@@ -14,13 +14,20 @@ import { Cejusc } from '../models/cejusc.model';
 })
 export class CejuscComponent implements OnInit {
   page = 0;
-  count = 5;
+  count = 800;
   pages: Array<number>;
   shared: SharedService;
   message: {};
   classCss: {};
   listCejusc:  Cejusc[];
   displayedColumns: string[] = ['Ano', 'Mes', 'Acordo', 'Sem Acordo', 'Botões'];
+  length = 100;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
+
 
   dataSource = new MatTableDataSource<Cejusc>();
   constructor(private router: Router,
@@ -35,7 +42,9 @@ export class CejuscComponent implements OnInit {
     this.cejuscService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
+        this.pageEvent.
         this.dataSource.data = this.listCejusc;
       },
         err => {

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { MandadoDistribuidoService } from '../services/mandado-distribuido.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { MandadoDistribuido } from '../models/mandado-distribuido.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-mandado-distribuido',
@@ -13,8 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./mandado-distribuido.component.scss']
 })
 export class MandadoDistribuidoComponent implements OnInit {
-  page: number=0;
-  count: number=5;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  page = 0;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -22,6 +23,12 @@ export class MandadoDistribuidoComponent implements OnInit {
   listMandadoDistribuido: MandadoDistribuido[];
   displayedColumns: string[] = ['Ano', 'Mes', '1a Vara', '2a Vara', '3a Vara', '5a Vara', '16a Vara',
     'PJE', 'Botões'];
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   dataSource = new MatTableDataSource<MandadoDistribuido>();
 
@@ -30,6 +37,7 @@ export class MandadoDistribuidoComponent implements OnInit {
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -37,6 +45,7 @@ export class MandadoDistribuidoComponent implements OnInit {
     this.mandadoDistribuidoService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listMandadoDistribuido = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listMandadoDistribuido;
       },

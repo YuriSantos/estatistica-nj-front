@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Usuario } from '../models/usuario.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 import { DialogService } from '../services/dialog.service';
 import { UsuarioService } from '../services/usuario.service';
 import { Router } from '@angular/router';
@@ -13,15 +13,21 @@ import { ResponseApi } from '../models/response-api';
   styleUrls: ['./usuario.component.scss']
 })
 export class UsuarioComponent implements OnInit {
-
-  page: number=0;
-  count: number=5;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  page = 0;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
   classCss: {};
   listUsuario: Usuario[];
   displayedColumns: string[] = ['Usuário', 'Perfil'];
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   dataSource = new MatTableDataSource<Usuario>();
 
@@ -34,6 +40,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -41,6 +48,7 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listUsuario = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listUsuario;
       },

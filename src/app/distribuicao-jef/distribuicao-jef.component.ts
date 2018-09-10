@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { DistribuicaoJefService } from '../services/distribuicao-jef.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { DistribuicaoJef } from '../models/distribuicao-jef.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-distribuicao-jef',
@@ -13,9 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./distribuicao-jef.component.scss']
 })
 export class DistribuicaoJefComponent implements OnInit {
-
-  page: number=0;
-  count: number=5;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  page = 0;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -25,12 +25,19 @@ export class DistribuicaoJefComponent implements OnInit {
     'TeleJudiciário', 'Atermação', 'Advogados', 'Processos', 'Recursal', '13a Vara', '7a Vara', 'Botões'];
 
   dataSource = new MatTableDataSource<DistribuicaoJef>();
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   constructor(private router: Router,
   private distribuicaoJefService: DistribuicaoJefService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -38,6 +45,7 @@ export class DistribuicaoJefComponent implements OnInit {
     this.distribuicaoJefService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistribuicaoJef = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listDistribuicaoJef;
       },

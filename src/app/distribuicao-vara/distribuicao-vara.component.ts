@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { DistribuicaoVaraService } from '../services/distribuicao-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { DistribuicaoVara } from '../models/distribuicao-vara.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-distribuicao-vara',
@@ -13,9 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./distribuicao-vara.component.scss']
 })
 export class DistribuicaoVaraComponent implements OnInit {
-
-  page: number=0;
-  count: number=5;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  page = 0;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -30,6 +30,9 @@ export class DistribuicaoVaraComponent implements OnInit {
     'Petições Recebidas',
     'Petições Digitalizadas',
     'Botões'];
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   dataSource = new MatTableDataSource<DistribuicaoVara>();
 
@@ -38,6 +41,7 @@ export class DistribuicaoVaraComponent implements OnInit {
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -45,6 +49,7 @@ export class DistribuicaoVaraComponent implements OnInit {
     this.distribuicaoVaraService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistribuicaoVara = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listDistribuicaoVara;
       },

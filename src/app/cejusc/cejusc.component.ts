@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { CejuscService } from '../services/cejusc.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
-import {MatTableDataSource, PageEvent} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 import { Cejusc } from '../models/cejusc.model';
 
 @Component({
@@ -13,15 +13,16 @@ import { Cejusc } from '../models/cejusc.model';
   styleUrls: ['./cejusc.component.scss']
 })
 export class CejuscComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
-  count = 800;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
   classCss: {};
   listCejusc:  Cejusc[];
   displayedColumns: string[] = ['Ano', 'Mes', 'Acordo', 'Sem Acordo', 'Botões'];
-  length = 100;
+  length = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
@@ -35,7 +36,9 @@ export class CejuscComponent implements OnInit {
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
+    console.log(this.dataSource.paginator.pageIndex);
   }
 
   findAll(page: number, count: number) {
@@ -44,7 +47,6 @@ export class CejuscComponent implements OnInit {
         this.listCejusc = responseApi['data']['content'];
         this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
-        this.pageEvent.
         this.dataSource.data = this.listCejusc;
       },
         err => {

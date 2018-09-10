@@ -1,6 +1,6 @@
 <h3>Cejusc</h3>
-<mat-card class="errMatCard rContainer">
-  <button type="button" mat-button class="btnF5" routerLink="novo">Novo Registro</button>
+<mat-card class="errMatCard">
+
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Ano">
       <th mat-header-cell *matHeaderCellDef>Ano</th>
@@ -49,4 +49,5 @@
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = $event">
   </mat-paginator>
+  <button type="button" mat-button class="btnF5" routerLink="novo">Novo Registro</button>
 </mat-card>

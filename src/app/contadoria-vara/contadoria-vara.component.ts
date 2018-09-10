@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { ContadoriaVaraService } from '../services/contadoria-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { ContadoriaVara } from '../models/contadiria-vara.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-vara',
@@ -13,8 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./contadoria-vara.component.scss']
 })
 export class ContadoriaVaraComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
-  count = 5;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -28,12 +29,16 @@ export class ContadoriaVaraComponent implements OnInit {
     'Eletrônico Saldo', 'Botões'];
 
   dataSource = new MatTableDataSource<ContadoriaVara>();
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   constructor(private router: Router,
   private contadoriaVaraService: ContadoriaVaraService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -41,6 +46,7 @@ export class ContadoriaVaraComponent implements OnInit {
     this.contadoriaVaraService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listContadoriaVara = responseApi['data']['content'];
+        this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listContadoriaVara;
       },

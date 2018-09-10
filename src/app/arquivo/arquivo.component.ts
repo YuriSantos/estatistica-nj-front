@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 import { ArquivoService } from '../services/arquivo.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { Arquivo } from '../models/arquivo.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-arquivo',
@@ -13,8 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./arquivo.component.scss']
 })
 export class ArquivoComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
-  count = 5;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -30,12 +31,20 @@ export class ArquivoComponent implements OnInit {
     'Baixado Guardados Caixa a cote',
     'Processos Recebidos Vara Baixa', 'Botões'];
 
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  dataSource = new MatTableDataSource<Arquivo>();
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
+
   constructor(private router: Router,
   private arquivoService: ArquivoService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
-  dataSource = new MatTableDataSource<Arquivo>();
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
@@ -43,6 +52,7 @@ export class ArquivoComponent implements OnInit {
     this.arquivoService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
         this.listArquivo = responseApi['data']['content'];
+          this.length = responseApi['data']['totalElements'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listArquivo;
       },

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { ContadoriaJefService } from '../services/contadoria-jef.service';
 import { DialogService } from '../services/dialog.service';
 import { Router } from '@angular/router';
 import { ResponseApi } from '../models/response-api';
 import { ContadoriaJef } from '../models/contadoria-jef.model';
-import { MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-jef',
@@ -13,8 +13,9 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./contadoria-jef.component.scss']
 })
 export class ContadoriaJefComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   page = 0;
-  count = 5;
+  count = 360;
   pages: Array<number>;
   shared: SharedService;
   message: {};
@@ -22,18 +23,23 @@ export class ContadoriaJefComponent implements OnInit {
   listContadoriajef: ContadoriaJef[];
   displayedColumns: string[] = ['Ano', 'Mes', 'Calculos', 'Atualizações', 'Botões'];
   dataSource = new MatTableDataSource<ContadoriaJef>();
+  length = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   constructor(private router: Router,
   private contadoriajefService: ContadoriaJefService,
   private dialogService: DialogService) { this.shared = SharedService.getInstance(); }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.findAll(this.page, this.count);
   }
 
   findAll(page: number, count: number) {
     this.contadoriajefService.findAll(page, count)
       .subscribe((responseApi: ResponseApi) => {
+        this.length = responseApi['data']['totalElements'];
         this.listContadoriajef = responseApi['data']['content'];
         this.pages = new Array(responseApi['data']['totalPages']);
         this.dataSource.data = this.listContadoriajef;

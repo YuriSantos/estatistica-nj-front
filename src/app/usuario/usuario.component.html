@@ -1,6 +1,6 @@
 <h3>Usuários</h3>
 <mat-card class="errMatCard">
-  <button type="button" mat-button class="btnF5" routerLink="/usuario-novo">Novo Registro</button>
+  <button type="button" mat-button class="btnF5" routerLink="novo">Novo Registro</button>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="Usuário">
       <th mat-header-cell *matHeaderCellDef>Usuário</th>
@@ -10,6 +10,24 @@
     <ng-container matColumnDef="Perfil">
       <th mat-header-cell *matHeaderCellDef>Perfil</th>
       <td mat-cell *matCellDef="let listUsuario">{{ listUsuario.profile }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Botões">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let listUsuario" class="mtIcon"><button mat-icon-button [matMenuTriggerFor]="opt">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+        <mat-menu #opt="matMenu">
+          <button mat-menu-item (click)="delete (listUsuario.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Deletar</span>
+          </button>
+          <button mat-menu-item [routerLink]="['editar', listUsuario.id]">
+            <mat-icon>create</mat-icon>
+            <span>Editar</span>
+          </button>
+        </mat-menu>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

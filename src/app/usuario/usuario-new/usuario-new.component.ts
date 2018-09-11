@@ -21,6 +21,7 @@ export class UsuarioNewComponent implements OnInit {
   shared: SharedService;
   classCss: {};
   message: {};
+  hide = true;
 
   constructor(private usuarioService: UsuarioService,
   private route: ActivatedRoute) {

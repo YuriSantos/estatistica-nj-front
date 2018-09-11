@@ -18,10 +18,15 @@ export class ContadoriaJefNewComponent implements OnInit {
   @ViewChild('form')
   form: NgForm;
 
-  contadoriaJef = new ContadoriaJef(0,0,0,0,0);
   shared: SharedService;
   classCss: {};
   message: {};
+  date = new Date();
+  ano = this.date.getFullYear();
+  currentMes = this.date.getMonth();
+  contadoriaJef = new ContadoriaJef(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+    null, null);
+
 
   constructor(private contadoriaJefService: ContadoriaJefService,
   private route: ActivatedRoute) {
@@ -52,12 +57,15 @@ export class ContadoriaJefNewComponent implements OnInit {
     this.message = {};
     console.log('token: ' + this.shared.token);
     this.contadoriaJefService.createOrUpdate(this.contadoriaJef).subscribe((responseApi: ResponseApi) => {
-        this.contadoriaJef = new ContadoriaJef(0,0,0,0,0);
+      this.contadoriaJef = new ContadoriaJef(null, this.getLastYear(this.ano),
+        this.getJaneiro(this.currentMes),
+        null, null);
+      console.log('Ano: ' + this.getLastYear(this.ano));
         const contadoriaJefRet: ContadoriaJef = responseApi.data;
         this.form.resetForm();
         this.showMessage({
           type: 'success',
-          text: `Registerd ${contadoriaJefRet.mes} successfully`
+          text: `Entrada ${contadoriaJefRet.mes}/${contadoriaJefRet.ano} registrada com sucesso!`
         });
       }, err => {
         this.showMessage({
@@ -66,6 +74,20 @@ export class ContadoriaJefNewComponent implements OnInit {
     });
       }
     );
+  }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
   }
 
   private showMessage(message: {type: string, text: string}): void {
@@ -79,7 +101,7 @@ export class ContadoriaJefNewComponent implements OnInit {
   private buildClasses(type: string): void {
     this.classCss = {
       'alert': true
-    }
+    };
     this.classCss['alert-' +  type] = true;
   }
 

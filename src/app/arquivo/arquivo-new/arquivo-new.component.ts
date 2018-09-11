@@ -16,10 +16,21 @@ export class ArquivoNewComponent implements OnInit {
   @ViewChild('form')
   form: NgForm;
 
-  arquivo = new Arquivo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
   shared: SharedService;
   classCss: {};
   message: {};
+  date = new Date();
+  ano = this.date.getFullYear();
+  currentMes = this.date.getMonth();
+  arquivo = new Arquivo(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null);
+
 
   constructor(private arquivoService: ArquivoService,
   private route: ActivatedRoute) {
@@ -49,12 +60,19 @@ export class ArquivoNewComponent implements OnInit {
   register() {
     this.message = {};
     this.arquivoService.createOrUpdate(this.arquivo).subscribe((responseApi: ResponseApi) => {
-        this.arquivo = new Arquivo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      this.arquivo = new Arquivo(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null);
         const arquivoRet: Arquivo = responseApi.data;
         this.form.resetForm();
         this.showMessage({
           type: 'success',
-          text: `Registerd ${arquivoRet.mes} successfully`
+          text: `Entrada ${arquivoRet.mes}/${arquivoRet.ano} registrada com sucesso!`
         });
       }, err => {
         this.showMessage({
@@ -63,6 +81,20 @@ export class ArquivoNewComponent implements OnInit {
     });
       }
     );
+  }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
   }
 
   private showMessage(message: {type: string, text: string}): void {

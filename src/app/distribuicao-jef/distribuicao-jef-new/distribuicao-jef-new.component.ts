@@ -14,15 +14,27 @@ import { ResponseApi } from '../../models/response-api';
 })
 export class DistribuicaoJefNewComponent implements OnInit {
 
-    @ViewChild('form')
-    form: NgForm;
+  @ViewChild('form')
+  form: NgForm;
 
-    distribuicaoJef = new DistribuicaoJef(0,0,0,0,0,0,0,0,0,0);
     shared: SharedService;
     classCss: {};
     message: {};
+    date = new Date();
+    ano = this.date.getFullYear();
+    currentMes = this.date.getMonth();
+    distribuicaoJef = new DistribuicaoJef(null, this.getLastYear(this.ano),
+      this.getJaneiro(this.currentMes),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null);
 
-    constructor(private distribuicaoJefService: DistribuicaoJefService,
+
+  constructor(private distribuicaoJefService: DistribuicaoJefService,
     private route: ActivatedRoute) {
     this.shared = SharedService.getInstance();
     }
@@ -50,7 +62,15 @@ export class DistribuicaoJefNewComponent implements OnInit {
     register() {
       this.message = {};
       this.distribuicaoJefService.createOrUpdate(this.distribuicaoJef).subscribe((responseApi: ResponseApi) => {
-          this.distribuicaoJef = new DistribuicaoJef(0,0,0,0,0,0,0,0,0,0);
+          this.distribuicaoJef = new DistribuicaoJef(null, this.getLastYear(this.ano),
+            this.getJaneiro(this.currentMes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null);
           const distribuicaoJefRet: DistribuicaoJef = responseApi.data;
           this.form.resetForm();
           this.showMessage({
@@ -65,6 +85,20 @@ export class DistribuicaoJefNewComponent implements OnInit {
         }
       );
     }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
+  }
 
     private showMessage(message: {type: string, text: string}): void {
       this.message = message;

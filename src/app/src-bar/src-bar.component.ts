@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SrcBarService} from '../services/src-bar.service';
+
 
 @Component({
   selector: 'app-src-bar',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./src-bar.component.scss']
 })
 export class SrcBarComponent implements OnInit {
+  ano: number;
+  mes: number;
 
-  constructor() { }
+  constructor(private srcService: SrcBarService) { }
 
   ngOnInit() {
+
+  }
+
+  findAnoMes(): void {
+    this.srcService.findMesAno(this.ano, this.mes);
   }
 
 }

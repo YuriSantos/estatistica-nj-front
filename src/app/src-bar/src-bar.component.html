@@ -6,13 +6,13 @@
   <form align="middle">
 
     <mat-form-field>
-      <mat-select id="idAno" placeholder="Selecione o Ano: ">
+      <mat-select id="idAno" name="ano" placeholder="Selecione o Ano: " [(ngModel)]="ano">
         <mat-option value="2017">2017</mat-option>
         <mat-option value="2018">2018</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-select id="idMes" placeholder="Mês: ">
+      <mat-select id="idMes" name="mes" placeholder="Mês: " [(ngModel)]="mes">
         <mat-option value="1">Janeiro</mat-option>
         <mat-option value="2">Fevereiro</mat-option>
         <mat-option value="3">Março</mat-option>
@@ -27,7 +27,7 @@
         <mat-option value="12">Dezembro</mat-option>
       </mat-select>
     </mat-form-field><br>
-    <button mat-button class="btnF5">Atualizar</button>
+    <button mat-button class="btnF5" (click)="findAnoMes()">Atualizar</button>
   </form>
 
 </mat-card>

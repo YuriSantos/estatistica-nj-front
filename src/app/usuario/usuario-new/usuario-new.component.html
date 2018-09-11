@@ -5,7 +5,7 @@
       <div [ngClass]="classCss" role="alert" *ngIf="message">
         <strong>{{ message.text }}</strong>
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
       <div>
         <div>
 
@@ -16,7 +16,7 @@
       </div>
       </mat-form-field>
       <br>
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-select id="idPerfil" placeholder="Selecione o perfil: " [(ngModel)]="usuario.profile" name="perfil">
           <mat-option value="ROLE_ADMIN">Administrador</mat-option>
           <mat-option value="ROLE_ARQUIVO">Arquivo</mat-option>
@@ -29,8 +29,9 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field>
-        <input matInput type="password" id="inputSenha" name="senha" placeholder="senha" [(ngModel)]="usuario.senha">
+      <mat-form-field appearance="outline">
+        <input matInput [type]="hide ? 'password' : 'text'" id="inputSenha" name="senha" placeholder="senha" [(ngModel)]="usuario.senha">
+        <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </mat-form-field>
       <div>
         <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>

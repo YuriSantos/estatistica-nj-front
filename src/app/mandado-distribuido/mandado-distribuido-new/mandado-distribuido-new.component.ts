@@ -17,12 +17,22 @@ export class MandadoDistribuidoNewComponent implements OnInit {
     @ViewChild('form')
     form: NgForm;
 
-    mandadoDistribuido = new MandadoDistribuido(0,0,0,0,0,0,0,0,0);
     shared: SharedService;
     classCss: {};
     message: {};
+    date = new Date();
+    ano = this.date.getFullYear();
+    currentMes = this.date.getMonth();
+    mandadoDistribuido = new MandadoDistribuido(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null);
 
-    constructor(private mandadoDistribuidoService: MandadoDistribuidoService,
+
+  constructor(private mandadoDistribuidoService: MandadoDistribuidoService,
     private route: ActivatedRoute) {
     this.shared = SharedService.getInstance();
     }
@@ -50,12 +60,18 @@ export class MandadoDistribuidoNewComponent implements OnInit {
     register() {
       this.message = {};
       this.mandadoDistribuidoService.createOrUpdate(this.mandadoDistribuido).subscribe((responseApi: ResponseApi) => {
-          this.mandadoDistribuido = new MandadoDistribuido(0,0,0,0,0,0,0,0,0);
+          this.mandadoDistribuido = new MandadoDistribuido(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null);
           const mandadoDistribuidoRet: MandadoDistribuido = responseApi.data;
           this.form.resetForm();
           this.showMessage({
             type: 'success',
-            text: `Registerd ${mandadoDistribuidoRet.mes} successfully`
+            text: `Entrada ${mandadoDistribuidoRet.mes}/${mandadoDistribuidoRet.ano} registrada com sucesso!`
           });
         }, err => {
           this.showMessage({
@@ -65,6 +81,20 @@ export class MandadoDistribuidoNewComponent implements OnInit {
         }
       );
     }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
+  }
 
     private showMessage(message: {type: string, text: string}): void {
       this.message = message;

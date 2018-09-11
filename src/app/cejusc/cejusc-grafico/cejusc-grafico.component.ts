@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CejuscService} from '../../services/cejusc.service';
 import {SharedService} from '../../services/shared.service';
 import {ResponseApi} from '../../models/response-api';
 import {Cejusc} from '../../models/cejusc.model';
+import {SrcBarService} from '../../services/src-bar.service';
 
 export interface ElementoTabela {
   acordo: number;
@@ -25,13 +26,15 @@ export class CejuscGraficoComponent implements OnInit {
   displayedColumns: string[] = ['Acordo', 'Sem Acordo', 'Total'];
 
   constructor(private router: Router,
-              private cejuscService: CejuscService) {
+              private cejuscService: CejuscService,
+              private srcBarService: SrcBarService) {
     this.shared = SharedService.getInstance();
   }
 
   ngOnInit() {
     const date = new Date();
     this.findAno(date.getFullYear());
+    console.log(this.srcBarService.returning());
   }
 
   findAno(ano: number) {

@@ -14,15 +14,25 @@ import { ResponseApi } from '../../models/response-api';
 })
 export class ContadoriaVaraNewComponent implements OnInit {
 
-    @ViewChild('form')
-    form: NgForm;
+  @ViewChild('form')
+  form: NgForm;
 
-    contadoriaVara = new ContadoriaVara(0,0,0,0,0,0,0,0,0);
-    shared: SharedService;
-    classCss: {};
-    message: {};
+  shared: SharedService;
+  classCss: {};
+  message: {};
+  date = new Date();
+  ano = this.date.getFullYear();
+  currentMes = this.date.getMonth();
+  contadoriaVara = new ContadoriaVara(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+    null,
+    null,
+    null,
+    null,
+    null,
+    null);
 
-    constructor(private contadoriaVaraService: ContadoriaVaraService,
+
+  constructor(private contadoriaVaraService: ContadoriaVaraService,
     private route: ActivatedRoute) {
     this.shared = SharedService.getInstance();
     }
@@ -50,12 +60,18 @@ export class ContadoriaVaraNewComponent implements OnInit {
     register() {
       this.message = {};
       this.contadoriaVaraService.createOrUpdate(this.contadoriaVara).subscribe((responseApi: ResponseApi) => {
-          this.contadoriaVara = new ContadoriaVara(0,0,0,0,0,0,0,0,0);
+          this.contadoriaVara = new ContadoriaVara(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
+            null,
+            null,
+            null,
+            null,
+            null,
+            null);
           const contadoriaVaraRet: ContadoriaVara = responseApi.data;
           this.form.resetForm();
           this.showMessage({
             type: 'success',
-            text: `Registerd ${contadoriaVaraRet.mes} successfully`
+            text: `Entrada ${contadoriaVaraRet.mes}/${contadoriaVaraRet.ano} registrada com sucesso!`
           });
         }, err => {
           this.showMessage({
@@ -65,6 +81,20 @@ export class ContadoriaVaraNewComponent implements OnInit {
         }
       );
     }
+
+  getJaneiro (mes: number) {
+    if (mes === 0) {
+      this.currentMes = 12;
+    }
+    return this.currentMes;
+  }
+
+  getLastYear (ano: number) {
+    if (this.getJaneiro(this.currentMes) === 12 ) {
+      this.ano = this.ano - 1;
+    }
+    return this.ano;
+  }
 
     private showMessage(message: {type: string, text: string}): void {
       this.message = message;

@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   message: {};
   classCss: {};
   listUsuario: Usuario[];
-  displayedColumns: string[] = ['Usuário', 'Perfil'];
+  displayedColumns: string[] = ['Usuário', 'Perfil', 'Botões'];
   length = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];

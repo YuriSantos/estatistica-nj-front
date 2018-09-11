@@ -29,6 +29,9 @@
         </mat-select>
       </mat-form-field>
       <br>
+      <mat-form-field>
+        <input matInput type="password" id="inputSenha" name="senha" placeholder="senha" [(ngModel)]="usuario.senha">
+      </mat-form-field>
       <div>
         <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>

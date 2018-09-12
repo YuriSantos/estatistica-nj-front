@@ -8,41 +8,45 @@
         <mat-icon>insert_chart</mat-icon>
         <span>Estatísticas</span>
       </button>
-      <button mat-menu-item routerLink="/cejusc">
+      <button mat-menu-item routerLink="/cejusc" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='CEJUSC')">
         <mat-icon>insert_chart</mat-icon>
         <span>Cejusc</span>
       </button>
-      <button mat-menu-item routerLink="/arquivo">
+      <button mat-menu-item routerLink="/arquivo" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='ARQUIVO')">
         <mat-icon>insert_chart</mat-icon>
         <span>Arquivo</span>
       </button>
-      <button mat-menu-item routerLink="/contjef">
+      <button mat-menu-item routerLink="/contjef" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='CONTJEF')">
         <mat-icon>insert_chart</mat-icon>
         <span>Contadoria Jef</span>
       </button>
-      <button mat-menu-item routerLink="/contvara">
+      <button mat-menu-item routerLink="/contvara" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='CONTVARA')">
         <mat-icon>insert_chart</mat-icon>
         <span>Contadoria Vara</span>
       </button>
-      <button mat-menu-item routerLink="/distjef">
+      <button mat-menu-item routerLink="/distjef" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='DISTJEF')">
         <mat-icon>insert_chart</mat-icon>
         <span>Distribuição JEF</span>
       </button>
-      <button mat-menu-item routerLink="/distvara">
+      <button mat-menu-item routerLink="/distvara" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='DISTVARA')">
         <mat-icon>insert_chart</mat-icon>
         <span>Distribuição Vara</span>
       </button>
-      <button mat-menu-item routerLink="/mandado">
+      <button mat-menu-item routerLink="/mandado" *ngIf="shared.isLoggedIn() === true && (shared.usuario.profile ==='ADMIN' || shared.usuario.profile ==='MANDADO')">
         <mat-icon>insert_chart</mat-icon>
         <span>Mandado Distribuido</span>
       </button>
-      <button mat-menu-item routerLink="/usuario">
+      <button mat-menu-item routerLink="/usuario" *ngIf="shared.isLoggedIn() === true && shared.usuario.profile ==='ADMIN'">
         <mat-icon>perm_identity</mat-icon>
         <span>Usuários</span>
       </button>
-      <button mat-menu-item routerLink="/login">
+      <button mat-menu-item routerLink="/login" *ngIf="shared.isLoggedIn() === false">
         <mat-icon>perm_identity</mat-icon>
         <span>Login</span>
+      </button>
+      <button mat-menu-item (click)="signOut()" *ngIf="shared.isLoggedIn() === true">
+        <mat-icon>perm_identity</mat-icon>
+        <span>Logout</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>

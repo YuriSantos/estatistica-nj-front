@@ -75,7 +75,7 @@ export class DistribuicaoJefNewComponent implements OnInit {
           this.form.resetForm();
           this.showMessage({
             type: 'success',
-            text: `Registerd ${distribuicaoJefRet.mes} successfully`
+            text: `Entrada ${distribuicaoJefRet.mes}/${distribuicaoJefRet.ano} registrada com sucesso!`
           });
         }, err => {
           this.showMessage({

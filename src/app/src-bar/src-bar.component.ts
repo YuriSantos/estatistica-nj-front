@@ -13,9 +13,7 @@ export class SrcBarComponent implements OnInit {
 
   constructor(private srcService: SrcBarService) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   findAnoMes(): void {
     this.srcService.findMesAno(this.ano, this.mes);

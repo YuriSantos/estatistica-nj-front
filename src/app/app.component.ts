@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {SharedService} from './services/shared.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,14 @@ export class AppComponent {
 
   shared: SharedService;
 
-  constructor() {
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
     this.shared = SharedService.getInstance();
   }
 
   signOut(): void {
     this.shared.token = null;
     this.shared.usuario = null;
-    window.location.href = '/login';
-    window.location.reload();
+    this.router.navigate(['/']);
   }
 }

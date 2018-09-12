@@ -8,10 +8,14 @@ import {ContadoriaJefGraficoComponent} from '../contadoria-jef/contadoria-jef-gr
 export class SrcBarService {
   ano: number;
   mes: number;
+  date = new Date();
 
   constructor() { }
 
   findMesAno(ano1: number, mes1: number) {
+    if (ano1 === undefined) {
+      ano1 = this.date.getFullYear();
+    }
     this.ano = ano1;
     this.mes = mes1;
     console.log('Ano: ' + this.ano, 'Mes: ' + this.mes);

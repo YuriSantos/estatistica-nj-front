@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CejuscService} from '../../services/cejusc.service';
 import {SharedService} from '../../services/shared.service';
@@ -17,7 +17,7 @@ export interface ElementoTabela {
   templateUrl: './cejusc-grafico.component.html',
   styleUrls: ['./cejusc-grafico.component.scss']
 })
-export class CejuscGraficoComponent implements OnInit {
+export class CejuscGraficoComponent implements OnInit, DoCheck {
   shared: SharedService;
   listCejusc: Cejusc;
   cejusc: Cejusc[];
@@ -35,6 +35,10 @@ export class CejuscGraficoComponent implements OnInit {
     const date = new Date();
     this.findAno(date.getFullYear());
     console.log(this.srcBarService.returning());
+  }
+
+  ngDoCheck() {
+
   }
 
   findAno(ano: number) {

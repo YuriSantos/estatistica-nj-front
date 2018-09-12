@@ -19,6 +19,7 @@ export class SrcBarService {
     this.ano = ano1;
     this.mes = mes1;
     console.log('Ano: ' + this.ano, 'Mes: ' + this.mes);
+    location.reload();
   }
 
   returning() {

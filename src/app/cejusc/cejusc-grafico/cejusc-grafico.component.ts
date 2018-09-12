@@ -33,8 +33,8 @@ export class CejuscGraficoComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     const date = new Date();
-    this.findAno(date.getFullYear());
-    console.log(this.srcBarService.returning());
+    this.findAno(this.srcBarService.returning());
+    // console.log(this.srcBarService.returning());
   }
 
   ngDoCheck() {

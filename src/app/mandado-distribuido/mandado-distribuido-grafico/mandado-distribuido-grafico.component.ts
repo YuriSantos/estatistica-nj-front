@@ -29,7 +29,23 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findAno(2018);
+    const date = new Date();
+    this.findAno(date.getFullYear());
+    this.srcBarService.anoDisparado.subscribe(
+      (ano: number) => {
+        this.ano = ano;
+      }
+    );
+    this.srcBarService.mesDisparado.subscribe(
+      (mes: number) => {
+        this.mes = mes;
+        if (mes !== null && mes !== undefined) {
+          this.findMesAno(this.ano, this.mes);
+        } else {
+          this.findAno(this.ano);
+        }
+      }
+    );
   }
 
   findAno(ano: number) {

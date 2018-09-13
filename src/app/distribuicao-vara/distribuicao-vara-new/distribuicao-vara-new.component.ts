@@ -69,6 +69,7 @@ export class DistribuicaoVaraNewComponent implements OnInit {
             null);
           const distribuicaoVaraRet: DistribuicaoVara = responseApi.data;
           this.form.resetForm();
+          this.status = true;
           this.router.navigate(['/distvara']);
           this.openSnackBar(`Entrada ${distribuicaoVaraRet.mes}/${distribuicaoVaraRet.ano} registrada com sucesso!`, 'Ok', this.status);
         },

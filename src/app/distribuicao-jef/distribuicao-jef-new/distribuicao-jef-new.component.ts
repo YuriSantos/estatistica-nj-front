@@ -72,6 +72,7 @@ export class DistribuicaoJefNewComponent implements OnInit {
             null);
           const distribuicaoJefRet: DistribuicaoJef = responseApi.data;
           this.form.resetForm();
+          this.status = true;
           this.router.navigate(['/distjef']);
           this.openSnackBar(`Entrada ${distribuicaoJefRet.mes}/${distribuicaoJefRet.ano} registrada com sucesso!`, 'Ok', this.status);
         },

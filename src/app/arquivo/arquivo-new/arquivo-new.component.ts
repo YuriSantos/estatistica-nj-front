@@ -69,6 +69,7 @@ export class ArquivoNewComponent implements OnInit {
         null);
         const arquivoRet: Arquivo = responseApi.data;
         this.form.resetForm();
+        this.status = true;
         this.router.navigate(['/arquivo']);
         this.openSnackBar(`Entrada ${arquivoRet.mes}/${arquivoRet.ano} registrada com sucesso!`, 'Ok', this.status);
       },

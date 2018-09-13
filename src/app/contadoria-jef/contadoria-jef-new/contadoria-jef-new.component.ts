@@ -61,6 +61,7 @@ export class ContadoriaJefNewComponent implements OnInit {
         null, null);
         const contadoriaJefRet: ContadoriaJef = responseApi.data;
         this.form.resetForm();
+        this.status = true;
         this.router.navigate(['/contjef']);
         this.openSnackBar(`Entrada ${contadoriaJefRet.mes}/${contadoriaJefRet.ano} registrada com sucesso!`, 'Ok', this.status);
       },

@@ -68,6 +68,7 @@ export class ContadoriaVaraNewComponent implements OnInit {
             null);
           const contadoriaVaraRet: ContadoriaVara = responseApi.data;
           this.form.resetForm();
+          this.status = true;
           this.router.navigate(['/contvara']);
           this.openSnackBar(`Entrada ${contadoriaVaraRet.mes}/${contadoriaVaraRet.ano} registrada com sucesso!`, 'Ok', this.status);
         },

@@ -67,6 +67,7 @@ export class MandadoDistribuidoNewComponent implements OnInit {
             null);
           const mandadoDistribuidoRet: MandadoDistribuido = responseApi.data;
           this.form.resetForm();
+          this.status = true;
           this.router.navigate(['/mandado']);
           this.openSnackBar(`Entrada ${mandadoDistribuidoRet.mes}/${mandadoDistribuidoRet.ano} registrada com sucesso!`, 'Ok', this.status);
         },

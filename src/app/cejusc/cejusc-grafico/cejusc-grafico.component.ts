@@ -29,16 +29,15 @@ export class CejuscGraficoComponent implements OnInit {
 
   ngOnInit() {
     const date = new Date();
+    this.findAno(date.getFullYear());
     this.srcBarService.anoDisparado.subscribe(
       (ano: number) => {
         this.ano = ano;
-        console.log('Entrasse no Init:' + this.ano);
       }
     );
     this.srcBarService.mesDisparado.subscribe(
       (mes: number) => {
         this.mes = mes;
-        console.log('Entrasse no Init:' + this.mes);
         if (mes !== null && mes !== undefined) {
           this.findMesAno(this.ano, this.mes);
         } else {

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Arquivo } from '../../models/arquivo.model';
 import { SharedService } from '../../services/shared.service';
 import { ArquivoService } from '../../services/arquivo.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -33,7 +33,8 @@ export class ArquivoNewComponent implements OnInit {
 
 
   constructor(private arquivoService: ArquivoService,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+  private router: Router) {
   this.shared = SharedService.getInstance();
   }
 
@@ -70,6 +71,7 @@ export class ArquivoNewComponent implements OnInit {
         null);
         const arquivoRet: Arquivo = responseApi.data;
         this.form.resetForm();
+        this.router.navigate(['/arquivo']);
         this.showMessage({
           type: 'success',
           text: `Entrada ${arquivoRet.mes}/${arquivoRet.ano} registrada com sucesso!`

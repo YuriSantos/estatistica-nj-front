@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Usuario } from '../../models/usuario.model';
 import { SharedService } from '../../services/shared.service';
 import { UsuarioService } from '../../services/usuario.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -24,7 +24,8 @@ export class UsuarioNewComponent implements OnInit {
   hide = true;
 
   constructor(private usuarioService: UsuarioService,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+  private router: Router) {
   this.shared = SharedService.getInstance();
   }
 
@@ -54,9 +55,10 @@ export class UsuarioNewComponent implements OnInit {
         this.usuario = new Usuario(null, null, null, null);
         const usuarioRet: Usuario = responseApi.data;
         this.form.resetForm();
+        this.router.navigate(['/usuario']);
         this.showMessage({
           type: 'success',
-          text: `Registrado ${usuarioRet.login} com sucesso.`
+          text: `Usuário ${usuarioRet.login} registrado com sucesso.`
         });
       }, err => {
         this.showMessage({

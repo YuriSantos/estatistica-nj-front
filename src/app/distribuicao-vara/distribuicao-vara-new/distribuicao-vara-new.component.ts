@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { DistribuicaoVara } from '../../models/distribuicao-vara.model';
 import { SharedService } from '../../services/shared.service';
 import { DistribuicaoVaraService } from '../../services/distribuicao-vara.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -33,7 +33,8 @@ export class DistribuicaoVaraNewComponent implements OnInit {
 
 
   constructor(private distribuicaoVaraService: DistribuicaoVaraService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.shared = SharedService.getInstance();
     }
 
@@ -70,6 +71,7 @@ export class DistribuicaoVaraNewComponent implements OnInit {
             null);
           const distribuicaoVaraRet: DistribuicaoVara = responseApi.data;
           this.form.resetForm();
+          this.router.navigate(['/distvara']);
           this.showMessage({
             type: 'success',
             text: `Entrada ${distribuicaoVaraRet.mes}/${distribuicaoVaraRet.ano} registrada com sucesso!`

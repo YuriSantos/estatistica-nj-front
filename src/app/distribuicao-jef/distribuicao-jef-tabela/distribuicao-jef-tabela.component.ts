@@ -20,6 +20,7 @@ export class DistribuicaoJefTabelaComponent implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private distJefService: DistribuicaoJefService,
@@ -45,7 +46,11 @@ export class DistribuicaoJefTabelaComponent implements OnInit {
         }
       }
     );
-
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
 
   }
 
@@ -64,6 +69,11 @@ export class DistribuicaoJefTabelaComponent implements OnInit {
     this.distJefService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistJef = responseApi.data;
+        if (responseApi.data == null) {
+          this.listDistJef = new DistribuicaoJef(0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0);
+        }
         this.Tabela = [{
           telejudiciario: this.listDistJef.teleJudiciario, atermacao: this.listDistJef.atermacao, advogados: this.listDistJef.advogados,
           processos: this.listDistJef.processos

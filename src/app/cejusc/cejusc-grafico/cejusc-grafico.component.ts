@@ -20,6 +20,7 @@ export class CejuscGraficoComponent implements OnInit {
   displayedColumns: string[] = ['Acordo', 'Sem Acordo', 'Total'];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private cejuscService: CejuscService,
@@ -45,6 +46,11 @@ export class CejuscGraficoComponent implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
 
 
     // console.log(this.srcBarService.returning());
@@ -54,7 +60,6 @@ export class CejuscGraficoComponent implements OnInit {
     this.cejuscService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi.data;
-        this.cejusc = responseApi['data'][''];
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
           acordo: this.listCejusc.acordo, semAcordo: this.listCejusc.semAcordo, total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
@@ -67,7 +72,9 @@ export class CejuscGraficoComponent implements OnInit {
     this.cejuscService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi.data;
-        this.cejusc = responseApi['data'][''];
+        if (responseApi.data == null) {
+          this.listCejusc = new Cejusc(0, 0, 0, 0, 0);
+        }
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
           acordo: this.listCejusc.acordo, semAcordo: this.listCejusc.semAcordo, total: (this.listCejusc.acordo + this.listCejusc.semAcordo)

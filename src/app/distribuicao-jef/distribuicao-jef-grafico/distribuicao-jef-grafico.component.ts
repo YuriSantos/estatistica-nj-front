@@ -5,6 +5,7 @@ import {DistribuicaoJefService} from '../../services/distribuicao-jef.service';
 import {Router} from '@angular/router';
 import {ResponseApi} from '../../models/response-api';
 import {SrcBarService} from '../../services/src-bar.service';
+import {ContadoriaVara} from '../../models/contadiria-vara.model';
 
 @Component({
   selector: 'app-distribuicao-jef-grafico',
@@ -20,6 +21,7 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private distJefService: DistribuicaoJefService,
@@ -45,13 +47,17 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
     this.distJefService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistJef = responseApi.data;
-        this.distJef = responseApi['data'];
         this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ];
         this.Tabela = [{
           vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
@@ -64,7 +70,11 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
     this.distJefService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistJef = responseApi.data;
-        this.distJef = responseApi['data'];
+        if (responseApi.data == null) {
+          this.listDistJef = new DistribuicaoJef(0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0);
+        }
         this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ];
         this.Tabela = [{
           vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,

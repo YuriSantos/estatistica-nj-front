@@ -20,6 +20,7 @@ export class ContadoriaJefGraficoComponent implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private contadoriaJefService: ContadoriaJefService,
@@ -45,6 +46,11 @@ export class ContadoriaJefGraficoComponent implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
@@ -65,7 +71,9 @@ export class ContadoriaJefGraficoComponent implements OnInit {
     this.contadoriaJefService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listContJef = responseApi.data;
-        this.contJef = responseApi['data'];
+        if (responseApi.data == null) {
+          this.listContJef = new ContadoriaJef(0, 0, 0, 0, 0);
+        }
         this.dataGrafico = [this.listContJef.calculos, this.listContJef.atualizacoes];
         this.Tabela = [{
           calculos: this.listContJef.calculos, atualizacoes: this.listContJef.atualizacoes,

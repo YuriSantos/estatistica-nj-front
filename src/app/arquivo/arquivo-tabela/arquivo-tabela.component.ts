@@ -17,6 +17,7 @@ export class ArquivoTabelaComponent implements OnInit {
   arquivo: Arquivo[];
   Tabela = [];
   dataGrafico = [];
+  mesNome: string;
   displayedColumns: string[] = ['Desarquivado e enviado para a vara',
     'Caixa devolvida retorno vara',
     'Feitura Caixa para guarda processo arquivo',
@@ -51,6 +52,11 @@ export class ArquivoTabelaComponent implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
@@ -73,6 +79,10 @@ export class ArquivoTabelaComponent implements OnInit {
     this.arquivoService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listArquivo = responseApi.data;
+        if (responseApi.data == null) {
+          this.listArquivo = new Arquivo(0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0);
+        }
         this.Tabela = [{
           desarquivadoEnviadoVara: this.listArquivo.desarquivadoEnviadoVara,
           devolvidoCaixaRetornoVara: this.listArquivo.devolvidoCaixaRetornoVara,

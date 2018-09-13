@@ -21,6 +21,7 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private mandadoService: MandadoDistribuidoService,
@@ -46,13 +47,17 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
     this.mandadoService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listMandado = responseApi.data;
-        this.mandado = responseApi['data'];
         this.dataGrafico = [(this.listMandado.vara1 +
           this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
           this.listMandado.vara16), this.listMandado.pje];
@@ -70,7 +75,11 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
     this.mandadoService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listMandado = responseApi.data;
-        this.mandado = responseApi['data'];
+        if (responseApi.data == null) {
+          this.listMandado = new MandadoDistribuido(0, 0, 0,
+            0, 0, 0, 0,
+            0, 0);
+        }
         this.dataGrafico = [(this.listMandado.vara1 +
           this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
           this.listMandado.vara16), this.listMandado.pje];

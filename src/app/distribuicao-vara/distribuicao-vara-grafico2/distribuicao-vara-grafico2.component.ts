@@ -20,6 +20,7 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private distribuicaoVaraService: DistribuicaoVaraService,
@@ -45,13 +46,17 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
-        this.distVara = responseApi['data'];
         this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
         this.Tabela = [{
           eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
@@ -64,7 +69,11 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
     this.distribuicaoVaraService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
-        this.distVara = responseApi['data'];
+        if (responseApi.data == null) {
+          this.listDistVara = new DistribuicaoVara(0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0);
+        }
         this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
         this.Tabela = [{
           eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,

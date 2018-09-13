@@ -20,6 +20,7 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
   Tabela = [];
   ano;
   mes;
+  mesNome: string;
 
   constructor(private router: Router,
               private contVaraService: ContadoriaVaraService,
@@ -45,13 +46,17 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
         }
       }
     );
+    this.srcBarService.mesNomeDisparo.subscribe(
+      (mesNome: string) => {
+        this.mesNome = mesNome;
+      }
+    );
   }
 
   findAno(ano: number) {
     this.contVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listContVara = responseApi.data;
-        this.contVara = responseApi['data'];
         this.dataGrafico = [this.listContVara.fisicoSaida, this.listContVara.eletronicoSaida];
         this.Tabela = [{
           fisicoSaida: this.listContVara.fisicoSaida, eletronicoSaida: this.listContVara.eletronicoSaida,
@@ -65,7 +70,11 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
     this.contVaraService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listContVara = responseApi.data;
-        this.contVara = responseApi['data'];
+        if (responseApi.data == null) {
+          this.listContVara = new ContadoriaVara(0, 0, 0,
+            0, 0, 0, 0,
+            0, 0);
+        }
         this.dataGrafico = [this.listContVara.fisicoSaida, this.listContVara.eletronicoSaida];
         this.Tabela = [{
           fisicoSaida: this.listContVara.fisicoSaida, eletronicoSaida: this.listContVara.eletronicoSaida,

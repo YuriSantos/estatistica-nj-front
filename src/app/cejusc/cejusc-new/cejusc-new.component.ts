@@ -5,6 +5,7 @@ import { CejuscService } from '../../services/cejusc.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { ResponseApi } from '../../models/response-api';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-cejusc-new',
@@ -26,7 +27,8 @@ export class CejuscNewComponent implements OnInit {
 
   constructor(private cejuscService: CejuscService,
   private route: ActivatedRoute,
-              private router: Router ) {
+              private router: Router,
+              public snackBar: MatSnackBar) {
   this.shared = SharedService.getInstance();
   }
 
@@ -57,6 +59,7 @@ export class CejuscNewComponent implements OnInit {
         const cejuscRet: Cejusc = responseApi.data;
         this.form.resetForm();
         this.router.navigate(['/cejusc']);
+      this.openSnackBar(`Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`, 'Ok')
         this.showMessage({
           type: 'success',
           text: `Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`
@@ -82,6 +85,12 @@ export class CejuscNewComponent implements OnInit {
       this.ano = this.ano - 1;
     }
     return this.ano;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   private showMessage(message: {type: string, text: string}): void {

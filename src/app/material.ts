@@ -7,8 +7,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatPaginatorIntl} from '@angular/material/paginator'
-import {MatPaginatorIntlBr} from './services/MatPaginatorIntlBr'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -25,7 +24,8 @@ import { NgModule } from '@angular/core';
     MatInputModule,
     MatTableModule,
     MatFormFieldModule,
-    MatPaginatorModule],
+    MatPaginatorModule,
+    MatSnackBarModule],
 
   exports: [MatButtonModule,
     MatToolbarModule,
@@ -37,6 +37,7 @@ import { NgModule } from '@angular/core';
     MatInputModule,
     MatTableModule,
     MatFormFieldModule,
-    MatPaginatorModule],
+    MatPaginatorModule,
+    MatSnackBarModule],
 })
 export class MaterialModule { }

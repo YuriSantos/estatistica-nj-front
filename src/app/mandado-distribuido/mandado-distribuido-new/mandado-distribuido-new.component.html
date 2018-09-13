@@ -2,9 +2,7 @@
       <h3>Mandado Distribuido - Novo</h3>
 
     <form #form="ngForm" (ngSubmit)="register()" novalidate>
-      <div [ngClass]="classCss" role="alert" *ngIf="message">
-        <strong>{{ message.text }}</strong>
-      </div>
+
       <mat-form-field appearance="outline">
         <mat-label>Ano</mat-label>
           <div>

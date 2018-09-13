@@ -19,8 +19,6 @@ export class MandadoDistribuidoNewComponent implements OnInit {
     form: NgForm;
     status: boolean;
     shared: SharedService;
-    classCss: {};
-    message: {};
     date = new Date();
     ano = this.date.getFullYear();
     currentMes = this.date.getMonth();
@@ -59,7 +57,6 @@ export class MandadoDistribuidoNewComponent implements OnInit {
     }
 
     register() {
-      this.message = {};
       this.mandadoDistribuidoService.createOrUpdate(this.mandadoDistribuido).subscribe((responseApi: ResponseApi) => {
           this.mandadoDistribuido = new MandadoDistribuido(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
             null,

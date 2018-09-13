@@ -19,8 +19,6 @@ export class ArquivoNewComponent implements OnInit {
 
   shared: SharedService;
   status: boolean;
-  classCss: {};
-  message: {};
   date = new Date();
   ano = this.date.getFullYear();
   currentMes = this.date.getMonth();
@@ -60,7 +58,6 @@ export class ArquivoNewComponent implements OnInit {
   }
 
   register() {
-    this.message = {};
     this.arquivoService.createOrUpdate(this.arquivo).subscribe((responseApi: ResponseApi) => {
       this.arquivo = new Arquivo(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
         null,

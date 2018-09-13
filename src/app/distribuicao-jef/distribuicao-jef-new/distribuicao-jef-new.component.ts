@@ -20,8 +20,6 @@ export class DistribuicaoJefNewComponent implements OnInit {
 
     shared: SharedService;
     status: boolean;
-    classCss: {};
-    message: {};
     date = new Date();
     ano = this.date.getFullYear();
     currentMes = this.date.getMonth();
@@ -62,7 +60,6 @@ export class DistribuicaoJefNewComponent implements OnInit {
     }
 
     register() {
-      this.message = {};
       this.distribuicaoJefService.createOrUpdate(this.distribuicaoJef).subscribe((responseApi: ResponseApi) => {
           this.distribuicaoJef = new DistribuicaoJef(null, this.getLastYear(this.ano),
             this.getJaneiro(this.currentMes),

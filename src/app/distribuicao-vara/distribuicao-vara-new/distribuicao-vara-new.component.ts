@@ -18,8 +18,6 @@ export class DistribuicaoVaraNewComponent implements OnInit {
     @ViewChild('form')
     form: NgForm;
     shared: SharedService;
-    classCss: {};
-    message: {};
     status: boolean;
     date = new Date();
     ano = this.date.getFullYear();
@@ -60,7 +58,6 @@ export class DistribuicaoVaraNewComponent implements OnInit {
     }
 
     register() {
-      this.message = {};
       this.distribuicaoVaraService.createOrUpdate(this.distribuicaoVara).subscribe((responseApi: ResponseApi) => {
           this.distribuicaoVara = new DistribuicaoVara(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
             null,

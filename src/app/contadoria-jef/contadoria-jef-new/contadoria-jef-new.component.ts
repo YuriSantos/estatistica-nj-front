@@ -21,8 +21,6 @@ export class ContadoriaJefNewComponent implements OnInit {
 
   shared: SharedService;
   status: boolean;
-  classCss: {};
-  message: {};
   date = new Date();
   ano = this.date.getFullYear();
   currentMes = this.date.getMonth();
@@ -56,7 +54,6 @@ export class ContadoriaJefNewComponent implements OnInit {
   }
 
   register() {
-    this.message = {};
     console.log('token: ' + this.shared.token);
     this.contadoriaJefService.createOrUpdate(this.contadoriaJef).subscribe((responseApi: ResponseApi) => {
       this.contadoriaJef = new ContadoriaJef(null, this.getLastYear(this.ano),

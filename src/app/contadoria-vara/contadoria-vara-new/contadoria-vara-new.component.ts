@@ -19,8 +19,6 @@ export class ContadoriaVaraNewComponent implements OnInit {
   form: NgForm;
 
   shared: SharedService;
-  classCss: {};
-  message: {};
   status: boolean;
   date = new Date();
   ano = this.date.getFullYear();
@@ -60,7 +58,6 @@ export class ContadoriaVaraNewComponent implements OnInit {
     }
 
     register() {
-      this.message = {};
       this.contadoriaVaraService.createOrUpdate(this.contadoriaVara).subscribe((responseApi: ResponseApi) => {
           this.contadoriaVara = new ContadoriaVara(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes),
             null,

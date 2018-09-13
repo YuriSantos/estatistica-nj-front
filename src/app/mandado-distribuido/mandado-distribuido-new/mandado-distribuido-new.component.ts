@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MandadoDistribuido } from '../../models/mandado-distribuido.model';
 import { SharedService } from '../../services/shared.service';
 import { MandadoDistribuidoService } from '../../services/mandado-distribuido.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -33,7 +33,8 @@ export class MandadoDistribuidoNewComponent implements OnInit {
 
 
   constructor(private mandadoDistribuidoService: MandadoDistribuidoService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.shared = SharedService.getInstance();
     }
 
@@ -69,6 +70,7 @@ export class MandadoDistribuidoNewComponent implements OnInit {
             null);
           const mandadoDistribuidoRet: MandadoDistribuido = responseApi.data;
           this.form.resetForm();
+          this.router.navigate(['/mandado']);
           this.showMessage({
             type: 'success',
             text: `Entrada ${mandadoDistribuidoRet.mes}/${mandadoDistribuidoRet.ano} registrada com sucesso!`

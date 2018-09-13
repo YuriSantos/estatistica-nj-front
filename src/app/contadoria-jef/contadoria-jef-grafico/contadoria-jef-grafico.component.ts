@@ -80,12 +80,14 @@ export class ContadoriaJefGraficoComponent implements OnInit {
   public pieChartLabels: string[] = ['Calculos', 'Atualizações'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
+  // tslint:disable-next-line:member-ordering
   public pieChartType = 'pie';
+  // tslint:disable-next-line:member-ordering
   public coresGrafico: Array<any> = [
     { // first color
       backgroundColor: ['#00a7e1', '#003459', '#FAC05E']
     }
-  ]
+  ];
 
   // events
   public chartClicked(e: any): void {

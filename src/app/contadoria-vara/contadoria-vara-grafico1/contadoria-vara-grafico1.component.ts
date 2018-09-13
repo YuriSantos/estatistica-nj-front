@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {ContadoriaVaraService} from '../../services/contadoria-vara.service';
 import {ResponseApi} from '../../models/response-api';
+import {SrcBarService} from '../../services/src-bar.service';
 
 @Component({
   selector: 'app-contadoria-vara-grafico1',
@@ -18,18 +19,51 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
   dataGrafico = [];
   displayedColumns: string[] = ['Físico Entrada', 'Eletrônico Entrada', 'Total'];
   Tabela = [];
+  ano;
+  mes;
 
   constructor(private router: Router,
-              private contVaraService: ContadoriaVaraService) {
+              private contVaraService: ContadoriaVaraService,
+              private srcBarService: SrcBarService) {
     this.shared = SharedService.getInstance();
   }
 
   ngOnInit() {
-    this.findAno(2018);
+    const date = new Date();
+    this.findAno(date.getFullYear());
+    this.srcBarService.anoDisparado.subscribe(
+      (ano: number) => {
+        this.ano = ano;
+      }
+    );
+    this.srcBarService.mesDisparado.subscribe(
+      (mes: number) => {
+        this.mes = mes;
+        if (mes !== null && mes !== undefined) {
+          this.findMesAno(this.ano, this.mes);
+        } else {
+          this.findAno(this.ano);
+        }
+      }
+    );
   }
 
   findAno(ano: number) {
     this.contVaraService.findByAno(ano)
+      .subscribe((responseApi: ResponseApi) => {
+        this.listContVara = responseApi.data;
+        this.contVara = responseApi['data'];
+        this.dataGrafico = [this.listContVara.fisicoEntrada, this.listContVara.eletronicoEntrada];
+        this.Tabela = [{
+          fisicoEntrada: this.listContVara.fisicoEntrada, eletronicoEntrada: this.listContVara.eletronicoEntrada,
+          total: (this.listContVara.fisicoEntrada + this.listContVara.eletronicoEntrada)
+        }];
+
+      });
+  }
+
+  findMesAno(ano: number, mes: number) {
+    this.contVaraService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listContVara = responseApi.data;
         this.contVara = responseApi['data'];

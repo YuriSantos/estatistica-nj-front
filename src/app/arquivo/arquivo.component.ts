@@ -76,7 +76,7 @@ export class ArquivoComponent implements OnInit {
             this.arquivoService.delete(id).subscribe((responseApi: ResponseApi) => {
               this.showMessage({
                 type: 'success',
-                text: 'Record deleted'
+                text: 'Registro deletado'
               });
               this.findAll(this.page, this.count);
             }, err => {

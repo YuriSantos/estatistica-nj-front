@@ -101,3 +101,19 @@ mat-card {
 mat-table {
   overflow: auto;
 }
+
+.ok-Snackbar {
+  background: #5FBA7D;
+  color: white;
+}
+.ok-Snackbar button {
+  color: #fff;
+}
+
+.errSnackbar {
+  background: #E23237;
+  color: white;
+}
+.errSnackbar button {
+  color: #fff;
+}

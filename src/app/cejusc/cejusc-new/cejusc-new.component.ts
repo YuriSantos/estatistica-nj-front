@@ -5,7 +5,7 @@ import { CejuscService } from '../../services/cejusc.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { ResponseApi } from '../../models/response-api';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-cejusc-new',
@@ -16,10 +16,9 @@ export class CejuscNewComponent implements OnInit {
 
   @ViewChild('form')
   form: NgForm;
-
+  status: boolean;
   date = new Date();
   shared: SharedService;
-  classCss: {};
   message: {};
   ano = this.date.getFullYear();
   currentMes = this.date.getMonth();
@@ -44,10 +43,7 @@ export class CejuscNewComponent implements OnInit {
     .subscribe((responseApi: ResponseApi)  => {
           this.cejusc = responseApi.data;
         }, err => {
-          this.showMessage({
-            type: 'error',
-            text: err['error']['errors'][0]
-          });
+          
         }
       );
   }
@@ -58,17 +54,13 @@ export class CejuscNewComponent implements OnInit {
         this.cejusc = new Cejusc(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes), null, null);
         const cejuscRet: Cejusc = responseApi.data;
         this.form.resetForm();
+        this.status = true;
         this.router.navigate(['/cejusc']);
-      this.openSnackBar(`Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`, 'Ok')
-        this.showMessage({
-          type: 'success',
-          text: `Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`
-        });
-      }, err => {
-        this.showMessage({
-          type: 'error',
-          text: err['error']['errors'][0]
-    });
+      this.openSnackBar(`Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`, 'Ok', this.status)  
+      }, 
+        err => {
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
       }
     );
   }
@@ -87,25 +79,15 @@ export class CejuscNewComponent implements OnInit {
     return this.ano;
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
-  }
-
-  private showMessage(message: {type: string, text: string}): void {
-    this.message = message;
-    this.buildClasses(message.type);
-    setTimeout(() => {
-      this.message = undefined;
-    }, 6000);
-  }
-
-  private buildClasses(type: string): void {
-    this.classCss = {
-      'alert': true
-    };
-    this.classCss['alert-' +  type] = true;
+  openSnackBar(message: string, action: string, status: boolean) {
+    let config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status==true){
+    config.panelClass = ['ok-Snackbar']
+    }else{
+    config.panelClass = ['errSnackbar']  
+    }
+    this.snackBar.open(message, action, config);
   }
 
   getFromGroupClass(isInvalid: boolean, isDirty): {} {

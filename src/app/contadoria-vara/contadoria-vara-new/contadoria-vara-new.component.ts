@@ -6,6 +6,7 @@ import { SharedService } from '../../services/shared.service';
 import { ContadoriaVaraService } from '../../services/contadoria-vara.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-vara-new',
@@ -20,6 +21,7 @@ export class ContadoriaVaraNewComponent implements OnInit {
   shared: SharedService;
   classCss: {};
   message: {};
+  status: boolean;
   date = new Date();
   ano = this.date.getFullYear();
   currentMes = this.date.getMonth();
@@ -34,7 +36,8 @@ export class ContadoriaVaraNewComponent implements OnInit {
 
   constructor(private contadoriaVaraService: ContadoriaVaraService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    public snackBar: MatSnackBar) {
     this.shared = SharedService.getInstance();
     }
 
@@ -50,10 +53,8 @@ export class ContadoriaVaraNewComponent implements OnInit {
       .subscribe((responseApi: ResponseApi)  => {
             this.contadoriaVara = responseApi.data;
           }, err => {
-            this.showMessage({
-              type: 'error',
-              text: err['error']['errors'][0]
-            });
+          this.status = false;
+          this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
           }
         );
     }
@@ -71,15 +72,11 @@ export class ContadoriaVaraNewComponent implements OnInit {
           const contadoriaVaraRet: ContadoriaVara = responseApi.data;
           this.form.resetForm();
           this.router.navigate(['/contvara']);
-          this.showMessage({
-            type: 'success',
-            text: `Entrada ${contadoriaVaraRet.mes}/${contadoriaVaraRet.ano} registrada com sucesso!`
-          });
-        }, err => {
-          this.showMessage({
-            type: 'error',
-            text: err['error']['errors'][0]
-      });
+          this.openSnackBar(`Entrada ${contadoriaVaraRet.mes}/${contadoriaVaraRet.ano} registrada com sucesso!`, 'Ok', this.status);
+        },
+        err => {
+          this.status = false;
+          this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
         }
       );
     }
@@ -98,27 +95,15 @@ export class ContadoriaVaraNewComponent implements OnInit {
     return this.ano;
   }
 
-    private showMessage(message: {type: string, text: string}): void {
-      this.message = message;
-      this.buildClasses(message.type);
-      setTimeout(() => {
-        this.message = undefined;
-      }, 6000);
+  openSnackBar(message: string, action: string, status: boolean) {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status === true) {
+      config.panelClass = ['ok-Snackbar'];
+    } else {
+      config.panelClass = ['errSnackbar'];
     }
-
-    private buildClasses(type: string): void {
-      this.classCss = {
-        'alert': true
-      }
-      this.classCss['alert-' +  type] = true;
-    }
-
-    getFromGroupClass(isInvalid: boolean, isDirty): {} {
-      return {
-        'form-group' : true,
-        'has-error' : isInvalid && isDirty,
-        'has-success' : !isInvalid && isDirty,
-      };
-    }
+    this.snackBar.open(message, action, config);
+  }
 
   }

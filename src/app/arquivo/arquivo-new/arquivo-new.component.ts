@@ -6,6 +6,7 @@ import { SharedService } from '../../services/shared.service';
 import { ArquivoService } from '../../services/arquivo.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-arquivo-new',
@@ -17,6 +18,7 @@ export class ArquivoNewComponent implements OnInit {
   form: NgForm;
 
   shared: SharedService;
+  status: boolean;
   classCss: {};
   message: {};
   date = new Date();
@@ -34,7 +36,8 @@ export class ArquivoNewComponent implements OnInit {
 
   constructor(private arquivoService: ArquivoService,
   private route: ActivatedRoute,
-  private router: Router) {
+  private router: Router,
+  public snackBar: MatSnackBar) {
   this.shared = SharedService.getInstance();
   }
 
@@ -50,10 +53,8 @@ export class ArquivoNewComponent implements OnInit {
     .subscribe((responseApi: ResponseApi)  => {
           this.arquivo = responseApi.data;
         }, err => {
-          this.showMessage({
-            type: 'error',
-            text: err['error']['errors'][0]
-          });
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
         }
       );
   }
@@ -72,15 +73,11 @@ export class ArquivoNewComponent implements OnInit {
         const arquivoRet: Arquivo = responseApi.data;
         this.form.resetForm();
         this.router.navigate(['/arquivo']);
-        this.showMessage({
-          type: 'success',
-          text: `Entrada ${arquivoRet.mes}/${arquivoRet.ano} registrada com sucesso!`
-        });
-      }, err => {
-        this.showMessage({
-          type: 'error',
-          text: err['error']['errors'][0]
-    });
+        this.openSnackBar(`Entrada ${arquivoRet.mes}/${arquivoRet.ano} registrada com sucesso!`, 'Ok', this.status);
+      },
+      err => {
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
       }
     );
   }
@@ -99,27 +96,15 @@ export class ArquivoNewComponent implements OnInit {
     return this.ano;
   }
 
-  private showMessage(message: {type: string, text: string}): void {
-    this.message = message;
-    this.buildClasses(message.type);
-    setTimeout(() => {
-      this.message = undefined;
-    }, 6000);
-  }
-
-  private buildClasses(type: string): void {
-    this.classCss = {
-      'alert': true
-    };
-    this.classCss['alert-' +  type] = true;
-  }
-
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group' : true,
-      'has-error' : isInvalid && isDirty,
-      'has-success' : !isInvalid && isDirty,
-    };
+  openSnackBar(message: string, action: string, status: boolean) {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status === true) {
+      config.panelClass = ['ok-Snackbar'];
+    } else {
+      config.panelClass = ['errSnackbar'];
+    }
+    this.snackBar.open(message, action, config);
   }
 
   }

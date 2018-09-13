@@ -43,7 +43,8 @@ export class CejuscNewComponent implements OnInit {
     .subscribe((responseApi: ResponseApi)  => {
           this.cejusc = responseApi.data;
         }, err => {
-          
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
         }
       );
   }
@@ -56,8 +57,8 @@ export class CejuscNewComponent implements OnInit {
         this.form.resetForm();
         this.status = true;
         this.router.navigate(['/cejusc']);
-      this.openSnackBar(`Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`, 'Ok', this.status)  
-      }, 
+      this.openSnackBar(`Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`, 'Ok', this.status);
+      },
         err => {
         this.status = false;
         this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
@@ -80,22 +81,14 @@ export class CejuscNewComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string, status: boolean) {
-    let config = new MatSnackBarConfig();
+    const config = new MatSnackBarConfig();
     config.duration = 7000;
-    if (this.status==true){
-    config.panelClass = ['ok-Snackbar']
-    }else{
-    config.panelClass = ['errSnackbar']  
+    if (this.status === true) {
+    config.panelClass = ['ok-Snackbar'];
+    } else {
+    config.panelClass = ['errSnackbar'];
     }
     this.snackBar.open(message, action, config);
-  }
-
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group' : true,
-      'has-error' : isInvalid && isDirty,
-      'has-success' : !isInvalid && isDirty,
-    };
   }
 
 }

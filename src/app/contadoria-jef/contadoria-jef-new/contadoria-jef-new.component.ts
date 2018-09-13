@@ -8,6 +8,7 @@ import { ContadoriaJef } from '../../models/contadoria-jef.model';
 import { ActivatedRoute } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-jef-new',
@@ -19,6 +20,7 @@ export class ContadoriaJefNewComponent implements OnInit {
   form: NgForm;
 
   shared: SharedService;
+  status: boolean;
   classCss: {};
   message: {};
   date = new Date();
@@ -30,7 +32,8 @@ export class ContadoriaJefNewComponent implements OnInit {
 
   constructor(private contadoriaJefService: ContadoriaJefService,
   private route: ActivatedRoute,
-  private router: Router ) {
+  private router: Router,
+  public snackBar: MatSnackBar) {
   this.shared = SharedService.getInstance();
   }
 
@@ -46,10 +49,8 @@ export class ContadoriaJefNewComponent implements OnInit {
     .subscribe((responseApi: ResponseApi)  => {
           this.contadoriaJef = responseApi.data;
         }, err => {
-          this.showMessage({
-            type: 'error',
-            text: err['error']['errors'][0]
-          });
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
         }
       );
   }
@@ -64,15 +65,11 @@ export class ContadoriaJefNewComponent implements OnInit {
         const contadoriaJefRet: ContadoriaJef = responseApi.data;
         this.form.resetForm();
         this.router.navigate(['/contjef']);
-        this.showMessage({
-          type: 'success',
-          text: `Entrada ${contadoriaJefRet.mes}/${contadoriaJefRet.ano} registrada com sucesso!`
-        });
-      }, err => {
-        this.showMessage({
-          type: 'error',
-          text: err['error']['errors'][0]
-    });
+        this.openSnackBar(`Entrada ${contadoriaJefRet.mes}/${contadoriaJefRet.ano} registrada com sucesso!`, 'Ok', this.status);
+      },
+      err => {
+        this.status = false;
+        this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
       }
     );
   }
@@ -91,27 +88,15 @@ export class ContadoriaJefNewComponent implements OnInit {
     return this.ano;
   }
 
-  private showMessage(message: {type: string, text: string}): void {
-    this.message = message;
-    this.buildClasses(message.type);
-    setTimeout(() => {
-      this.message = undefined;
-    }, 6000);
-  }
-
-  private buildClasses(type: string): void {
-    this.classCss = {
-      'alert': true
-    };
-    this.classCss['alert-' +  type] = true;
-  }
-
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group' : true,
-      'has-error' : isInvalid && isDirty,
-      'has-success' : !isInvalid && isDirty,
-    };
+  openSnackBar(message: string, action: string, status: boolean) {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status === true) {
+      config.panelClass = ['ok-Snackbar'];
+    } else {
+      config.panelClass = ['errSnackbar'];
+    }
+    this.snackBar.open(message, action, config);
   }
 
 }

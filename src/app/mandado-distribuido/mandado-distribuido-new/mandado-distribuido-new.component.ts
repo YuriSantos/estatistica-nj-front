@@ -6,6 +6,7 @@ import { SharedService } from '../../services/shared.service';
 import { MandadoDistribuidoService } from '../../services/mandado-distribuido.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-mandado-distribuido-new',
@@ -16,7 +17,7 @@ export class MandadoDistribuidoNewComponent implements OnInit {
 
     @ViewChild('form')
     form: NgForm;
-
+    status: boolean;
     shared: SharedService;
     classCss: {};
     message: {};
@@ -34,7 +35,8 @@ export class MandadoDistribuidoNewComponent implements OnInit {
 
   constructor(private mandadoDistribuidoService: MandadoDistribuidoService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    public snackBar: MatSnackBar) {
     this.shared = SharedService.getInstance();
     }
 
@@ -50,10 +52,8 @@ export class MandadoDistribuidoNewComponent implements OnInit {
       .subscribe((responseApi: ResponseApi)  => {
             this.mandadoDistribuido = responseApi.data;
           }, err => {
-            this.showMessage({
-              type: 'error',
-              text: err['error']['errors'][0]
-            });
+          this.status = false;
+          this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
           }
         );
     }
@@ -71,15 +71,11 @@ export class MandadoDistribuidoNewComponent implements OnInit {
           const mandadoDistribuidoRet: MandadoDistribuido = responseApi.data;
           this.form.resetForm();
           this.router.navigate(['/mandado']);
-          this.showMessage({
-            type: 'success',
-            text: `Entrada ${mandadoDistribuidoRet.mes}/${mandadoDistribuidoRet.ano} registrada com sucesso!`
-          });
-        }, err => {
-          this.showMessage({
-            type: 'error',
-            text: err['error']['errors'][0]
-      });
+          this.openSnackBar(`Entrada ${mandadoDistribuidoRet.mes}/${mandadoDistribuidoRet.ano} registrada com sucesso!`, 'Ok', this.status);
+        },
+        err => {
+          this.status = false;
+          this.openSnackBar(err['error']['errors'][0], 'Ok', this.status);
         }
       );
     }
@@ -98,27 +94,15 @@ export class MandadoDistribuidoNewComponent implements OnInit {
     return this.ano;
   }
 
-    private showMessage(message: {type: string, text: string}): void {
-      this.message = message;
-      this.buildClasses(message.type);
-      setTimeout(() => {
-        this.message = undefined;
-      }, 6000);
+  openSnackBar(message: string, action: string, status: boolean) {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status === true) {
+      config.panelClass = ['ok-Snackbar'];
+    } else {
+      config.panelClass = ['errSnackbar'];
     }
-
-    private buildClasses(type: string): void {
-      this.classCss = {
-        'alert': true
-      }
-      this.classCss['alert-' +  type] = true;
-    }
-
-    getFromGroupClass(isInvalid: boolean, isDirty): {} {
-      return {
-        'form-group' : true,
-        'has-error' : isInvalid && isDirty,
-        'has-success' : !isInvalid && isDirty,
-      };
-    }
+    this.snackBar.open(message, action, config);
+  }
 
   }

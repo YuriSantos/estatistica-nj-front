@@ -5,6 +5,7 @@ import { Usuario } from '../models/usuario.model';
 import { SharedService } from '../services/shared.service';
 import { CurrentUser } from '../models/current-user.model';
 import {FormControl, Validators} from '@angular/forms';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,11 @@ export class LoginComponent implements OnInit {
   shared: SharedService;
   message: string;
   hide = true;
+  status: boolean;
 
   constructor(private usuarioService: UsuarioService,
-  private router: Router) {
+  private router: Router,
+  public snackBar: MatSnackBar) {
   this.shared = SharedService.getInstance();
   }
 
@@ -32,35 +35,26 @@ export class LoginComponent implements OnInit {
       this.shared.token = userAuthentication.token;
       this.shared.usuario = userAuthentication.usuario;
       this.shared.usuario.profile = this.shared.usuario.profile.substring(5);
-      this.shared.showTemplate.emit(true);
       this.router.navigate(['/']);
     }, err => {
       this.shared.token = null;
       this.shared.usuario = null;
-      this.shared.showTemplate.emit(false);
+      this.status = false;
+      this.openSnackBar('Login e/ou senha incorretos!', 'Ok', this.status);
       this.message = 'Erro';
     });
   }
 
-  cancelLogin() {
-    this.message = '';
-    this.usuario = new Usuario(null, null, null, null);
-    window.location.href = '/login';
-    window.location.reload();
+  openSnackBar(message: string, action: string, status: boolean) {
+    const config = new MatSnackBarConfig();
+    config.duration = 7000;
+    if (this.status === true) {
+      config.panelClass = ['ok-Snackbar'];
+    } else {
+      config.panelClass = ['errSnackbar'];
+    }
+    this.snackBar.open(message, action, config);
   }
 
-  getFromGroupClass(isInvalid: boolean, isDirty): {} {
-    return {
-      'form-group' : true,
-      'has-error' : isInvalid && isDirty,
-      'has-success' : !isInvalid && isDirty,
-    };
-  }
-
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'Você deve digitar um usuário.' :
-        this.email.hasError('email') ? 'Não é um usuário válido.' :
-            '';
-  }
 
 }

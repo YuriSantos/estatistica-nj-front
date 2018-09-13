@@ -29,7 +29,8 @@ export class ContadoriaJefNewComponent implements OnInit {
 
 
   constructor(private contadoriaJefService: ContadoriaJefService,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+  private router: Router ) {
   this.shared = SharedService.getInstance();
   }
 
@@ -60,9 +61,9 @@ export class ContadoriaJefNewComponent implements OnInit {
       this.contadoriaJef = new ContadoriaJef(null, this.getLastYear(this.ano),
         this.getJaneiro(this.currentMes),
         null, null);
-      console.log('Ano: ' + this.getLastYear(this.ano));
         const contadoriaJefRet: ContadoriaJef = responseApi.data;
         this.form.resetForm();
+        this.router.navigate(['/contjef']);
         this.showMessage({
           type: 'success',
           text: `Entrada ${contadoriaJefRet.mes}/${contadoriaJefRet.ano} registrada com sucesso!`

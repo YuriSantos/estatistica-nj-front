@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Cejusc } from '../../models/cejusc.model';
 import { CejuscService } from '../../services/cejusc.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { ResponseApi } from '../../models/response-api';
 
@@ -25,7 +25,8 @@ export class CejuscNewComponent implements OnInit {
   cejusc = new Cejusc(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes), null, null);
 
   constructor(private cejuscService: CejuscService,
-  private route: ActivatedRoute) {
+  private route: ActivatedRoute,
+              private router: Router ) {
   this.shared = SharedService.getInstance();
   }
 
@@ -55,6 +56,7 @@ export class CejuscNewComponent implements OnInit {
         this.cejusc = new Cejusc(null, this.getLastYear(this.ano), this.getJaneiro(this.currentMes), null, null);
         const cejuscRet: Cejusc = responseApi.data;
         this.form.resetForm();
+        this.router.navigate(['/cejusc']);
         this.showMessage({
           type: 'success',
           text: `Entrada ${cejuscRet.mes}/${cejuscRet.ano} registrada com sucesso!`

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ContadoriaVara } from '../../models/contadiria-vara.model';
 import { SharedService } from '../../services/shared.service';
 import { ContadoriaVaraService } from '../../services/contadoria-vara.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -33,7 +33,8 @@ export class ContadoriaVaraNewComponent implements OnInit {
 
 
   constructor(private contadoriaVaraService: ContadoriaVaraService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.shared = SharedService.getInstance();
     }
 
@@ -69,6 +70,7 @@ export class ContadoriaVaraNewComponent implements OnInit {
             null);
           const contadoriaVaraRet: ContadoriaVara = responseApi.data;
           this.form.resetForm();
+          this.router.navigate(['/contvara']);
           this.showMessage({
             type: 'success',
             text: `Entrada ${contadoriaVaraRet.mes}/${contadoriaVaraRet.ano} registrada com sucesso!`

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { DistribuicaoJef } from '../../models/distribuicao-jef.model';
 import { SharedService } from '../../services/shared.service';
 import { DistribuicaoJefService } from '../../services/distribuicao-jef.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ResponseApi } from '../../models/response-api';
 
 @Component({
@@ -35,7 +35,8 @@ export class DistribuicaoJefNewComponent implements OnInit {
 
 
   constructor(private distribuicaoJefService: DistribuicaoJefService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.shared = SharedService.getInstance();
     }
 
@@ -73,6 +74,7 @@ export class DistribuicaoJefNewComponent implements OnInit {
             null);
           const distribuicaoJefRet: DistribuicaoJef = responseApi.data;
           this.form.resetForm();
+          this.router.navigate(['/distjef']);
           this.showMessage({
             type: 'success',
             text: `Entrada ${distribuicaoJefRet.mes}/${distribuicaoJefRet.ano} registrada com sucesso!`

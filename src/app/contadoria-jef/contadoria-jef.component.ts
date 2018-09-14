@@ -5,7 +5,7 @@ import { DialogService } from '../services/dialog.service';
 import { Router } from '@angular/router';
 import { ResponseApi } from '../models/response-api';
 import { ContadoriaJef } from '../models/contadoria-jef.model';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-jef',
@@ -26,6 +26,9 @@ export class ContadoriaJefComponent implements OnInit {
   length = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   constructor(private router: Router,
   private contadoriajefService: ContadoriaJefService,

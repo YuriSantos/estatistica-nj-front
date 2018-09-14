@@ -5,7 +5,7 @@ import { DistribuicaoVaraService } from '../services/distribuicao-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { DistribuicaoVara } from '../models/distribuicao-vara.model';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-distribuicao-vara',
@@ -33,6 +33,9 @@ export class DistribuicaoVaraComponent implements OnInit {
   length = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   dataSource = new MatTableDataSource<DistribuicaoVara>();
 

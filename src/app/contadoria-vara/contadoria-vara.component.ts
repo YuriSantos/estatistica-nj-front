@@ -5,7 +5,7 @@ import { ContadoriaVaraService } from '../services/contadoria-vara.service';
 import { DialogService } from '../services/dialog.service';
 import { ResponseApi } from '../models/response-api';
 import { ContadoriaVara } from '../models/contadiria-vara.model';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-contadoria-vara',
@@ -32,6 +32,9 @@ export class ContadoriaVaraComponent implements OnInit {
   length = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
 
   constructor(private router: Router,
   private contadoriaVaraService: ContadoriaVaraService,

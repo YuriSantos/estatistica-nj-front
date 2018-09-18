@@ -57,10 +57,12 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
-        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
+        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido,
+          this.listDistVara.processosMigrados];
         this.Tabela = [{
           eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
-          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
+          processosMigrados: this.listDistVara.processosMigrados,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)
         }];
       });
   }

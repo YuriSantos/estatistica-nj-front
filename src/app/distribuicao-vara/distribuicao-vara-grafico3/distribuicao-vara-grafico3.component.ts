@@ -3,21 +3,21 @@ import {SharedService} from '../../services/shared.service';
 import {DistribuicaoVara} from '../../models/distribuicao-vara.model';
 import {Router} from '@angular/router';
 import {DistribuicaoVaraService} from '../../services/distribuicao-vara.service';
-import {ResponseApi} from '../../models/response-api';
 import {SrcBarService} from '../../services/src-bar.service';
+import {ResponseApi} from '../../models/response-api';
 
 @Component({
-  selector: 'app-distribuicao-vara-grafico1',
-  templateUrl: './distribuicao-vara-grafico1.component.html',
-  styleUrls: ['./distribuicao-vara-grafico1.component.scss']
+  selector: 'app-distribuicao-vara-grafico3',
+  templateUrl: './distribuicao-vara-grafico3.component.html',
+  styleUrls: ['./distribuicao-vara-grafico3.component.scss']
 })
-export class DistribuicaoVaraGrafico1Component implements OnInit {
+export class DistribuicaoVaraGrafico3Component implements OnInit {
   shared: SharedService;
   listDistVara: DistribuicaoVara;
   distVara: DistribuicaoVara[];
   dataGrafico = [];
+  displayedColumns: string[] = ['Recebidas', 'Digitalizadas', 'Total'] ;
   Tabela = [];
-  displayedColumns: string[] = ['Distribuidos', 'Arquivados', 'Total'] ;
   ano;
   mes;
   mesNome: string;
@@ -57,10 +57,10 @@ export class DistribuicaoVaraGrafico1Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
-        this.dataGrafico = [this.listDistVara.fisicoArquivado, this.listDistVara.fisicoDistribuido];
+        this.dataGrafico = [this.listDistVara.peticoesRecebidas, this.listDistVara.peticoesDigitalizadas];
         this.Tabela = [{
-          fisicoArquivado: this.listDistVara.fisicoArquivado, fisicoDistribuido: this.listDistVara.fisicoDistribuido,
-          total: (this.listDistVara.fisicoArquivado + this.listDistVara.fisicoDistribuido)
+          recebidos: this.listDistVara.peticoesRecebidas, digitalizados: this.listDistVara.peticoesDigitalizadas,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.peticoesDigitalizadas + this.listDistVara.peticoesDigitalizadas)
         }];
       });
   }
@@ -74,16 +74,16 @@ export class DistribuicaoVaraGrafico1Component implements OnInit {
             0, 0, 0, 0,
             0, 0, 0);
         }
-        this.dataGrafico = [this.listDistVara.fisicoArquivado, this.listDistVara.fisicoDistribuido];
+        this.dataGrafico = [this.listDistVara.peticoesRecebidas, this.listDistVara.peticoesDigitalizadas];
         this.Tabela = [{
-          fisicoArquivado: this.listDistVara.fisicoArquivado, fisicoDistribuido: this.listDistVara.fisicoDistribuido,
-          total: (this.listDistVara.fisicoArquivado + this.listDistVara.fisicoDistribuido)
+          recebidos: this.listDistVara.peticoesRecebidas, digitalizados: this.listDistVara.peticoesDigitalizadas,
+          total: (this.listDistVara.peticoesRecebidas + this.listDistVara.peticoesDigitalizadas)
         }];
       });
   }
 // Pie
   // tslint:disable-next-line:member-ordering
-  public pieChartLabels: string[] = ['Arquivado', 'Distribuido'];
+  public pieChartLabels: string[] = ['Recebidos', 'Digitalizados'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   // tslint:disable-next-line:member-ordering

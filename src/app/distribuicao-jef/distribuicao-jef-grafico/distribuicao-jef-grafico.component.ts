@@ -18,7 +18,9 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
   distJef: DistribuicaoJef[];
   dataGrafico = [];
   displayedColumns: string[] = ['13ª Vara', '7ª Vara', 'Turma Recursal', 'Total'];
+  displayedColumns2: string[] = ['Advogados', 'TeleJudiciário', 'Atermação', 'Processos'];
   Tabela = [];
+  Tabela2 = [];
   ano;
   mes;
   mesNome: string;
@@ -63,6 +65,10 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
           vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
           recursal: this.listDistJef.recursal, total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
         }];
+        this.Tabela2 = [{
+          telejudiciario: this.listDistJef.teleJudiciario, atermacao: this.listDistJef.atermacao, advogados: this.listDistJef.advogados,
+          processos: this.listDistJef.processos
+        }];
       });
   }
 
@@ -79,6 +85,10 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
         this.Tabela = [{
           vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
           recursal: this.listDistJef.recursal, total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
+        }];
+        this.Tabela2 = [{
+          telejudiciario: this.listDistJef.teleJudiciario, atermacao: this.listDistJef.atermacao, advogados: this.listDistJef.advogados,
+          processos: this.listDistJef.processos
         }];
       });
   }

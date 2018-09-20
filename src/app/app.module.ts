@@ -46,6 +46,7 @@ import { ArquivoTabelaComponent } from './arquivo/arquivo-tabela/arquivo-tabela.
 import { DistribuicaoJefTabelaComponent } from './distribuicao-jef/distribuicao-jef-tabela/distribuicao-jef-tabela.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlBr } from './services/MatPaginatorIntlBr';
+import { DistribuicaoVaraGrafico3Component } from './distribuicao-vara/distribuicao-vara-grafico3/distribuicao-vara-grafico3.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { MatPaginatorIntlBr } from './services/MatPaginatorIntlBr';
     DistribuicaoVaraGrafico2Component,
     MandadoDistribuidoGraficoComponent,
     ArquivoTabelaComponent,
-    DistribuicaoJefTabelaComponent
+    DistribuicaoJefTabelaComponent,
+    DistribuicaoVaraGrafico3Component
   ],
   imports: [
     BrowserModule,

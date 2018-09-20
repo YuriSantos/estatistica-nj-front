@@ -1,7 +1,7 @@
 
 <mat-card class="distVara2Chart">
   <div>
-    <h1 class="title">5.2 - Distribuição Vara Comum - Físico(PJE)</h1>
+    <h1 class="title">5.2 - Distribuição Vara Comum - PJE</h1>
     <h4 class="subtitle">{{mesNome}}/{{ano}}</h4>
   </div>
   <div style="display: block">
@@ -22,6 +22,10 @@
     <ng-container matColumnDef="Distribuidos">
       <th mat-header-cell *matHeaderCellDef>Distribuidos</th>
       <td mat-cell *matCellDef="let Tabela">{{ Tabela.eletronicoDistribuido }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Migrados para o PJE">
+      <th mat-header-cell *matHeaderCellDef>Processos Migrados para o PJE</th>
+      <td mat-cell *matCellDef="let Tabela">{{ Tabela.processosMigrados }}</td>
     </ng-container>
 
     <ng-container matColumnDef="Total">

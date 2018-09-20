@@ -15,6 +15,11 @@
   color: #fff;
   z-index: 2;
 }
+canvas {
+  max-width: 800px;
+  display: inline-block;
+  margin: 0 auto;
+}
 
 .example-icon {
   padding: 0 14px;
@@ -64,7 +69,7 @@ body {
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 .btnF5 {
@@ -89,6 +94,7 @@ mat-card {
   margin: 0 auto;
   background: #00a7e1;
 }
+
 
 .mtIcon {
   text-align: right;
@@ -117,3 +123,17 @@ mat-table {
 .errSnackbar button {
   color: #fff;
 }
+
+table {
+  width: 100%;
+  font-weight: bolder;
+}
+
+.mat-header-cell {
+  font-weight: bolder;
+}
+
+.mat-cell {
+  font-size: 1.0em;
+}
+

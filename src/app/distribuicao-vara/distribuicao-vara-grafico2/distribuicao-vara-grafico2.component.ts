@@ -16,7 +16,7 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
   listDistVara: DistribuicaoVara;
   distVara: DistribuicaoVara[];
   dataGrafico = [];
-  displayedColumns: string[] = ['Distribuidos', 'Arquivados', 'Total'] ;
+  displayedColumns: string[] = ['Distribuidos', 'Arquivados', 'Migrados para o PJE', 'Total'] ;
   Tabela = [];
   ano;
   mes;
@@ -57,10 +57,12 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
-        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
+        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido,
+          this.listDistVara.processosMigrados];
         this.Tabela = [{
           eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
-          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
+          processosMigrados: this.listDistVara.processosMigrados,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)
         }];
       });
   }
@@ -74,16 +76,18 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
             0, 0, 0, 0,
             0, 0, 0);
         }
-        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido];
+        this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido,
+          this.listDistVara.processosMigrados];
         this.Tabela = [{
           eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
-          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
+          processosMigrados: this.listDistVara.processosMigrados,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)
         }];
       });
   }
 // Pie
   // tslint:disable-next-line:member-ordering
-  public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  public pieChartLabels: string[] = ['Eletronico Arquivado', 'Eletronico Distribuido', 'Processos Migrados para o PJE'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   // tslint:disable-next-line:member-ordering

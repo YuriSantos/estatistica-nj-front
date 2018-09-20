@@ -69,7 +69,7 @@ body {
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 .btnF5 {
@@ -123,3 +123,17 @@ mat-table {
 .errSnackbar button {
   color: #fff;
 }
+
+table {
+  width: 100%;
+  font-weight: bolder;
+}
+
+.mat-header-cell {
+  font-weight: bolder;
+}
+
+.mat-cell {
+  font-size: 1.0em;
+}
+

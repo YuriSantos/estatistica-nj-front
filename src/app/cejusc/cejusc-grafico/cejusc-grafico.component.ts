@@ -21,6 +21,7 @@ export class CejuscGraficoComponent implements OnInit {
   ano;
   mes;
   mesNome: string;
+  legend = true;
 
   constructor(private router: Router,
               private cejuscService: CejuscService,

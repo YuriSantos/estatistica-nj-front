@@ -22,6 +22,10 @@ export class CejuscGraficoComponent implements OnInit {
   mes;
   mesNome: string;
   legend = true;
+  porcentagem1: number;
+  porcentagem2: number;
+  porc1: string;
+  porc2: string;
 
   constructor(private router: Router,
               private cejuscService: CejuscService,
@@ -61,9 +65,13 @@ export class CejuscGraficoComponent implements OnInit {
     this.cejuscService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listCejusc = responseApi.data;
+        this.porcentagem1 = (this.listCejusc.acordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
+        this.porcentagem2 = (this.listCejusc.semAcordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
-          acordo: this.listCejusc.acordo, semAcordo: this.listCejusc.semAcordo, total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
+          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
         }];
 
       });
@@ -75,10 +83,16 @@ export class CejuscGraficoComponent implements OnInit {
         this.listCejusc = responseApi.data;
         if (responseApi.data == null) {
           this.listCejusc = new Cejusc(0, 0, 0, 0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = (this.listCejusc.acordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
+        this.porcentagem2 = (this.listCejusc.semAcordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
-          acordo: this.listCejusc.acordo, semAcordo: this.listCejusc.semAcordo, total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
+          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
         }];
 
       });
@@ -86,7 +100,7 @@ export class CejuscGraficoComponent implements OnInit {
 
   // Pie
   // tslint:disable-next-line:member-ordering
-  public pieChartLabels: string[] = ['Acordo', 'Sem Acordo'];
+  public pieChartLabels: string[] = ['Acordo ' + this.porc1 + '%', 'Sem Acordo ' + this.porc2 + '%'];
   // tslint:disable-next-line:member-ordering
   public pieChartData: number[] = [300, 500];
   // tslint:disable-next-line:member-ordering

@@ -1,1 +1,1 @@
-export const ENJ_API = 'http://nj.jfpb.jus.br:8085/enj_back';
+export const ENJ_API = 'http://nj.jfpb.jus.br/enj_back';

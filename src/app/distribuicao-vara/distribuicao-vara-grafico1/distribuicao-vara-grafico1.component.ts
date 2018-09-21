@@ -21,6 +21,8 @@ export class DistribuicaoVaraGrafico1Component implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private distribuicaoVaraService: DistribuicaoVaraService,
@@ -57,9 +59,14 @@ export class DistribuicaoVaraGrafico1Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
+        this.porcentagem1 = (this.listDistVara.fisicoArquivado / (this.listDistVara.fisicoArquivado +
+          this.listDistVara.fisicoDistribuido)) * 100;
+        this.porcentagem2 = (this.listDistVara.fisicoDistribuido / (this.listDistVara.fisicoArquivado +
+          this.listDistVara.fisicoDistribuido)) * 100;
         this.dataGrafico = [this.listDistVara.fisicoArquivado, this.listDistVara.fisicoDistribuido];
         this.Tabela = [{
-          fisicoArquivado: this.listDistVara.fisicoArquivado, fisicoDistribuido: this.listDistVara.fisicoDistribuido,
+          fisicoArquivado: this.listDistVara.fisicoArquivado + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          fisicoDistribuido: this.listDistVara.fisicoDistribuido  + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listDistVara.fisicoArquivado + this.listDistVara.fisicoDistribuido)
         }];
       });
@@ -73,10 +80,17 @@ export class DistribuicaoVaraGrafico1Component implements OnInit {
           this.listDistVara = new DistribuicaoVara(0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = (this.listDistVara.fisicoArquivado / (this.listDistVara.fisicoArquivado +
+          this.listDistVara.fisicoDistribuido)) * 100;
+        this.porcentagem2 = (this.listDistVara.fisicoDistribuido / (this.listDistVara.fisicoArquivado +
+          this.listDistVara.fisicoDistribuido)) * 100;
         this.dataGrafico = [this.listDistVara.fisicoArquivado, this.listDistVara.fisicoDistribuido];
         this.Tabela = [{
-          fisicoArquivado: this.listDistVara.fisicoArquivado, fisicoDistribuido: this.listDistVara.fisicoDistribuido,
+          fisicoArquivado: this.listDistVara.fisicoArquivado + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          fisicoDistribuido: this.listDistVara.fisicoDistribuido  + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listDistVara.fisicoArquivado + this.listDistVara.fisicoDistribuido)
         }];
       });

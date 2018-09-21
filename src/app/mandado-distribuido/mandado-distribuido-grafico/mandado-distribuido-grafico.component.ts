@@ -22,6 +22,8 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private mandadoService: MandadoDistribuidoService,
@@ -58,13 +60,23 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
     this.mandadoService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listMandado = responseApi.data;
+        this.porcentagem1 = ((this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16) / (this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16 + this.listMandado.pje)) * 100;
+        this.porcentagem2 = (this.listMandado.pje / (this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16 + this.listMandado.pje)) * 100;
         this.dataGrafico = [(this.listMandado.vara1 +
           this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
           this.listMandado.vara16), this.listMandado.pje];
           this.Tabela = [{
             mandadosFisicos: (this.listMandado.vara1 +
               this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
-              this.listMandado.vara16), PJE: this.listMandado.pje, total: (this.listMandado.vara1 +
+              this.listMandado.vara16) + ' (' + this.porcentagem1.toFixed(2) + '%)',
+            PJE: this.listMandado.pje + ' (' + this.porcentagem2.toFixed(2) + '%)',
+            total: (this.listMandado.vara1 +
               this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
               this.listMandado.vara16 + this.listMandado.pje)
           }];
@@ -79,14 +91,26 @@ export class MandadoDistribuidoGraficoComponent implements OnInit {
           this.listMandado = new MandadoDistribuido(0, 0, 0,
             0, 0, 0, 0,
             0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = ((this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16) / (this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16 + this.listMandado.pje)) * 100;
+        this.porcentagem2 = (this.listMandado.pje / (this.listMandado.vara1 +
+          this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
+          this.listMandado.vara16 + this.listMandado.pje)) * 100;
         this.dataGrafico = [(this.listMandado.vara1 +
           this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
           this.listMandado.vara16), this.listMandado.pje];
         this.Tabela = [{
           mandadosFisicos: (this.listMandado.vara1 +
             this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
-            this.listMandado.vara16), PJE: this.listMandado.pje, total: (this.listMandado.vara1 +
+            this.listMandado.vara16) + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          PJE: this.listMandado.pje + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          total: (this.listMandado.vara1 +
             this.listMandado.vara2 + this.listMandado.vara3 + this.listMandado.vara5 +
             this.listMandado.vara16 + this.listMandado.pje)
         }];

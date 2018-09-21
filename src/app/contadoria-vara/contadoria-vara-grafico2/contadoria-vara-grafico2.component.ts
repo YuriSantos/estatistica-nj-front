@@ -21,6 +21,8 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private contVaraService: ContadoriaVaraService,
@@ -57,9 +59,14 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
     this.contVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listContVara = responseApi.data;
+        this.porcentagem1 = (this.listContVara.fisicoSaida / (this.listContVara.fisicoSaida
+          + this.listContVara.eletronicoSaida)) * 100;
+        this.porcentagem2 = (this.listContVara.eletronicoSaida / (this.listContVara.fisicoSaida
+          + this.listContVara.eletronicoSaida)) * 100;
         this.dataGrafico = [this.listContVara.fisicoSaida, this.listContVara.eletronicoSaida];
         this.Tabela = [{
-          fisicoSaida: this.listContVara.fisicoSaida, eletronicoSaida: this.listContVara.eletronicoSaida,
+          fisicoSaida: this.listContVara.fisicoSaida + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoSaida: this.listContVara.eletronicoSaida + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContVara.fisicoSaida + this.listContVara.eletronicoSaida)
         }];
 
@@ -74,10 +81,17 @@ export class ContadoriaVaraGrafico2Component implements OnInit {
           this.listContVara = new ContadoriaVara(0, 0, 0,
             0, 0, 0, 0,
             0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = (this.listContVara.fisicoSaida / (this.listContVara.fisicoSaida
+          + this.listContVara.eletronicoSaida)) * 100;
+        this.porcentagem2 = (this.listContVara.eletronicoSaida / (this.listContVara.fisicoSaida
+          + this.listContVara.eletronicoSaida)) * 100;
         this.dataGrafico = [this.listContVara.fisicoSaida, this.listContVara.eletronicoSaida];
         this.Tabela = [{
-          fisicoSaida: this.listContVara.fisicoSaida, eletronicoSaida: this.listContVara.eletronicoSaida,
+          fisicoSaida: this.listContVara.fisicoSaida + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoSaida: this.listContVara.eletronicoSaida + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContVara.fisicoSaida + this.listContVara.eletronicoSaida)
         }];
 

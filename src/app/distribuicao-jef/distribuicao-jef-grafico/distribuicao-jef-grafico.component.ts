@@ -24,6 +24,9 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
+  porcentagem3: number;
 
   constructor(private router: Router,
               private distJefService: DistribuicaoJefService,
@@ -60,10 +63,18 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
     this.distJefService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistJef = responseApi.data;
+        this.porcentagem1 = (this.listDistJef.vara13 / (this.listDistJef.vara13 +
+        this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
+        this.porcentagem2 = (this.listDistJef.vara7 / (this.listDistJef.vara13 +
+          this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
+        this.porcentagem3 = (this.listDistJef.recursal / (this.listDistJef.vara13 +
+          this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
         this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ];
         this.Tabela = [{
-          vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
-          recursal: this.listDistJef.recursal, total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
+          vara13: this.listDistJef.vara13 + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          vara7: this.listDistJef.vara7 + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          recursal: this.listDistJef.recursal + ' (' + this.porcentagem3.toFixed(2) + '%)',
+          total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
         }];
         this.Tabela2 = [{
           telejudiciario: this.listDistJef.teleJudiciario, atermacao: this.listDistJef.atermacao, advogados: this.listDistJef.advogados,
@@ -81,10 +92,18 @@ export class DistribuicaoJefGraficoComponent implements OnInit {
             0, 0, 0, 0,
             0, 0, 0);
         }
+        this.porcentagem1 = (this.listDistJef.vara13 / (this.listDistJef.vara13 +
+          this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
+        this.porcentagem2 = (this.listDistJef.vara7 / (this.listDistJef.vara13 +
+          this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
+        this.porcentagem3 = (this.listDistJef.recursal / (this.listDistJef.vara13 +
+          this.listDistJef.vara7 + this.listDistJef.recursal)) * 100;
         this.dataGrafico = [this.listDistJef.vara13, this.listDistJef.vara7, this.listDistJef.recursal ];
         this.Tabela = [{
-          vara13: this.listDistJef.vara13, vara7: this.listDistJef.vara7,
-          recursal: this.listDistJef.recursal, total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
+          vara13: this.listDistJef.vara13 + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          vara7: this.listDistJef.vara7 + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          recursal: this.listDistJef.recursal + ' (' + this.porcentagem3.toFixed(2) + '%)',
+          total: (this.listDistJef.vara13 + this.listDistJef.vara7 + this.listDistJef.recursal)
         }];
         this.Tabela2 = [{
           telejudiciario: this.listDistJef.teleJudiciario, atermacao: this.listDistJef.atermacao, advogados: this.listDistJef.advogados,

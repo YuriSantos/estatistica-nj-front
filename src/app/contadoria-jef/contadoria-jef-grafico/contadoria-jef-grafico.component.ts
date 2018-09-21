@@ -21,6 +21,8 @@ export class ContadoriaJefGraficoComponent implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private contadoriaJefService: ContadoriaJefService,
@@ -57,10 +59,13 @@ export class ContadoriaJefGraficoComponent implements OnInit {
     this.contadoriaJefService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listContJef = responseApi.data;
+        this.porcentagem1 = (this.listContJef.calculos / (this.listContJef.calculos + this.listContJef.atualizacoes)) * 100;
+        this.porcentagem2 = (this.listContJef.atualizacoes / (this.listContJef.calculos + this.listContJef.atualizacoes)) * 100;
         this.contJef = responseApi['data'];
         this.dataGrafico = [this.listContJef.calculos, this.listContJef.atualizacoes];
         this.Tabela = [{
-          calculos: this.listContJef.calculos, atualizacoes: this.listContJef.atualizacoes,
+          calculos: this.listContJef.calculos + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          atualizacoes: this.listContJef.atualizacoes + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContJef.calculos + this.listContJef.atualizacoes)
         }];
 
@@ -71,12 +76,17 @@ export class ContadoriaJefGraficoComponent implements OnInit {
     this.contadoriaJefService.findByMes(ano, mes)
       .subscribe((responseApi: ResponseApi) => {
         this.listContJef = responseApi.data;
+        this.porcentagem1 = (this.listContJef.calculos / (this.listContJef.calculos + this.listContJef.atualizacoes)) * 100;
+        this.porcentagem2 = (this.listContJef.atualizacoes / (this.listContJef.calculos + this.listContJef.atualizacoes)) * 100;
         if (responseApi.data == null) {
           this.listContJef = new ContadoriaJef(0, 0, 0, 0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
         this.dataGrafico = [this.listContJef.calculos, this.listContJef.atualizacoes];
         this.Tabela = [{
-          calculos: this.listContJef.calculos, atualizacoes: this.listContJef.atualizacoes,
+          calculos: this.listContJef.calculos + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          atualizacoes: this.listContJef.atualizacoes + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContJef.calculos + this.listContJef.atualizacoes)
         }];
 

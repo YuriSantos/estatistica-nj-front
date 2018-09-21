@@ -22,6 +22,8 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private contVaraService: ContadoriaVaraService,
@@ -58,9 +60,14 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
     this.contVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listContVara = responseApi.data;
+        this.porcentagem1 = (this.listContVara.fisicoEntrada / (this.listContVara.fisicoEntrada
+          + this.listContVara.eletronicoEntrada)) * 100;
+        this.porcentagem2 = (this.listContVara.eletronicoEntrada / (this.listContVara.fisicoEntrada
+          + this.listContVara.eletronicoEntrada)) * 100;
         this.dataGrafico = [this.listContVara.fisicoEntrada, this.listContVara.eletronicoEntrada];
         this.Tabela = [{
-          fisicoEntrada: this.listContVara.fisicoEntrada, eletronicoEntrada: this.listContVara.eletronicoEntrada,
+          fisicoEntrada: this.listContVara.fisicoEntrada + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoEntrada: this.listContVara.eletronicoEntrada + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContVara.fisicoEntrada + this.listContVara.eletronicoEntrada)
         }];
 
@@ -75,10 +82,17 @@ export class ContadoriaVaraGrafico1Component implements OnInit {
           this.listContVara = new ContadoriaVara(0, 0, 0,
             0, 0, 0, 0,
             0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = (this.listContVara.fisicoEntrada / (this.listContVara.fisicoEntrada
+          + this.listContVara.eletronicoEntrada)) * 100;
+        this.porcentagem2 = (this.listContVara.eletronicoEntrada / (this.listContVara.fisicoEntrada
+          + this.listContVara.eletronicoEntrada)) * 100;
         this.dataGrafico = [this.listContVara.fisicoEntrada, this.listContVara.eletronicoEntrada];
         this.Tabela = [{
-          fisicoEntrada: this.listContVara.fisicoEntrada, eletronicoEntrada: this.listContVara.eletronicoEntrada,
+          fisicoEntrada: this.listContVara.fisicoEntrada + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoEntrada: this.listContVara.eletronicoEntrada + ' (' + this.porcentagem2.toFixed(2) + '%)',
           total: (this.listContVara.fisicoEntrada + this.listContVara.eletronicoEntrada)
         }];
 

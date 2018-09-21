@@ -12,7 +12,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-select id="idMes" name="mes" placeholder="Mês: " [(ngModel)]="mes">
+      <mat-select id="idMes" name="mes" placeholder="Mês: " [(ngModel)]="mes" *ngIf="ano !== 2017">
         <mat-option value="1">Janeiro</mat-option>
         <mat-option value="2">Fevereiro</mat-option>
         <mat-option value="3">Março</mat-option>

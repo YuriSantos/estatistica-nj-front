@@ -21,6 +21,9 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
+  porcentagem3: number;
 
   constructor(private router: Router,
               private distribuicaoVaraService: DistribuicaoVaraService,
@@ -57,12 +60,19 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
+        this.porcentagem1 = (this.listDistVara.eletronicoArquivado / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
+        this.porcentagem2 = (this.listDistVara.eletronicoDistribuido / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
+        this.porcentagem3 = (this.listDistVara.processosMigrados / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
         this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido,
           this.listDistVara.processosMigrados];
         this.Tabela = [{
-          eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
-          processosMigrados: this.listDistVara.processosMigrados,
-          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)
+          eletronicoArquivado: this.listDistVara.eletronicoArquivado + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoDistribuido: this.listDistVara.eletronicoDistribuido  + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          processosMigrados: this.listDistVara.processosMigrados  + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
         }];
       });
   }
@@ -75,13 +85,23 @@ export class DistribuicaoVaraGrafico2Component implements OnInit {
           this.listDistVara = new DistribuicaoVara(0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
+          this.porcentagem3 = 0;
         }
+        this.porcentagem1 = (this.listDistVara.eletronicoArquivado / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
+        this.porcentagem2 = (this.listDistVara.eletronicoDistribuido / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
+        this.porcentagem3 = (this.listDistVara.processosMigrados / (this.listDistVara.eletronicoArquivado +
+          this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)) * 100;
         this.dataGrafico = [this.listDistVara.eletronicoArquivado, this.listDistVara.eletronicoDistribuido,
           this.listDistVara.processosMigrados];
         this.Tabela = [{
-          eletronicoArquivado: this.listDistVara.eletronicoArquivado, eletronicoDistribuido: this.listDistVara.eletronicoDistribuido,
-          processosMigrados: this.listDistVara.processosMigrados,
-          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido + this.listDistVara.processosMigrados)
+          eletronicoArquivado: this.listDistVara.eletronicoArquivado + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          eletronicoDistribuido: this.listDistVara.eletronicoDistribuido  + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          processosMigrados: this.listDistVara.processosMigrados  + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.eletronicoDistribuido)
         }];
       });
   }

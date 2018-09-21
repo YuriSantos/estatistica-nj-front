@@ -21,6 +21,8 @@ export class DistribuicaoVaraGrafico3Component implements OnInit {
   ano;
   mes;
   mesNome: string;
+  porcentagem1: number;
+  porcentagem2: number;
 
   constructor(private router: Router,
               private distribuicaoVaraService: DistribuicaoVaraService,
@@ -57,9 +59,14 @@ export class DistribuicaoVaraGrafico3Component implements OnInit {
     this.distribuicaoVaraService.findByAno(ano)
       .subscribe((responseApi: ResponseApi) => {
         this.listDistVara = responseApi.data;
+        this.porcentagem1 = (this.listDistVara.peticoesRecebidas / (this.listDistVara.peticoesDigitalizadas +
+        this.listDistVara.peticoesRecebidas)) * 100;
+        this.porcentagem2 = (this.listDistVara.peticoesDigitalizadas / (this.listDistVara.peticoesDigitalizadas +
+          this.listDistVara.peticoesRecebidas)) * 100;
         this.dataGrafico = [this.listDistVara.peticoesRecebidas, this.listDistVara.peticoesDigitalizadas];
         this.Tabela = [{
-          recebidos: this.listDistVara.peticoesRecebidas, digitalizados: this.listDistVara.peticoesDigitalizadas,
+          recebidos: this.listDistVara.peticoesRecebidas + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          digitalizados: this.listDistVara.peticoesDigitalizadas  + ' (' + this.porcentagem2.toFixed(2) + '%)' ,
           total: (this.listDistVara.eletronicoArquivado + this.listDistVara.peticoesDigitalizadas + this.listDistVara.peticoesDigitalizadas)
         }];
       });
@@ -73,11 +80,18 @@ export class DistribuicaoVaraGrafico3Component implements OnInit {
           this.listDistVara = new DistribuicaoVara(0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0);
+          this.porcentagem1 = 0;
+          this.porcentagem2 = 0;
         }
+        this.porcentagem1 = (this.listDistVara.peticoesRecebidas / (this.listDistVara.peticoesDigitalizadas +
+          this.listDistVara.peticoesRecebidas)) * 100;
+        this.porcentagem2 = (this.listDistVara.peticoesDigitalizadas / (this.listDistVara.peticoesDigitalizadas +
+          this.listDistVara.peticoesRecebidas)) * 100;
         this.dataGrafico = [this.listDistVara.peticoesRecebidas, this.listDistVara.peticoesDigitalizadas];
         this.Tabela = [{
-          recebidos: this.listDistVara.peticoesRecebidas, digitalizados: this.listDistVara.peticoesDigitalizadas,
-          total: (this.listDistVara.peticoesRecebidas + this.listDistVara.peticoesDigitalizadas)
+          recebidos: this.listDistVara.peticoesRecebidas + ' (' + this.porcentagem1.toFixed(2) + '%)',
+          digitalizados: this.listDistVara.peticoesDigitalizadas  + ' (' + this.porcentagem2.toFixed(2) + '%)' ,
+          total: (this.listDistVara.eletronicoArquivado + this.listDistVara.peticoesDigitalizadas + this.listDistVara.peticoesDigitalizadas)
         }];
       });
   }

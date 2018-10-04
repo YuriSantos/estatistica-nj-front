@@ -27,10 +27,6 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="outline">
-        <input matInput [type]="hide ? 'password' : 'text'" id="inputSenha" name="senha" placeholder="senha" [(ngModel)]="usuario.senha">
-        <mat-icon class="pwVisibility" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
       <div>
         <button type="submit" mat-button class="btnF5" [disabled]="!form.valid">Salvar</button>
       </div>

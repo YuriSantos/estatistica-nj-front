@@ -69,8 +69,8 @@ export class CejuscGraficoComponent implements OnInit {
         this.porcentagem2 = (this.listCejusc.semAcordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
-          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(2) + '%)',
-          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(0) + '%)',
+          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(0) + '%)',
           total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
         }];
 
@@ -90,8 +90,8 @@ export class CejuscGraficoComponent implements OnInit {
         this.porcentagem2 = (this.listCejusc.semAcordo / (this.listCejusc.acordo + this.listCejusc.semAcordo)) * 100;
         this.dataGrafico = [this.listCejusc.acordo, this.listCejusc.semAcordo];
         this.Tabela = [{
-          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(2) + '%)',
-          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(2) + '%)',
+          acordo: this.listCejusc.acordo + ' (' + this.porcentagem1.toFixed(0) + '%)',
+          semAcordo: this.listCejusc.semAcordo + ' (' + this.porcentagem2.toFixed(0) + '%)',
           total: (this.listCejusc.acordo + this.listCejusc.semAcordo)
         }];
 

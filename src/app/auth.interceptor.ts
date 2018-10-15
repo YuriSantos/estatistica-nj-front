@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from "@angular/common/http";
-import { SharedService } from "./services/shared.service";
-import { HttpRequest } from "@angular/common/http";
-import { HttpHandler } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { HttpEvent } from "@angular/common/http";
+import { HttpInterceptor } from '@angular/common/http';
+import { SharedService } from './services/shared.service';
+import { HttpRequest } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpEvent } from '@angular/common/http';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
